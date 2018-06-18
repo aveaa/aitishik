@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
-
+ 
+bot.login("NDQ0NTA5NTU1NDI3MjQ2MTAw.De_xBg.5ph_CkSFOETavLINoTDFsbPC4TU");
+ 
 //Префикс
 let p = "="
 //ID Создателя
@@ -30,30 +32,31 @@ let music = '437306582305341443'
 let CXODKA = '442419802947059722'//Сходка
 //Эмодзи
 let yoba = '<:yoba:437618349917339658>';
-let one = '<:oneEmoji:451337518915387402>';
-let two = '<:twoEmoji:451337620589379586>';
-let three = '<:threeEmoji:451337648296951813>';
-let four = '<:fourEmoji:451337671818739713>';
-let five = '<:fiveEmoji:451337693973053452>';
+let one = '<:oneEmoji:457554835676332032>';
+let two = '<:twoEmoji:457554850582888459>';
+let three = '<:threeEmoji:457554861739868181>';
+let four = '<:fourEmoji:457554874935279616>';
+let five = '<:fiveEmoji:457554890374250516>';
 
-
+const bot_name = 'Айтишник';
+const version = 'v0.8.1'
 //Функции
 //Функция для генерации случайного числа от min до max
 function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
-
+ 
 //Функции для перемены игр
 function game1() {
     bot.user.setActivity('на ' + p + 'help для справки',{ type: 'WATCHING' })
     setTimeout(game2, 16000);
 }
-
+ 
 function game2() {
     bot.user.setActivity('на ' + p + 'info для информации',{ type: 'WATCHING' })
     setTimeout(game3, 16000);
 }
-
+ 
 function game3() {
     bot.user.setActivity('It The Best!',{ type: 'PLAYING' })
     setTimeout(game1, 16000);
@@ -65,48 +68,56 @@ async function multipleReact(message, arr) {
     }
 }
 
+function setBigTimeout(func, timeout) {
+    if (timeout > 0x7FFFFFFF)
+        setTimeout(function() {setBigTimeout(func, timeout-0x7FFFFFFF);}, 0x7FFFFFFF);
+    else
+        setTimeout(func, timeout);
+}
+ 
 bot.on('guildMemberAdd', (member) => {
     member.send('Приветствую тебя дорогой друг, я - бот этого сервера. Познакомься с ним не торопясь. Желательно, прочитать все написанное в #info. А если понадобится помощь с моими командами, то просто напиши ' + p + 'help');
     });
-
+ 
 //То что должно произойти после запуска бота
 bot.on('ready', () => {
     //Запуск цикла перемены игр
     setTimeout(game1, 1000)
     console.log('Успешный запуск');
 });
+
 bot.on('message', message => {
+    if(message.channel.type !== 'text') return;
+    if(message.channel.id === '451456071685636096') return;
     let arr = [];
     message.guild.fetchInvites().then(invites => {
+        let user = message.mentions.members.first();
         invites.forEach(invite => {
-            arr.push(invite.code); 
+            arr.push(invite.code);
         })
     let matches = message.content.match(/https:\/\/discord(app\.com|\.gg|\.me|\.io)\/?(invite\/)?([_a-zA-Z0-9]{5,32})/gi);
-    if (matches) 
+    if (matches)
         matches.forEach((match) => {
             if (!arr.includes(match.match(/https:\/\/discord(app\.com|\.gg|\.me|\.io)\/?(invite\/)?([_a-zA-Z0-9]{5,32})/i)[3])) {
                 message.delete();
-                message.channel.send(message.author + ', пиарит сервер. Дайте ему мут на 24 ч.');
-    }
+                user.addRole(muted);
+                message.channel.send(user + ' был успешно замучен на 24 часа. Причина: пиар');
+                setBigTimeout(() => {
+                    user.removeRole(muted);
+                    message.channel.send(user + ' был размучен');}, getSeconds(86400)*1000);
+        }
+
     })
     });
-
-    if (message.channel.type !== 'text') return;
+ 
     if (message.author.bot) return;
-	if(message.content.indexOf(p) !== 0) return;
+    if(message.content.indexOf(p) !== 0) return;
     const args = message.content.slice(p.length).trim().split(/ +/g);
     const vote = message.content.slice(p.length).trim().split(/;+/g);
     const command = args.shift().toLowerCase();
-    
+   
     if (message.channel.type !== 'text') return;
-    
-    function setBigTimeout(func, timeout) {
-        if (timeout > 0x7FFFFFFF)
-            setTimeout(function() {setBigTimeout(func, timeout-0x7FFFFFFF);}, 0x7FFFFFFF);
-        else
-            setTimeout(func, timeout);
-    }
-
+ 
     if (['poll', 'vote'].includes(command)) {
         let question
         if (!vote[0]) {
@@ -115,44 +126,54 @@ bot.on('message', message => {
         } else {
             question = vote[0].replace('poll ', '')
         }
-
+ 
         if (!vote[1]) {
             message.channel.send('Вы забыли указать за что голосовать');
             return
         } else {
-            message.channel.send(':bar_chart:**' + question + '**').then(sentmessage => {
-                msg.react(bot.emojis.get(one))
-                });
+            message.delete();
 
             if (!vote[2]) {
-                message.channel.send(one + ' - ' + vote[1]).then((msg) => {
-                    msg.react(bot.emojis.get(one))
-                    });
+                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1]).then((msg) => {
+                multipleReact(msg, [bot.emojis.get('457554835676332032'), ])});
+                    
             } else if (!vote[3]) {
-                message.channel.send(one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2]);
+                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2]).then((msg) => {
+                multipleReact(msg, [bot.emojis.get('457554835676332032'), bot.emojis.get('457554850582888459'),])});
                 return;
             } else if (!vote[4]) {
-                message.channel.send(one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3]);
+                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3]).then((msg) => {
+                multipleReact(msg, [bot.emojis.get('457554835676332032'), bot.emojis.get('457554850582888459'), bot.emojis.get('457554861739868181') ])});
                 return;
             } else if (!vote[5]) {
-                message.channel.send(one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3] + '\n' + four + ' - ' + vote[4]);
+                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3] + '\n' + four + ' - ' + vote[4]).then((msg) => {
+                multipleReact(msg, [bot.emojis.get('457554835676332032'), bot.emojis.get('457554850582888459'), bot.emojis.get('457554861739868181'), bot.emojis.get('457554874935279616')])});
             }
             else if (!vote[6]) {
-                message.channel.send(one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3] + '\n' + four + ' - ' + vote[4] + '\n' + five + ' - ' + vote[5]);
+                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3] + '\n' + four + ' - ' + vote[4] + '\n' + five + ' - ' + vote[5]).then((msg) => {
+                multipleReact(msg, [bot.emojis.get('457554835676332032'), bot.emojis.get('457554850582888459'), bot.emojis.get('457554861739868181'), bot.emojis.get('457554874935279616'), bot.emojis.get('457554890374250516')])});
             }
             else if (vote[6]) {
                 message.channel.send('Вы превысили максимальный лимит выборов для голосования');
             }
         }
     }
-
-    
+if (['Test', 'Тест', 'Еуые'].includes(command)) {
+    const embed = new Discord.RichEmbed()
+    .setTitle("Мут")
+    .setColor("af00ff")
+    .setDescription('Вы были замучены пользователем ' + message.author + 'Время: ' + 'time' + '. Причина: ' + 'reason' + '. Не ведите себя плохо!')
+    .setFooter(bot_name + " | " + version + " | Все права защищены")
+    .setTimestamp();
+    message.channel.send({embed});
+}
+   
 if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.some(r=>[moder, owner].includes(r.id))) {
     let user = message.mentions.members.first();
-
+ 
     if (!user)
         return message.channel.send('Вы забыли упомянуть пользователя или вы хотите замутить того кто не является пользователем');
-
+ 
     if (user.id == message.author.id) {
         message.channel.send('Зачем ты пытаешься замутить самого себя?');
         return;
@@ -175,16 +196,16 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         if (secs) { seconds += parseInt(secs[1]); }
         return seconds;
     }
-
+ 
     user.addRole(muted);
     message.channel.send(user + ' был успешно замучен');
-
+ 
     if (args[1] && getSeconds(args[1]) !== 0 )
     setBigTimeout(() => {
         user.removeRole(muted);
         message.channel.send(user + ' был размучен');}, getSeconds(args[1])*1000);
 }
-
+ 
     if (['unmute', 'гтьгеу'].includes(command)) {
         let user = message.mentions.members.first();
         if (!user) {
@@ -198,36 +219,49 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             }
         }
     }
-    
-    if(['help'].includes(command)) { 
+   
+    if(['help'].includes(command)) {
         const embed = new Discord.RichEmbed()
             .setTitle("Помощь")
             .setColor("af00ff")
-            .setDescription('Мои команды: \n' + p + 'avatar \'Пользователь\' - Показ аватарки пользоввателя \n' + p + 'say \'Текст\' - Бот скажет вашу реплику \(Могут только модераторы и Epic\) \n' + p + 'rsp \'камень | ножницы |бумага\' - Миниигра "Камень, ножницы, бумага" \n' + p + 'random \'число\' - генерация случайного числа от 0 до любого другого числа ')
-            .setFooter("Все права защищены")
+            .setDescription('Мои команды: \n' + p + 'avatar `пользователь` - Показ аватарки пользоввателя \n' + p + 'say `текст` - бот скажет вашу реплику \(Могут только модераторы и Epic\) \n' + p + 'rsp `камень | ножницы |бумага` - Миниигра "Камень, ножницы, бумага" \n' + p + 'random `число` `число` - генерация случайного числа от 0 до любого другого числа \n' + p + 'poll `вопрос` `;` `варианты через \';\'` - голосование \n' + p + 'mute|unmute - мут или размут пользователя (Могут не все) \n' + p + 'caseinfo - информация о кейсах')
+            .setFooter(bot_name + " | " + version + " | Все права защищены")
             .setTimestamp();
         message.channel.send({embed});
     }
+
+   
+            //.setDescription(p + 'case - открыть обычный кейс \n' + p + 'magiccase - открыть магичский кейс \n' + p + 'legendarycase - открыть легендарный кейс' + p + 'caselottery - открыть кейс-лотерею')
  
     if(["info"].includes(command)) {
         const embed = new Discord.RichEmbed()
             .setTitle("Информация")
             .setColor("af00ff")
             .setDescription('Привет, я собственный бот сервера \"IT\"\n `>-Зачем меня создали?-<`\n Я создан для автоматического открытия кейсов, для удаления спама, миниигр, и многого другого\n Чтобы узнать список моих команд на данный момент напиши команду =help')
-            .setFooter("Все права защищены")
+            .setFooter(bot_name + " | " + version + " | Все права защищены")
             .setTimestamp();
         message.channel.send({embed});
     }
 
+    if(["caseinfo"].includes(command)) {
+        const embed = new Discord.RichEmbed()
+            .setTitle("Информация о кейсах")
+            .setColor("af00ff")
+            .setDescription(p + 'open case - открыть обычный кейс \n' + p + 'open magiccase - открыть магичский кейс \n' + p + 'open legendarycase - открыть легендарный кейс\n' + p + 'open caselottery - открыть кейс-лотерею')
+            .setFooter(bot_name + " | " + version + " | Все права защищены")
+            .setTimestamp();
+        message.channel.send({embed});
+    }
+ 
     if (['скажи', 'say', 's'].includes(command)) {
         if (message.member.roles.some(r=> [moder, owner, epic].includes(r.id))) {
-            const sayMessage = args.join(" ");
+        const sayMessage = args.join(" ");
         message.delete().catch(O_o=>{});
         let msg = message.channel.send(sayMessage).catch(()=>{message.reply(' не пиши просто =say. Надо писать =say \'Текст\'');
         });
-        } else {
+    } else {
             message.channel.send('Извините, вы не можете использовать команду say, вы должны иметь роли Модератор или Epic');
-        }}
+    }}
  
     if(['av', 'avatar', 'ав', 'аватар', 'ava', 'a', 'ава', 'а'].includes(command)) {
         let user = message.mentions.members.first();
@@ -236,16 +270,16 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             .setImage(user.user.avatarURL)
             .setDescription("**Аватар пользователя **" + user + "\n" + "Представлено по запросу " + message.author)
             .setColor("af00ff")
-            .setFooter("Все права защищены")
+            .setFooter(bot_name + " | " + version + " | Все права защищены")
             .setTimestamp();
-        message.channel.send({embed: av}); 
+        message.channel.send({embed: av});
         message.delete();
     }
     /*if (message.content.match(/\<\@.?\d+\>/gi)) {
         message.delete();
         message.channel.send('Не пингуй!');
     }*/
-
+ 
    /*if ([('IP').includes(command)]) {
         if (message.member.roles.some(r=> [owner].includes(r.id))) {
                 let user = message.mentions.members.first();
@@ -259,11 +293,11 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             message.channel.send('У вас недостаточно прав');
         }
     }*/
-    
+   
     if (['random', 'r'].includes(command)) {
  
         if (!args[0]) args[0] = 0;
-        
+       
         if (!args[1]) args[1] = 10;
  
         let rand = randomInteger(parseInt(args[0]), parseInt(args[1]));
@@ -271,11 +305,23 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             .setTitle("Информация")
             .setColor("af00ff")
             .setDescription('Вам выпало число ' + rand)
-            .setFooter("Все права защищены")
+            .setFooter(bot_name + " | " + version + " | Все права защищены")
             .setTimestamp();
         message.channel.send({embed});
     }
 
+    if (message.content.match(/@clan member`s/gi)) {
+        message.channel.send(message.author + ', за упоминание, полагается наказание');
+    }
+
+    if (message.content.match(/@veryone/gi)) {
+        message.channel.send(message.author + ', плати налоги за упоминания');
+    }
+
+    if (message.content.match(/@ere/gi)) {
+        message.channel.send(message.author + ', плати налоги за упоминания');
+    }
+ 
     //Камень, ножницы, бумага
     if (['rsp', 'кнб', 'кыз'].includes(command)) {
         let userChoice;
@@ -289,7 +335,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                     userChoice = 'ножницы';
                 }
                 else if (!args[0]) {
-                    sendMsg('Вы забыли указать что вы выбираете, камень, ножницы или бумагу');
+                    message.channel.send('Вы забыли указать что вы выбираете, камень, ножницы или бумагу');
                     return;
                 }
                 else {
@@ -334,8 +380,8 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                     }
                 }
                 if (userChoice === 'Incorrect') {
-                    message.channel.send(message.author + ", " + rspCW(userChoice, computerChoice)) 
-                } 
+                    message.channel.send(message.author + ", " + rspCW(userChoice, computerChoice))
+                }
                 else {
                 message.channel.send(message.author + ", " + rspCW(userChoice, computerChoice) + ' Ты выбрал\(а\) ' + userChoice + ' Я выбрал ' + computerChoice);
              }};
@@ -344,7 +390,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             let present = randomInteger(1, 6);
             if (present === 1) {
                 message.channel.send('Ты выиграл Plus и Color!');
-                message.member.addRole(plus); 
+                message.member.addRole(plus);
                 message.member.addRole(color);
                 message.member.removeRole(caseRole);
             } else if (present === 2) {
@@ -365,7 +411,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 message.member.removeRole(caseRole);
         }
     }
-
+ 
     if(message.content.startsWith(p + 'open magiccase') && message.member.roles.some(r=>[magicCaseRole].includes(r.id))) {
             let present = randomInteger(1, 6);
             if (present === 1) {
@@ -391,9 +437,9 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 message.channel.send('Ты выиграл Elite!');
                 message.member.addRole(elite);
                 message.member.removeRole(magicCaseRole);
-        } 
+        }
     }
-
+ 
     if(message.content.startsWith(p + 'open legendarycase') && message.member.roles.some(r=>[legendaryCaseRole].includes(r.id))) {
             let present = randomInteger(1, 6);
             if (present === 1) {
@@ -420,9 +466,9 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 message.channel.send('Ты выиграл Elite!');
                 message.member.addRole(elite);
                 message.member.removeRole(legendaryCaseRole);
-        } 
+        }
     }
-
+ 
     if(message.content.startsWith(p + 'open caselottery') && message.member.roles.some(r=>[caseLotteryRole].includes(r.id))) {
             let present = Math.random();
             if (present <= 0.12) {
@@ -439,5 +485,3 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         }
     }
 });
-
-robot.login(process.env.BOT_TOKEN);
