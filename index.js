@@ -1,10 +1,11 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
- 
-bot.login("NDQ0NTA5NTU1NDI3MjQ2MTAw.De_xBg.5ph_CkSFOETavLINoTDFsbPC4TU");
+
+/** @namespace process.env.PREFIX */
+/** @namespace process.env.BOT_TOKEN */
  
 //Префикс
-let p = "="
+let p = process.env.PREFIX
 //ID Создателя
 let creator_id = `242975403512168449`
 //ID Ролей
@@ -39,7 +40,7 @@ let four = '<:fourEmoji:457554874935279616>';
 let five = '<:fiveEmoji:457554890374250516>';
 
 const bot_name = 'Айтишник';
-const version = 'v0.8.1'
+const version = 'v0.9.0'
 //Функции
 //Функция для генерации случайного числа от min до max
 function randomInteger(min, max) {
@@ -111,9 +112,9 @@ bot.on('message', message => {
     });
  
     if (message.author.bot) return;
-    if(message.content.indexOf(p) !== 0) return;
-    const args = message.content.slice(p.length).trim().split(/ +/g);
-    const vote = message.content.slice(p.length).trim().split(/;+/g);
+    if(message.content.indexOf(process.env.PREFIX) !== 0) return;
+    const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
+    const vote = message.content.slice(process.env.PREFIX.length).trim().split(/;+/g);
     const command = args.shift().toLowerCase();
    
     if (message.channel.type !== 'text') return;
@@ -485,3 +486,5 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         }
     }
 });
+
+bot.login(process.env.BOT_TOKEN).catch(err => {console.log(err)});
