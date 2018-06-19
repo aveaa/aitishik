@@ -39,8 +39,8 @@ let four = '<:fourEmoji:457554874935279616>';
 let five = '<:fiveEmoji:457554890374250516>';
 
 const bot_name = 'Айтишник';
-let version = 'v0.9.0'
-let update = 'В обновление ' + version + ' добавили:\n  1. Воможноность узнать, что было добавлено в последнем обновлении\n  2. Бот теперь всегда онлайн'
+let version = 'v0.9.1'
+let update = version + ' Обновилось:\n  1. Тест в команде update\n  2. Исправлен баг. После написания =rsp бот ломался, теперь этого не происходит'
 //Функции
 //Функция для генерации случайного числа от min до max
 function randomInteger(min, max) {
@@ -360,7 +360,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                     computerChoice = "бумагу";
                 } else {
                     computerChoice = "ножницы";
-                } message.channel.send("Я выбрал " + computerChoice);
+                }
                 function rspCW(userChoice, computerChoice) {
                     if (userChoice === computerChoice) {
                         return "ничья!";
@@ -395,7 +395,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                     message.channel.send(message.author + ", " + rspCW(userChoice, computerChoice))
                 }
                 else {
-                message.channel.send(message.author + ", " + rspCW(userChoice, computerChoice) + ' Ты выбрал\(а\) ' + userChoice + ' Я выбрал ' + computerChoice);
+                message.channel.send('Я выбрал ' + computerChoice + '.' + message.author + ", " + rspCW(userChoice, computerChoice) + ' Ты выбрал\(а\) ' + userChoice + ' Я выбрал ' + computerChoice);
              }};
     //Кейсы
     if (message.content.startsWith(p + 'open case') && message.member.roles.some(r=>[caseRole].includes(r.id))) {
