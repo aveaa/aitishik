@@ -1,11 +1,10 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 
-/** @namespace process.env.PREFIX */
 /** @namespace process.env.BOT_TOKEN */
  
 //Префикс
-let p = process.env.PREFIX
+let p = "="
 //ID Создателя
 let creator_id = `242975403512168449`
 //ID Ролей
@@ -113,9 +112,9 @@ bot.on('message', message => {
     });
  
     if (message.author.bot) return;
-    if(message.content.indexOf(process.env.PREFIX) !== 0) return;
-    const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
-    const vote = message.content.slice(process.env.PREFIX.length).trim().split(/;+/g);
+    if(message.content.indexOf(p) !== 0) return;
+    const args = message.content.slice(p.length).trim().split(/ +/g);
+    const vote = message.content.slice(p.length).trim().split(/;+/g);
     const command = args.shift().toLowerCase();
    
     if (message.channel.type !== 'text') return;
@@ -499,4 +498,4 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     }
 });
 
-bot.login(process.env.BOT_TOKEN).catch(err => {console.log(err)});
+bot.login(/*process.env.BOT_TOKEN).catch(err => {console.log(err)}*/"NDQ0NTA5NTU1NDI3MjQ2MTAw.Dgpn2Q.PAeUDSeh8PrGGXKPmTh4hu_lMbE");
