@@ -41,6 +41,7 @@ let five = '<:fiveEmoji:457554890374250516>';
 
 const bot_name = 'Айтишник';
 const version = 'v0.9.0'
+const update = 'В обновление ' + version + ' добавили:\n1. Воможноность узнать, что было добавлено в последнем обновлении\n2. Бот теперь всегда онлайн'
 //Функции
 //Функция для генерации случайного числа от min до max
 function randomInteger(min, max) {
@@ -230,6 +231,17 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             .setTimestamp();
         message.channel.send({embed});
     }
+
+    if(['update'].includes(command)) {
+        const embed = new Discord.RichEmbed()
+            .setTitle("Обновления")
+            .setColor("af00ff")
+            .setDescription(update)
+            .setFooter(bot_name + " | " + version + " | Все права защищены")
+            .setTimestamp();
+        message.channel.send({embed});
+    }
+
 
    
             //.setDescription(p + 'case - открыть обычный кейс \n' + p + 'magiccase - открыть магичский кейс \n' + p + 'legendarycase - открыть легендарный кейс' + p + 'caselottery - открыть кейс-лотерею')
