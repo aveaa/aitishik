@@ -337,7 +337,12 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     //Камень, ножницы, бумага
     if (['rsp', 'кнб', 'кыз'].includes(command)) {
         let userChoice;
-                if (['камень', 'rock', 'r', 'к'].includes(args[0].toLowerCase())) {
+
+                if (!args[0]) {
+                    message.channel.send('Вы забыли указать что вы выбираете, камень, ножницы или бумагу');
+                    return;
+                }
+                else if (['камень', 'rock', 'r', 'к'].includes(args[0].toLowerCase())) {
                     userChoice = 'камень';
                 }
                 else if (['бумагу', 'бумага', 'paper', 'p', 'б'].includes(args[0].toLowerCase())) {
@@ -345,12 +350,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 }
                 else if (['scissors', 'ножницы', 's', 'н'].includes(args[0].toLowerCase())) {
                     userChoice = 'ножницы';
-                }
-                else if (!args[0]) {
-                    message.channel.send('Вы забыли указать что вы выбираете, камень, ножницы или бумагу');
-                    return;
-                }
-                else {
+                } else {
                     userChoice = 'Incorrect';
                 }
                 let computerChoice = Math.random();
