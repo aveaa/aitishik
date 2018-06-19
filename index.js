@@ -498,4 +498,4 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     }
 });
 
-bot.login(process.env.BOT_TOKEN).catch(err => {console.log(err)});
+bot.login(process.env.BOT_TOKEN)/*.catch(err => {console.log(err)})*/;
