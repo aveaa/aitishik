@@ -40,7 +40,7 @@ let five = '<:fiveEmoji:457554890374250516>';
 
 const bot_name = 'Айтишник';
 let version = 'v0.9.1'
-let update = version + ' Обновилось:\n  1. Тест в команде update\n  2. Исправлен баг. После написания =rsp бот ломался, теперь этого не происходит'
+let update = 'В версии ' + version + ' Обновились:\n  1. Текст в команде update\n  2. Обновлена миниигра "Камень, ножницы, бумага"\n    2.1 Исправлен баг. После написания =rsp бот ломался. Теперь этого не происходит\n   2.2 Обновлены фразы в =rsp'
 //Функции
 //Функция для генерации случайного числа от min до max
 function randomInteger(min, max) {
@@ -370,14 +370,14 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                             return "ты выиграл!";
                         }
                         else if (computerChoice === "бумагу") {
-                            return "ты проиграл";
+                            return "ты проиграл.";
                         }
                     }
                     else if(userChoice === "бумагу") {
                         if(computerChoice === "камень") {
                             return "ты выиграл!";
                         } else if (computerChoice === "ножницы") {
-                            return "ты проиграл";
+                            return "ты проиграл.";
                         }
                     }
                     else if(userChoice === "ножницы") {
@@ -395,7 +395,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                     message.channel.send(message.author + ", " + rspCW(userChoice, computerChoice))
                 }
                 else {
-                message.channel.send('Я выбрал ' + computerChoice + '.' + message.author + ", " + rspCW(userChoice, computerChoice) + ' Ты выбрал\(а\) ' + userChoice + ' Я выбрал ' + computerChoice);
+                message.channel.send('Я выбрал ' + computerChoice + '. ' + message.author + ", " + rspCW(userChoice, computerChoice) + ' Ты выбрал\(а\) ' + userChoice + ' Я выбрал ' + computerChoice);
              }};
     //Кейсы
     if (message.content.startsWith(p + 'open case') && message.member.roles.some(r=>[caseRole].includes(r.id))) {
