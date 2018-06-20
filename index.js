@@ -48,9 +48,6 @@ function randomInteger(min, max) {
 }
 
 //Функция для отправки сообщения после мута/варна/кика/бана
-function muteBanKickWarnMsg(action, actioner, time, reason) {
-    message.use
-}
  
 //Функции для перемены игр
 function game1() {
@@ -166,11 +163,11 @@ bot.on('message', message => {
     }
    
 if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.some(r=>[moder, owner].includes(r.id))) {
-    let user = message.mentions.members.first();
- 
+    let user = message.mentions.members.first(); 
+    
     if (!user)
         return message.channel.send('Вы забыли упомянуть пользователя или вы хотите замутить того кто не является пользователем');
- 
+
     if (user.id == message.author.id) {
         message.channel.send('Зачем ты пытаешься замутить самого себя?');
         return;
@@ -193,15 +190,17 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         if (secs) { seconds += parseInt(secs[1]); }
         return seconds;
     }
- 
+    
     user.addRole(muted);
     message.channel.send(user + ' был успешно замучен');
+
  
     if (args[1] && getSeconds(args[1]) !== 0 )
     setBigTimeout(() => {
         user.removeRole(muted);
         message.channel.send(user + ' был размучен');}, getSeconds(args[1])*1000);
 }
+
  
     if (['unmute', 'гтьгеу'].includes(command)) {
         let user = message.mentions.members.first();
@@ -228,13 +227,15 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     }
 
     if (['Test', 'Тест'].includes(command)) {
+        let user = message.mentions.members.first();
+        message.channel.send('Test');
         const messageAuthor = message.author
         const embed = new Discord.RichEmbed()
-        .setTitle("Мут")
-        .setColor("af00ff")
-        .setDescription('Вы были замучены пользователем ' + messageAuthor + '\n\nВремя: ' + 'time\n' + 'Причина: ' + 'reason\n\n' + 'Не ведите себя плохо!')
-        .setFooter(bot_name + " | " + version + " | Все права защищены")
-        .setTimestamp();
+            .setTitle("Мут")
+            .setColor("af00ff")
+            .setDescription('Вы были замучены пользователем ' + messageAuthor + '\n\nВремя: ' + 'time\n' + 'Причина: ' + 'reason\n\n' + 'Не ведите себя плохо!')
+            .setFooter(bot_name + " | " + version + " | Все права защищены")
+            .setTimestamp();
         message.author.send({embed});
     }
 
