@@ -161,6 +161,32 @@ bot.on('message', message => {
             }
         }
     }
+
+    if (['warn', 'варн', 'цфкт'].includes(command) && message.member.roles.some(r=>[moder, owner].includes(r.id))) {
+        let user = message.mentions.members.first(); 
+
+        if (!user) {
+            message.channel.send('Вы забыли упомянуть пользователя или вы хотите замутить того кто не является пользователем');
+            return
+        }
+        if (user.id == message.author.id) {
+            message.channel.send('Зачем ты пытаешься сделать предупреждение самому себе?');
+            return;
+        }
+        let reason = args.join(" ").replace(user, '')
+
+        if (!reason) reason = ' Не указана'
+
+        const embed = new Discord.RichEmbed()
+                .setTitle("Информация о предупреждениях")
+                .setColor("af00ff")
+                .setDescription('Вы были **предупреждены** пользователем ' + message.author + '.\n\nПричина:**' + reason + '**.\n\nНе ведите себя плохо!')
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                .setTimestamp();
+                user.send({embed});
+
+
+    }
    
 if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.some(r=>[moder, owner].includes(r.id))) {
     let user = message.mentions.members.first(); 
@@ -204,7 +230,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     const embed = new Discord.RichEmbed()
                 .setTitle("Информация о муте")
                 .setColor("af00ff")
-                .setDescription('Вы были замучены пользователем ' + message.author + '\n\nВремя: '+ args[1] + '.\nПричина:' + reason + '.\n\nНе ведите себя плохо!')
+                .setDescription('Вы были **замучены** пользователем ' + message.author + '\n\nВремя: **'+ args[1] + '**.\nПричина:**' + reason + '**.\n\nНе ведите себя плохо!')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
                 user.send({embed});
@@ -230,7 +256,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 const embed = new Discord.RichEmbed()
                     .setTitle("Информация о муте")
                     .setColor("af00ff")
-                    .setDescription('Вы были размучены пользователем ' + message.author + '.\n\nПричина: ' + reason)
+                    .setDescription('Вы были **размучены** пользователем ' + message.author + '.\n\nПричина: **' + reason + '**')
                     .setFooter(bot_name + " | " + version + " | Все права защищены")
                     .setTimestamp();
                 user.send({embed});
