@@ -15,7 +15,7 @@ let color = `437594996758020099`
 let elite = `437308437991260170`
 let watcher = '437309176105009152' //Watcher - Наблюдатель
 let epic = '437584248677990410'
-let textChannel = '446351322997063692' //testChannel - Разрешение на создание текстового канала
+let textChannel = '446351322997063692' //textChannel - Разрешение на создание текстового канала
 let warn1 = '449221480346288139';
 let warn2 = '449221534360403978';
 let warn3 = '449221570901180417';
@@ -164,11 +164,12 @@ bot.on('message', message => {
             }
         }
     }
-if (['Testing'].includes(command)) {
+if (['Test', 'Тест'].includes(command)) {
+    const messageAuthor = message.author
     const embed = new Discord.RichEmbed()
     .setTitle("Мут")
     .setColor("af00ff")
-    .setDescription('Вы были замучены')
+    .setDescription('Вы были замучены пользователем ' + messageAuthor + '\n\nВремя: ' + 'time\n' + 'Причина: ' + 'reason\n\n' + 'Не ведите себя плохо!')
     .setFooter(bot_name + " | " + version + " | Все права защищены")
     .setTimestamp();
     message.author.send({embed});
