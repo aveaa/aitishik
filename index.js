@@ -270,7 +270,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         if (message.member.roles.some(r=> [moder, owner, epic].includes(r.id))) {
         const sayMessage = args.join(" ");
         message.delete().catch(O_o=>{});
-        let msg = user.send(sayMessage).catch(()=>{message.reply(' не пиши просто =say. Надо писать =say \'Текст\'');
+        let msg = user.send(sayMessage.replace(user, '')).catch(()=>{message.reply(' не пиши просто =say. Надо писать =say \'Текст\'');
         });
     } else {
             message.channel.send('Извините, вы не можете использовать команду say, вы должны иметь роли Модератор или Epic');
