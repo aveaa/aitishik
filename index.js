@@ -226,9 +226,14 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         message.channel.send({embed});
     }
 
-   if (['Test', 'Тест'].includes(command)) {
-       message.channel.send('Succseed')
-   }
+    
+    if(['send'].includes(command)) {
+        let user = message.mentions.members.first();
+        message.delete().catch(O_o=>{});
+        const sendMessage = args.join(" ");
+        let msg = user.send(sendMessage).catch(()=>{message.reply('Ошибка');
+        })
+    }
 
     if(['update'].includes(command)) {
         const embed = new Discord.RichEmbed()
