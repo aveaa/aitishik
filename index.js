@@ -137,53 +137,23 @@ bot.on('message', message => {
             message.delete();
 
             if (!vote[2]) {
-                const embed1poll = new Discord.RichEmbed()
-                .setTitle("Голосование")
-                .setColor("af00ff")
-                .setDescription(one + ' - ' + vote[1])
-                .setFooter(bot_name + " | " + version + " | Все права защищены")
-                .setTimestamp();
-                message.channel.send(':bar_chart:**' + question + '**\n' + {embed1poll}).then((msg) => {
+                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1]).then((msg) => {
                 multipleReact(msg, [bot.emojis.get('457554835676332032'), ])});
                     
             } else if (!vote[3]) {
-                const embed2poll = new Discord.RichEmbed()
-                .setTitle("Голосование")
-                .setColor("af00ff")
-                .setDescription(one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2])
-                .setFooter(bot_name + " | " + version + " | Все права защищены")
-                .setTimestamp();
-                message.channel.send(':bar_chart:**' + question + '**\n' + {embed2poll}).then((msg) => {
+                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2]).then((msg) => {
                 multipleReact(msg, [bot.emojis.get('457554835676332032'), bot.emojis.get('457554850582888459'),])});
                 return;
             } else if (!vote[4]) {
-                const embed3poll = new Discord.RichEmbed()
-                .setTitle("Голосование")
-                .setColor("af00ff")
-                .setDescription(one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3])
-                .setFooter(bot_name + " | " + version + " | Все права защищены")
-                .setTimestamp();
-                message.channel.send(':bar_chart:**' + question + '**\n' + {embed3poll}).then((msg) => {
+                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3]).then((msg) => {
                 multipleReact(msg, [bot.emojis.get('457554835676332032'), bot.emojis.get('457554850582888459'), bot.emojis.get('457554861739868181') ])});
                 return;
             } else if (!vote[5]) {
-                const embed4poll = new Discord.RichEmbed()
-                .setTitle("Голосование")
-                .setColor("af00ff")
-                .setDescription(one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3] + '\n' + four + ' - ' + vote[4])
-                .setFooter(bot_name + " | " + version + " | Все права защищены")
-                .setTimestamp();
-                message.channel.send(':bar_chart:**' + question + '**\n' + {embed4poll}).then((msg) => {
+                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3] + '\n' + four + ' - ' + vote[4]).then((msg) => {
                 multipleReact(msg, [bot.emojis.get('457554835676332032'), bot.emojis.get('457554850582888459'), bot.emojis.get('457554861739868181'), bot.emojis.get('457554874935279616')])});
             }
             else if (!vote[6]) {
-                const embed5poll = new Discord.RichEmbed()
-                .setTitle("Голосование")
-                .setColor("af00ff")
-                .setDescription(one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3] + '\n' + four + ' - ' + vote[4] + '\n' + five + ' - ' + vote[5])
-                .setFooter(bot_name + " | " + version + " | Все права защищены")
-                .setTimestamp();
-            message.channel.send(':bar_chart:**' + question + '**\n' /*+ /*{embed5poll}*/).then((msg) => {
+                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3] + '\n' + four + ' - ' + vote[4] + '\n' + five + ' - ' + vote[5]).then((msg) => {
                 multipleReact(msg, [bot.emojis.get('457554835676332032'), bot.emojis.get('457554850582888459'), bot.emojis.get('457554861739868181'), bot.emojis.get('457554874935279616'), bot.emojis.get('457554890374250516')])});
             }
             else if (vote[6]) {
@@ -198,10 +168,10 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     if (!user)
         return message.channel.send('Вы забыли упомянуть пользователя или вы хотите замутить того кто не является пользователем');
 
-    /*if (user.id == message.author.id) {
+    if (user.id == message.author.id) {
         message.channel.send('Зачем ты пытаешься замутить самого себя?');
         return;
-    }*/
+    }
     function getSeconds(str) {
         let seconds = 0;
         let years = str.match(/(\d+)\s*y/);
@@ -282,13 +252,13 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
 
     
     if(['send'].includes(command)) {
-        let user = message.mentions.members.first();
         if (message.member.roles.some(r=> [moder, owner, epic].includes(r.id))) {
             if (!user) {
                 message.delete
                 message.author.send('Ошибка. Причина: не указан получатель сообщения');
                 return
             }
+            let user = message.mentions.members.first();
             const sendMessage = args.join(" ");
             let msg = user.send(sendMessage.replace(user, '')).catch(()=>{message.reply('Ошибка. Причина: не указано сообщение');
             })
