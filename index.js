@@ -168,10 +168,10 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     if (!user)
         return message.channel.send('Вы забыли упомянуть пользователя или вы хотите замутить того кто не является пользователем');
 
-    if (user.id == message.author.id) {
+    /*if (user.id == message.author.id) {
         message.channel.send('Зачем ты пытаешься замутить самого себя?');
         return;
-    }
+    }*/
     function getSeconds(str) {
         let seconds = 0;
         let years = str.match(/(\d+)\s*y/);
