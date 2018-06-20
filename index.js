@@ -39,8 +39,8 @@ let four = '<:fourEmoji:457554874935279616>';
 let five = '<:fiveEmoji:457554890374250516>';
 
 const bot_name = 'Айтишник';
-let version = 'v0.9.2'
-let update = 'Вышла новая версия ' + version + '. Обновления:\n\n1. Добавилась команда ' + p + 'send. С ее помощбю вы можете отправить сообщение пользоватею в лс (Доступно только для Модераторов и Epic)\n\n2. Структура текста команды ' + p + 'update.'
+let version = 'v0.9.3'
+let update = 'Вышла новая версия ' + version + '. Обновления:\n\n1. Добавлено сообщение после мута/размута. Где пишется причина, время, и тот кто вас замутил.'
 //Функции
 //Функция для генерации случайного числа от min до max
 function randomInteger(min, max) {
@@ -226,7 +226,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             if (user.roles.some(r=>[muted].includes(r.id))) {
                 user.removeRole(muted);
                 message.channel.send(user + ' был размучен');
-                if (!reason) reason = ' Не указана'
+                if (!reason) reason = 'Не указана'
                 const embed = new Discord.RichEmbed()
                     .setTitle("Информация о муте")
                     .setColor("af00ff")
