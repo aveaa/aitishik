@@ -190,7 +190,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         if (secs) { seconds += parseInt(secs[1]); }
         return seconds;
     }
-    
+
     user.addRole(muted);
     message.channel.send(user + ' был успешно замучен');
 
@@ -227,16 +227,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     }
 
     if (['Test', 'Тест'].includes(command)) {
-        let user = message.mentions.members.first();
         message.channel.send('Test');
-        const messageAuthor = message.author
-        const embed = new Discord.RichEmbed()
-            .setTitle("Мут")
-            .setColor("af00ff")
-            .setDescription('Вы были замучены пользователем ' + messageAuthor + '\n\nВремя: ' + 'time\n' + 'Причина: ' + 'reason\n\n' + 'Не ведите себя плохо!')
-            .setFooter(bot_name + " | " + version + " | Все права защищены")
-            .setTimestamp();
-        message.author.send({embed});
     }
 
     if(['update'].includes(command)) {
