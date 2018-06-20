@@ -226,9 +226,9 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         message.channel.send({embed});
     }
 
-    if (['Test', 'Тест'].includes(command)) {
-        message.channel.send('Test');
-    }
+   if (['Test', 'Тест'].includes(command)) {
+       message.channel.send('Succseed')
+   }
 
     if(['update'].includes(command)) {
         const embed = new Discord.RichEmbed()
