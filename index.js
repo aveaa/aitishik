@@ -199,7 +199,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     reason = reason.replace(' ', '');
 
     if (!reason) { 
-        reason = 'Не указана'
+        reason = ' Не указана'
     }
     const embed = new Discord.RichEmbed()
                 .setTitle("Информация о муте")
@@ -226,7 +226,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             if (user.roles.some(r=>[muted].includes(r.id))) {
                 user.removeRole(muted);
                 message.channel.send(user + ' был размучен');
-                if (!reason || reason === ' ') reason = 'Не указана'
+                if (!reason || reason == ' ') reason = ' Не указана'
                 const embed = new Discord.RichEmbed()
                     .setTitle("Информация о муте")
                     .setColor("af00ff")
