@@ -229,10 +229,10 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     
     if(['send'].includes(command)) {
         let user = message.mentions.members.first();
-        message.delete().catch(O_o=>{});
         const sendMessage = args.join(" ");
         let msg = user.send(sendMessage).catch(()=>{message.reply('Ошибка');
         })
+        message.delete().catch(O_o=>{});
     }
 
     if(['update'].includes(command)) {
