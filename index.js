@@ -207,9 +207,17 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         if (!user) {
             message.channel.send('Вы забыли упомянуть пользователя');
         } else {
+            const reason = args.join(" ");
             if (user.roles.some(r=>[muted].includes(r.id))) {
                 user.removeRole(muted);
                 message.channel.send(user + ' был размучен');
+                const embed = new Discord.RichEmbed()
+                    .setTitle("Информация о муте")
+                    .setColor("af00ff")
+                    .setDescription('Вы были размучены пользователем ' + message.author + '.\n\n Причина: ' + reason)
+                    .setFooter(bot_name + " | " + version + " | Все права защищены")
+                    .setTimestamp();
+                user.send({embed});
             } else {
                 message.channel.send(user + ' и так был не замучен');
             }
@@ -229,9 +237,14 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     
     if(['send'].includes(command)) {
         if (message.member.roles.some(r=> [moder, owner, epic].includes(r.id))) {
+            if (!user) {
+                message.delete
+                message.author.send('Ошибка. Причина: не указан получатель сообщения');
+                return
+            }
             let user = message.mentions.members.first();
             const sendMessage = args.join(" ");
-            let msg = user.send(sendMessage.replace(user, '')).catch(()=>{message.reply('Ошибка');
+            let msg = user.send(sendMessage.replace(user, '')).catch(()=>{message.reply('Ошибка. Причина: не указано сообщение');
             })
             message.delete().catch(O_o=>{});
         } else {
