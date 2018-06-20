@@ -260,19 +260,20 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 unmuted = true
         }}
 
-    setBigTimeout(() => {
         if (unmuted) {
             return
         }
+
+    setBigTimeout(() => {
         user.removeRole(muted);
+        message.channel.send(user + ' был размучен');
         const embedAutoUnmute = new Discord.RichEmbed()
             .setTitle("Информация о муте")
             .setColor("af00ff")
-            .setDescription('Вы были автоматически **размучены**' + '.\n\nПричина: **' + 'Автоматический размут' + '.**')
+            .setDescription('Вы были автоматически **размучены**.\n\nПричина: **Автоматический размут.**')
             .setFooter(bot_name + " | " + version + " | Все права защищены")
             .setTimestamp();
-        user.send({embedAutoUnmute});
-        message.channel.send(user + ' был размучен');}, getSeconds(args[1])*1000);
+        user.send({embedAutoUnmute});}, getSeconds(args[1])*1000);
         }
 
  
