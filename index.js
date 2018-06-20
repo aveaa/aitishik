@@ -235,7 +235,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             })
             message.delete().catch(O_o=>{});
         } else {
-            message.channel.send('Извините, вы не можете использовать команду say, вы должны иметь роли Модератор или Epic');
+            message.channel.send('Извините, вы не можете использовать команду send, вы должны иметь роли Модератор или Epic');
         }
     }
 
