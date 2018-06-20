@@ -260,22 +260,20 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 unmuted = true
         }}
 
-        if (unmuted) {
-            return
-        }
+        if (unmuted) return
 
-        const embedAutoUnmute = new Discord.RichEmbed()
-            .setTitle("Информация о муте")
-            .setColor("af00ff")
-            .setDescription('Вы были автоматически **размучены**.\n\nПричина: **Автоматический размут.**')
-            .setFooter(bot_name + " | " + version + " | Все права защищены")
-            .setTimestamp();
+    const embedAutoUnmute = new Discord.RichEmbed()
+        .setTitle("Информация о муте")
+        .setColor("af00ff")
+        .setDescription('Вы были автоматически **размучены**.\n\nПричина: **Автоматический размут.**')
+        .setFooter(bot_name + " | " + version + " | Все права защищены")
+        .setTimestamp();
 
     setBigTimeout(() => {
         user.send({embedAutoUnmute});
         user.removeRole(muted);
         message.channel.send(user + ' был размучен');}, getSeconds(args[1])*1000);
-        }
+    }
 
  
     if (['unmute', 'гтьгеу'].includes(command)) {
@@ -314,13 +312,13 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
 
     
     if(['send'].includes(command)) {
+        let user = message.mentions.members.first();
         if (message.member.roles.some(r=> [moder, owner, epic].includes(r.id))) {
             if (!user) {
                 message.delete
                 message.author.send('Ошибка. Причина: не указан получатель сообщения');
                 return
             }
-            let user = message.mentions.members.first();
             const sendMessage = args.join(" ");
             let msg = user.send(sendMessage.replace(user, '')).catch(()=>{message.reply('Ошибка. Причина: не указано сообщение');
             })
