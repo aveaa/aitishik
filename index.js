@@ -194,11 +194,11 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     user.addRole(muted);
     message.channel.send(user + ' был успешно замучен');
 
-    const reason = args.join(" ").replace(user, '');
+    let reason = args.join(" ").replace(user, '');
     reason = reason.replace(args[1], '');
     reason = reason.replace(' ', '');
 
-    if (!reason || reason === ' ') { 
+    if (!reason) { 
         reason = 'Не указана'
     }
     const embed = new Discord.RichEmbed()
