@@ -194,7 +194,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     user.addRole(muted);
     message.channel.send(user + ' был успешно замучен');
 
-    let reason = args.join(" ").replace(user, '');
+    const reason = args.join(" ").replace(user, '');
     reason = reason.replace(args[1], '');
     reason = reason.replace(' ', '');
 
