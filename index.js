@@ -164,11 +164,11 @@ bot.on('message', message => {
             }
         }
     }
-if (['TestMsg'].includes(command)) {
+if (['Testing'].includes(command)) {
     const embed = new Discord.RichEmbed()
     .setTitle("Мут")
     .setColor("af00ff")
-    .setDescription('Вы были замучены пользователем ' + message.author + '\n\nВремя: ' + 'time' + '\nПричина: ' + 'reason' + '\n\nНе ведите себя плохо!')
+    .setDescription('Вы были замучены')
     .setFooter(bot_name + " | " + version + " | Все права защищены")
     .setTimestamp();
     message.channel.send({embed});
