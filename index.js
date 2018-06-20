@@ -46,6 +46,11 @@ let update = 'В версии ' + version + ' Обновились:\n  1. Тек
 function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
+
+//Функция для отправки сообщения после мута/варна/кика/бана
+function muteBanKickWarnMsg(action, actioner, time, reason) {
+    message.use
+}
  
 //Функции для перемены игр
 function game1() {
@@ -159,11 +164,11 @@ bot.on('message', message => {
             }
         }
     }
-if (['Test', 'Тест', 'Еуые'].includes(command)) {
+if (['TestMsg'].includes(command)) {
     const embed = new Discord.RichEmbed()
     .setTitle("Мут")
     .setColor("af00ff")
-    .setDescription('Вы были замучены пользователем ' + message.author + 'Время: ' + 'time' + '. Причина: ' + 'reason' + '. Не ведите себя плохо!')
+    .setDescription('Вы были замучены пользователем ' + message.author + '\n\nВремя: ' + 'time' + '\nПричина: ' + 'reason' + '\n\nНе ведите себя плохо!')
     .setFooter(bot_name + " | " + version + " | Все права защищены")
     .setTimestamp();
     message.channel.send({embed});
