@@ -222,7 +222,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         if (!user) {
             message.channel.send('Вы забыли упомянуть пользователя');
         } else {
-            const reason = args.join(" ").replace(user, '');
+            let reason = args.join(" ").replace(user, '');
             if (user.roles.some(r=>[muted].includes(r.id))) {
                 user.removeRole(muted);
                 message.channel.send(user + ' был размучен');
