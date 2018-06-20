@@ -194,6 +194,18 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     user.addRole(muted);
     message.channel.send(user + ' был успешно замучен');
 
+    let reason = args.join(" ");
+
+    if (!reason || reason === ' ') reason = 'Не указана'
+    
+    const embed = new Discord.RichEmbed()
+                .setTitle("Информация о муте")
+                .setColor("af00ff")
+                .setDescription('Вы были замучены пользователем ' + message.author + '\n\nВремя: '+ args[1] + '.\nПричина: ' + reason + '\n\nНе ведите себя плохо!')
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                .setTimestamp();
+                user.send({embed});
+
  
     if (args[1] && getSeconds(args[1]) !== 0 )
     setBigTimeout(() => {
@@ -207,14 +219,15 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         if (!user) {
             message.channel.send('Вы забыли упомянуть пользователя');
         } else {
-            const reason = args.join(" ");
+            const reason = args.join(" ").replace(user, '');
             if (user.roles.some(r=>[muted].includes(r.id))) {
                 user.removeRole(muted);
                 message.channel.send(user + ' был размучен');
+                if (!reason || reason === ' ') reason = 'Не указана'
                 const embed = new Discord.RichEmbed()
                     .setTitle("Информация о муте")
                     .setColor("af00ff")
-                    .setDescription('Вы были размучены пользователем ' + message.author + '.\n\n Причина: ' + reason)
+                    .setDescription('Вы были размучены пользователем ' + message.author + '.\n\nПричина: ' + reason)
                     .setFooter(bot_name + " | " + version + " | Все права защищены")
                     .setTimestamp();
                 user.send({embed});
