@@ -183,7 +183,7 @@ bot.on('message', message => {
                 .setDescription(one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3] + '\n' + four + ' - ' + vote[4] + '\n' + five + ' - ' + vote[5])
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
-                message.channel.send(':bar_chart:**' + question + '**\n' + {embed5poll}).then((msg) => {
+            message.channel.send(':bar_chart:**' + question + '**\n' /*+ /*{embed5poll}*/).then((msg) => {
                 multipleReact(msg, [bot.emojis.get('457554835676332032'), bot.emojis.get('457554850582888459'), bot.emojis.get('457554861739868181'), bot.emojis.get('457554874935279616'), bot.emojis.get('457554890374250516')])});
             }
             else if (vote[6]) {
