@@ -228,11 +228,15 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
 
     
     if(['send'].includes(command)) {
-        let user = message.mentions.members.first();
-        const sendMessage = args.join(" ");
-        let msg = user.send(sendMessage.replace(user, '')).catch(()=>{message.reply('Ошибка');
-        })
-        message.delete().catch(O_o=>{});
+        if (message.member.roles.some(r=> [moder, owner, epic].includes(r.id))) {
+            let user = message.mentions.members.first();
+            const sendMessage = args.join(" ");
+            let msg = user.send(sendMessage.replace(user, '')).catch(()=>{message.reply('Ошибка');
+            })
+            message.delete().catch(O_o=>{});
+        } else {
+            message.channel.send('Извините, вы не можете использовать команду say, вы должны иметь роли Модератор или Epic');
+        }
     }
 
     if(['update'].includes(command)) {
