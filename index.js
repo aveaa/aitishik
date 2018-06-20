@@ -137,23 +137,53 @@ bot.on('message', message => {
             message.delete();
 
             if (!vote[2]) {
-                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1]).then((msg) => {
+                const embed1poll = new Discord.RichEmbed()
+                .setTitle("Голосование")
+                .setColor("af00ff")
+                .setDescription(one + ' - ' + vote[1])
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                .setTimestamp();
+                message.channel.send(':bar_chart:**' + question + '**\n' + {embed1poll}).then((msg) => {
                 multipleReact(msg, [bot.emojis.get('457554835676332032'), ])});
                     
             } else if (!vote[3]) {
-                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2]).then((msg) => {
+                const embed2poll = new Discord.RichEmbed()
+                .setTitle("Голосование")
+                .setColor("af00ff")
+                .setDescription(one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2])
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                .setTimestamp();
+                message.channel.send(':bar_chart:**' + question + '**\n' + {embed2poll}).then((msg) => {
                 multipleReact(msg, [bot.emojis.get('457554835676332032'), bot.emojis.get('457554850582888459'),])});
                 return;
             } else if (!vote[4]) {
-                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3]).then((msg) => {
+                const embed3poll = new Discord.RichEmbed()
+                .setTitle("Голосование")
+                .setColor("af00ff")
+                .setDescription(one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3])
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                .setTimestamp();
+                message.channel.send(':bar_chart:**' + question + '**\n' + {embed3poll}).then((msg) => {
                 multipleReact(msg, [bot.emojis.get('457554835676332032'), bot.emojis.get('457554850582888459'), bot.emojis.get('457554861739868181') ])});
                 return;
             } else if (!vote[5]) {
-                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3] + '\n' + four + ' - ' + vote[4]).then((msg) => {
+                const embed4poll = new Discord.RichEmbed()
+                .setTitle("Голосование")
+                .setColor("af00ff")
+                .setDescription(one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3] + '\n' + four + ' - ' + vote[4])
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                .setTimestamp();
+                message.channel.send(':bar_chart:**' + question + '**\n' + {embed4poll}).then((msg) => {
                 multipleReact(msg, [bot.emojis.get('457554835676332032'), bot.emojis.get('457554850582888459'), bot.emojis.get('457554861739868181'), bot.emojis.get('457554874935279616')])});
             }
             else if (!vote[6]) {
-                message.channel.send(':bar_chart:**' + question + '**\n' + one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3] + '\n' + four + ' - ' + vote[4] + '\n' + five + ' - ' + vote[5]).then((msg) => {
+                const embed5poll = new Discord.RichEmbed()
+                .setTitle("Голосование")
+                .setColor("af00ff")
+                .setDescription(one + ' - ' + vote[1] + '\n' + two + ' - ' + vote[2] + '\n' + three + ' - ' + vote[3] + '\n' + four + ' - ' + vote[4] + '\n' + five + ' - ' + vote[5])
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                .setTimestamp();
+                message.channel.send(':bar_chart:**' + question + '**\n' + {embed5poll}).then((msg) => {
                 multipleReact(msg, [bot.emojis.get('457554835676332032'), bot.emojis.get('457554850582888459'), bot.emojis.get('457554861739868181'), bot.emojis.get('457554874935279616'), bot.emojis.get('457554890374250516')])});
             }
             else if (vote[6]) {
