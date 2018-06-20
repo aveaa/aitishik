@@ -171,7 +171,7 @@ if (['Testing'].includes(command)) {
     .setDescription('Вы были замучены')
     .setFooter(bot_name + " | " + version + " | Все права защищены")
     .setTimestamp();
-    message.channel.send({embed});
+    message.author.send({embed});
 }
    
 if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.some(r=>[moder, owner].includes(r.id))) {
