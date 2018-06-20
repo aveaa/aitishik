@@ -260,9 +260,9 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 unmuted = true
         }}
 
-        if (unmuted) return
+        if (unmuted === true) return
 
-    const embedAutoUnmute = new Discord.RichEmbed()
+        const embedAutoUnmute = new Discord.RichEmbed()
         .setTitle("Информация о муте")
         .setColor("af00ff")
         .setDescription('Вы были автоматически **размучены**.\n\nПричина: **Автоматический размут.**')
