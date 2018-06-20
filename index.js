@@ -201,7 +201,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     const embed = new Discord.RichEmbed()
                 .setTitle("Информация о муте")
                 .setColor("af00ff")
-                .setDescription('Вы были замучены пользователем ' + message.author + '\n\nВремя: '+ args[1] + '.\nПричина: ' + reason + '.\n\nНе ведите себя плохо!')
+                .setDescription('Вы были замучены пользователем ' + message.author + '\n\nВремя: '+ args[1] + '.\nПричина:' + reason + '.\n\nНе ведите себя плохо!')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
                 user.send({embed});
