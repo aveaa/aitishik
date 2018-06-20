@@ -164,16 +164,6 @@ bot.on('message', message => {
             }
         }
     }
-if (['Test', 'Тест'].includes(command)) {
-    const messageAuthor = message.author
-    const embed = new Discord.RichEmbed()
-    .setTitle("Мут")
-    .setColor("af00ff")
-    .setDescription('Вы были замучены пользователем ' + messageAuthor + '\n\nВремя: ' + 'time\n' + 'Причина: ' + 'reason\n\n' + 'Не ведите себя плохо!')
-    .setFooter(bot_name + " | " + version + " | Все права защищены")
-    .setTimestamp();
-    message.author.send({embed});
-}
    
 if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.some(r=>[moder, owner].includes(r.id))) {
     let user = message.mentions.members.first();
@@ -237,6 +227,17 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         message.channel.send({embed});
     }
 
+    if (['Test', 'Тест'].includes(command)) {
+        const messageAuthor = message.author
+        const embed = new Discord.RichEmbed()
+        .setTitle("Мут")
+        .setColor("af00ff")
+        .setDescription('Вы были замучены пользователем ' + messageAuthor + '\n\nВремя: ' + 'time\n' + 'Причина: ' + 'reason\n\n' + 'Не ведите себя плохо!')
+        .setFooter(bot_name + " | " + version + " | Все права защищены")
+        .setTimestamp();
+        message.author.send({embed});
+    }
+
     if(['update'].includes(command)) {
         const embed = new Discord.RichEmbed()
             .setTitle("Обновления")
@@ -246,10 +247,6 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             .setTimestamp();
         message.channel.send({embed});
     }
-
-
-   
-            //.setDescription(p + 'case - открыть обычный кейс \n' + p + 'magiccase - открыть магичский кейс \n' + p + 'legendarycase - открыть легендарный кейс' + p + 'caselottery - открыть кейс-лотерею')
  
     if(["info"].includes(command)) {
         const embed = new Discord.RichEmbed()
