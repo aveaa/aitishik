@@ -196,6 +196,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
 
     let reason = args.join(" ").replace(user, '');
     reason = reason.replace(args[1], '');
+    reason = reason.replace(' ', '');
 
     if (!reason || reason === ' ') { 
         reason = 'Не указана'
