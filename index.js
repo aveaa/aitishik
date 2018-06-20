@@ -194,14 +194,14 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     user.addRole(muted);
     message.channel.send(user + ' был успешно замучен');
 
-    let reason = args.join(" ");
+    let reason = args.join(" ").replace(user, '').replace(args[1], '');
 
     if (!reason || reason === ' ') reason = 'Не указана'
     
     const embed = new Discord.RichEmbed()
                 .setTitle("Информация о муте")
                 .setColor("af00ff")
-                .setDescription('Вы были замучены пользователем ' + message.author + '\n\nВремя: '+ args[1] + '.\nПричина: ' + reason + '\n\nНе ведите себя плохо!')
+                .setDescription('Вы были замучены пользователем ' + message.author + '\n\nВремя: '+ args[1] + '.\nПричина: ' + reason + '.\n\nНе ведите себя плохо!')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
                 user.send({embed});
