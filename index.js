@@ -190,6 +190,8 @@ bot.on('message', message => {
    
 if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.some(r=>[moder, owner].includes(r.id))) {
     let user = message.mentions.members.first(); 
+    let unmuted = false
+
     
     if (!user)
         return message.channel.send('Вы забыли упомянуть пользователя или вы хотите замутить того кто не является пользователем');
@@ -237,8 +239,6 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
 
  
     if (args[1] && getSeconds(args[1]) !== 0 )
-
-    let unmuted
 
     if (['unmute', 'гтьгеу'].includes(command)) {
         let user = message.mentions.members.first();
