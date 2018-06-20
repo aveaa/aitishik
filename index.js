@@ -282,13 +282,13 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
 
     
     if(['send'].includes(command)) {
+        let user = message.mentions.members.first();
         if (message.member.roles.some(r=> [moder, owner, epic].includes(r.id))) {
             if (!user) {
                 message.delete
                 message.author.send('Ошибка. Причина: не указан получатель сообщения');
                 return
             }
-            let user = message.mentions.members.first();
             const sendMessage = args.join(" ");
             let msg = user.send(sendMessage.replace(user, '')).catch(()=>{message.reply('Ошибка. Причина: не указано сообщение');
             })
