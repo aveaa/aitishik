@@ -169,10 +169,10 @@ bot.on('message', message => {
             message.channel.send('Вы забыли упомянуть пользователя или вы хотите замутить того кто не является пользователем');
             return
         }
-        if (user.id == message.author.id) {
+        /*if (user.id == message.author.id) {
             message.channel.send('Зачем ты пытаешься сделать предупреждение самому себе?');
             return;
-        }
+        }*/
         let reason = args.join(" ").replace(user, '')
 
         if (!reason) reason = ' Не указана'
