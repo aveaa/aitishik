@@ -105,11 +105,14 @@ bot.on('message', message => {
         matches.forEach((match) => {
             if (!arr.includes(match.match(/https:\/\/discord.gg\/([_a-zA-Z0-9]{5,32})/gi)[3])) {
                 message.delete();
-                user.addRole(muted);
-                message.channel.send(user + ' был успешно замучен на 24 часа. Причина: пиар');
-                setBigTimeout(() => {
-                    user.removeRole(muted);
-                    message.channel.send(user + ' был размучен');}, getSeconds(86400)*1000);
+                const embed = new Discord.RichEmbed()
+                .setTitle("Информация о предупреждениях")
+                .setColor("af00ff")
+                .setDescription('Вы были **предупреждены**.' + '.\n\nПричина:** Пиар**.\n\nНе ведите себя плохо!')
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                .setTimestamp();
+                user.send({embed});
+                message.channel.send(user + ' был предупрежден. Причина: пиар.');
         }
 
     })
