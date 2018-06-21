@@ -100,10 +100,10 @@ bot.on('message', message => {
         invites.forEach(invite => {
             arr.push(invite.code);
         })
-    let matches = message.content.match(/https:\/\/discordapp.com|\.gg|\.me|\.io)\/?(invite\/)?([_a-zA-Z0-9]{5,32})/gi);
+    let matches = message.content.match(/https:\/\/discord.gg\/([_a-zA-Z0-9]{5,32})/gi);
     if (matches)
         matches.forEach((match) => {
-            if (!arr.includes(match.match(/https:\/\/discord(app\.com|\.gg|\.me|\.io)\/?(invite\/)?([_a-zA-Z0-9]{5,32})/i)[3])) {
+            if (!arr.includes(match.match(/https:\/\/discord.gg\/([_a-zA-Z0-9]{5,32})/gi)[3])) {
                 message.delete();
                 user.addRole(muted);
                 message.channel.send(user + ' был успешно замучен на 24 часа. Причина: пиар');
