@@ -264,7 +264,10 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
  
     if (args[1] && getSeconds(args[1]) !== 0 )
 
-        if (unmuted === true) return
+        if (unmuted) {
+            unmuted = false
+            return
+        }
 
         const embedAutoUnmute = new Discord.RichEmbed()
         .setTitle("Информация о муте")
