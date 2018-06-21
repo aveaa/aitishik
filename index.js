@@ -39,8 +39,8 @@ let four = '<:fourEmoji:457554874935279616>';
 let five = '<:fiveEmoji:457554890374250516>';
 
 const bot_name = 'Айтишник';
-let version = 'v0.9.3'
-let update = 'Вышла новая версия ' + version + '. Обновления:\n\n1. Добавлено сообщение после мута/размута. Где пишется причина, время, и тот кто вас замутил.'
+let version = 'v0.9.4'
+let update = 'Вышла новая версия ' + version + '. Обновления:\n\n1. Добавлена команда =warn\n\n2. Немного переделана команда =help\n\n3. Переделана система показа ошибок\n\n4. Переделан текст в сообщениях после мута/размута/варна'
 //Проверка на мут
 let unmuted = false
 //Функции
@@ -171,13 +171,16 @@ bot.on('message', message => {
         let user = message.mentions.members.first(); 
 
         if (!user) {
-            message.channel.send(message.author + ', Ошибка. Причина: *`Вы забыли упомянуть пользователя или вы хотите предупредить того кто не является пользователем`*');
+            message.channel.send(message.author + ', Ошибка. Причина: **Вы забыли упомянуть пользователя или вы хотите предупредить того, кто не является пользователем**');
             return
         }
-        /*if (user.id == message.author.id) {
+        if (user.id == message.author.id) {
             message.channel.send('Зачем ты пытаешься сделать предупреждение самому себе?');
             return;
-        }*/
+        }
+
+        if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {
+
         let reason = args.join(" ").replace(user, '')
 
         if (!reason) reason = ' Не указана'
@@ -190,18 +193,50 @@ bot.on('message', message => {
                 .setTimestamp();
                 user.send({embed});
                 message.channel.send('Пользователь ' + user + ' был предупрежден успешно');
+        } else {
+            message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду warn, вы должны иметь роль Модератор**');
         }
+    }
+
+            if (['unmute', 'гтьгеу'].includes(command)) {
+
+                if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {
+
+
+                let user = message.mentions.members.first();
+                if (!user) {
+                    message.channel.send(message.author + ', Ошибка. Причина: **Вы забыли упомянуть пользователя или хотите размутить того, кто не является пользователем**');
+                    return
+                } else {
+                    let reason = args.join(" ").replace(user, '');
+                        user.removeRole(muted);
+                        message.channel.send(user + ' был размучен');
+                        if (!reason) reason = ' Не указана'
+                        const embed = new Discord.RichEmbed()
+                            .setTitle("Информация о муте")
+                            .setColor("af00ff")
+                            .setDescription('Вы были **размучены** пользователем ' + message.author + '.\n\nПричина:**' + reason + '.**')
+                            .setFooter(bot_name + " | " + version + " | Все права защищены")
+                            .setTimestamp();
+                        user.send({embed});
+                }
+            } else {
+                message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду unmute, вы должны иметь роль Модератор**');
+            }
+            }
    
 if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.some(r=>[moder, owner].includes(r.id))) {
     let user = message.mentions.members.first(); 
+
+    if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {
     
     if (!user)
-        return message.channel.send(message.author + ', Ошибка. Причина: *`Вы забыли упомянуть пользователя или вы хотите замутить того кто не является пользователем`*');
+        return message.channel.send(message.author + ', Ошибка. Причина: **Вы забыли упомянуть пользователя или вы хотите замутить того, кто не является пользователем**');
 
-    /*if (user.id == message.author.id) {
+    if (user.id == message.author.id) {
         message.channel.send('Зачем ты пытаешься замутить самого себя?');
         return;
-    }*/
+    }
     function getSeconds(str) {
         let seconds = 0;
         let years = str.match(/(\d+)\s*y/);
@@ -234,39 +269,13 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     const embed = new Discord.RichEmbed()
                 .setTitle("Информация о муте")
                 .setColor("af00ff")
-                .setDescription('Вы были **замучены** пользователем ' + message.author + '\n\nВремя: **'+ args[1] + '**.\nПричина:**' + reason + '**.\n\nНе ведите себя плохо!')
+                .setDescription('Вы были **замучены** пользователем ' + message.author + '\n\nВремя: **'+ args[1] + '**.\nПричина:**' + reason + '.**\n\nНе ведите себя плохо!')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
                 user.send({embed});
 
  
     if (args[1] && getSeconds(args[1]) !== 0 )
-
-    if (['unmute', 'гтьгеу'].includes(command)) {
-        let user = message.mentions.members.first();
-        if (!user) {
-            message.channel.send(message.author + ', Ошибка. Причина: *`Вы забыли упомянуть пользователя или хотите размутить того кто не является пользователем`*');
-            return
-        } else {
-            let reason = args.join(" ").replace(user, '');
-                user.removeRole(muted);
-                message.channel.send(user + ' был размучен');
-                if (!reason) reason = 'Не указана'
-                const embed = new Discord.RichEmbed()
-                    .setTitle("Информация о муте")
-                    .setColor("af00ff")
-                    .setDescription('Вы были **размучены** пользователем ' + message.author + '.\n\nПричина: **' + reason + '.**')
-                    .setFooter(bot_name + " | " + version + " | Все права защищены")
-                    .setTimestamp();
-                user.send({embed});
-                unmuted = true
-        }
-    }
-
-        if (unmuted) {
-            unmuted = false
-            return
-        }
 
         const embedAutoUnmute = new Discord.RichEmbed()
         .setTitle("Информация о муте")
@@ -276,40 +285,19 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         .setTimestamp();
 
     setBigTimeout(() => {
-        if (['unmute', 'гтьгеу'].includes(command)) {
-            let user = message.mentions.members.first();
-            if (!user) {
-                message.channel.send(message.author + ', Ошибка. Причина: *`Вы забыли упомянуть пользователя или хотите размутить того кто не является пользователем`*');
-                return
-            } else {
-                let reason = args.join(" ").replace(user, '');
-                    user.removeRole(muted);
-                    message.channel.send(user + ' был размучен');
-                    if (!reason) reason = 'Не указана'
-                    const embed = new Discord.RichEmbed()
-                        .setTitle("Информация о муте")
-                        .setColor("af00ff")
-                        .setDescription('Вы были **размучены** пользователем ' + message.author + '.\n\nПричина: **' + reason + '.**')
-                        .setFooter(bot_name + " | " + version + " | Все права защищены")
-                        .setTimestamp();
-                    user.send({embed});
-                    unmuted = true
-            }
-        }
-        if (unmuted) {
-            unmuted = false
-            return
-        }
         user.send({embed: embedAutoUnmute});
         user.removeRole(muted);
         message.channel.send(user + ' был размучен');}, getSeconds(args[1])*1000);
+        } else {
+            message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду mute, вы должны иметь роль Модератор**');
+        }
     }
    
     if(['help'].includes(command)) {
         const embed = new Discord.RichEmbed()
             .setTitle("Помощь")
             .setColor("af00ff")
-            .setDescription('Мои команды: \n' + p + 'avatar `пользователь` - Показ аватарки пользоввателя \n' + p + 'say `текст` - бот скажет вашу реплику \(Могут только модераторы и Epic\) \n' + p + 'rsp `камень | ножницы |бумага` - Миниигра "Камень, ножницы, бумага" \n' + p + 'random `число` `число` - генерация случайного числа от 0 до любого другого числа \n' + p + 'poll `вопрос` `;` `варианты через \';\'` - голосование \n' + p + 'mute|unmute - мут или размут пользователя (Могут не все) \n' + p + 'caseinfo - информация о кейсах\n' + p + 'update - узнать о последних обновлениях\n' + p + 'send `пользователь` - отправить сообщение пользователю в лс (Доступно только для Epic и Moderator')
+            .setDescription('Общедоступные команды:\n' + p + 'avatar `пользователь` - Показ аватарки пользоввателя \n' + p + 'rsp `камень | ножницы |бумага` - Миниигра "Камень, ножницы, бумага" \n' + p + 'random `число` `число` - генерация случайного числа от 0 до любого другого числа \n' + p + 'poll `вопрос` `;` `варианты через \';\'` - голосование \n' + p + 'caseinfo - информация о кейсах\n' + p + 'update - узнать о последних обновлениях\n\nКоманды доступные Модераторам и Epic-ам:\n' + p + 'mute|unmute `пользователь`- мут или размут пользователя\n' + p + 'warn `пользователь` - предупредить пользоваетеля\n' + p + 'say `текст` - бот скажет вашу реплику\n' + p + 'send `пользователь` - отправить сообщение пользователю в лс')
             .setFooter(bot_name + " | " + version + " | Все права защищены")
             .setTimestamp();
         message.channel.send({embed});
@@ -321,7 +309,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         if (message.member.roles.some(r=> [moder, owner, epic].includes(r.id))) {
             if (!user) {
                 message.delete
-                message.author.send(message.author + ', Ошибка. Причина: *`Не указан получатель сообщения`*');
+                message.author.send(message.author + ', Ошибка. Причина: **Не указан получатель сообщения**');
                 return
             }
             const sendMessage = args.join(" ");
@@ -329,7 +317,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             })
             message.delete().catch(O_o=>{});
         } else {
-            message.channel.send(message.author + ', Ошибка. Причина: *`Вы не можете использовать команду send, вы должны иметь роли Модератор или Epic`*');
+            message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду send, вы должны иметь роли Модератор или Epic**');
         }
     }
 
@@ -367,10 +355,10 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         if (message.member.roles.some(r=> [moder, owner, epic].includes(r.id))) {
         const sayMessage = args.join(" ");
         message.delete().catch(O_o=>{});
-        let msg = message.channel.send(sayMessage).catch(()=>{message.reply(message.author + ', Ошибка. *`Причина: не указан текст сообщения`*');
+        let msg = message.channel.send(sayMessage).catch(()=>{message.reply(message.author + ', Ошибка. **Причина: не указан текст сообщения**');
         });
     } else {
-            message.channel.send(message.author + ', Ошибка. Причина: *`Вы не можете использовать команду say, вы должны иметь роли Модератор или Epic`*');
+            message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду say, вы должны иметь роли Модератор или Epic**');
     }}
  
     if(['av', 'avatar', 'ав', 'аватар', 'ava', 'a', 'ава', 'а'].includes(command)) {
@@ -437,7 +425,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         let userChoice;
 
                 if (!args[0]) {
-                    message.channel.send(message.author + ', Ошибка. Причина: *`Вы забыли указать что вы выбираете, камень, ножницы или бумагу`*');
+                    message.channel.send(message.author + ', Ошибка. Причина: **Вы забыли указать что вы выбираете, камень, ножницы или бумагу**');
                     return;
                 }
                 else if (['камень', 'rock', 'r', 'к'].includes(args[0].toLowerCase())) {
