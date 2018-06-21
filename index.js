@@ -41,6 +41,8 @@ let five = '<:fiveEmoji:457554890374250516>';
 const bot_name = 'Айтишник';
 let version = 'v0.9.3'
 let update = 'Вышла новая версия ' + version + '. Обновления:\n\n1. Добавлено сообщение после мута/размута. Где пишется причина, время, и тот кто вас замутил.'
+//Проверка на мут
+let unmuted = false
 //Функции
 //Функция для генерации случайного числа от min до max
 function randomInteger(min, max) {
@@ -183,14 +185,37 @@ bot.on('message', message => {
                 .setDescription('Вы были **предупреждены** пользователем ' + message.author + '.\n\nПричина:**' + reason + '**.\n\nНе ведите себя плохо!')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
-            user.send({embed});
-            message.channel.send('Пользователь ' + user + ' был предупрежден успешно.');
+                user.send({embed});
+                message.channel.send('Пользователь ' + user + ' был предупрежден успешно');
+        }
+
+        if (['unmute', 'гтьгеу'].includes(command)) {
+            let user = message.mentions.members.first();
+            if (!user) {
+                message.channel.send('Вы забыли упомянуть пользователя');
+                return
+            } else {
+                let reason = args.join(" ").replace(user, '');
+                if (user.roles.some(r=>[muted].includes(r.id))) {
+                    user.removeRole(muted);
+                    message.channel.send(user + ' был размучен');
+                    if (!reason) reason = 'Не указана'
+                    const embed = new Discord.RichEmbed()
+                        .setTitle("Информация о муте")
+                        .setColor("af00ff")
+                        .setDescription('Вы были **размучены** пользователем ' + message.author + '.\n\nПричина: **' + reason + '.**')
+                        .setFooter(bot_name + " | " + version + " | Все права защищены")
+                        .setTimestamp();
+                    user.send({embed});
+                    unmuted = true
+                } else {
+                    message.channel.send(user + ' и так был не замучен');
+                }
+            }
         }
    
 if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.some(r=>[moder, owner].includes(r.id))) {
     let user = message.mentions.members.first(); 
-    let unmuted = false
-
     
     if (!user)
         return message.channel.send('Вы забыли упомянуть пользователя или вы хотите замутить того кто не является пользователем');
@@ -238,26 +263,6 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
 
  
     if (args[1] && getSeconds(args[1]) !== 0 )
-
-    if (['unmute', 'гтьгеу'].includes(command)) {
-        let user = message.mentions.members.first();
-        if (!user) {
-            message.channel.send('Вы забыли упомянуть пользователя');
-            return
-        } else {
-            reason = args.join(" ").replace(user, '');
-                user.removeRole(muted);
-                message.channel.send(user + ' был размучен');
-                if (!reason) reason = 'Не указана'
-                const embed = new Discord.RichEmbed()
-                    .setTitle("Информация о муте")
-                    .setColor("af00ff")
-                    .setDescription('Вы были **размучены** пользователем ' + message.author + '.\n\nПричина: **' + reason + '.**')
-                    .setFooter(bot_name + " | " + version + " | Все права защищены")
-                    .setTimestamp();
-                user.send({embed});
-                unmuted = true
-        }}
 
         if (unmuted === true) return
 
