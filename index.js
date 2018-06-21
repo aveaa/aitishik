@@ -188,31 +188,6 @@ bot.on('message', message => {
                 user.send({embed});
                 message.channel.send('Пользователь ' + user + ' был предупрежден успешно');
         }
-
-        if (['unmute', 'гтьгеу'].includes(command)) {
-            let user = message.mentions.members.first();
-            if (!user) {
-                message.channel.send('Вы забыли упомянуть пользователя');
-                return
-            } else {
-                let reason = args.join(" ").replace(user, '');
-                if (user.roles.some(r=>[muted].includes(r.id))) {
-                    user.removeRole(muted);
-                    message.channel.send(user + ' был размучен');
-                    if (!reason) reason = 'Не указана'
-                    const embed = new Discord.RichEmbed()
-                        .setTitle("Информация о муте")
-                        .setColor("af00ff")
-                        .setDescription('Вы были **размучены** пользователем ' + message.author + '.\n\nПричина: **' + reason + '.**')
-                        .setFooter(bot_name + " | " + version + " | Все права защищены")
-                        .setTimestamp();
-                    user.send({embed});
-                    unmuted = true
-                } else {
-                    message.channel.send(user + ' и так был не замучен');
-                }
-            }
-        }
    
 if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.some(r=>[moder, owner].includes(r.id))) {
     let user = message.mentions.members.first(); 
@@ -264,9 +239,30 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
  
     if (args[1] && getSeconds(args[1]) !== 0 )
 
+    if (['unmute', 'гтьгеу'].includes(command)) {
+        let user = message.mentions.members.first();
+        if (!user) {
+            message.channel.send('Вы забыли упомянуть пользователя');
+            return
+        } else {
+            let reason = args.join(" ").replace(user, '');
+                user.removeRole(muted);
+                message.channel.send(user + ' был размучен');
+                if (!reason) reason = 'Не указана'
+                const embed = new Discord.RichEmbed()
+                    .setTitle("Информация о муте")
+                    .setColor("af00ff")
+                    .setDescription('Вы были **размучены** пользователем ' + message.author + '.\n\nПричина: **' + reason + '.**')
+                    .setFooter(bot_name + " | " + version + " | Все права защищены")
+                    .setTimestamp();
+                user.send({embed});
+                unmuted = true
+        }
+    }
+
         if (unmuted) {
             unmuted = false
-            message.channel.send('Succseed');
+            message.channel.send('Test');
             return
         }
 
