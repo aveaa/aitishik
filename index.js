@@ -98,7 +98,7 @@ bot.on('message', message => {
         invites.forEach(invite => {
             arr.push(invite.code);
         })
-    let matches = message.content.match(/https:\/\/discord(app\.com|\.gg|\.me|\.io)\/?(invite\/)?([_a-zA-Z0-9]{5,32})/gi);
+    let matches = message.content.match(/https:\/\/discordapp.com|\.gg|\.me|\.io)\/?(invite\/)?([_a-zA-Z0-9]{5,32})/gi);
     if (matches)
         matches.forEach((match) => {
             if (!arr.includes(match.match(/https:\/\/discord(app\.com|\.gg|\.me|\.io)\/?(invite\/)?([_a-zA-Z0-9]{5,32})/i)[3])) {
@@ -183,10 +183,9 @@ bot.on('message', message => {
                 .setDescription('Вы были **предупреждены** пользователем ' + message.author + '.\n\nПричина:**' + reason + '**.\n\nНе ведите себя плохо!')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
-                user.send({embed});
-
-
-    }
+            user.send({embed});
+            message.channel.send('Пользователь ' + user + ' был предупрежден успешно.');
+        }
    
 if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.some(r=>[moder, owner].includes(r.id))) {
     let user = message.mentions.members.first(); 
@@ -270,7 +269,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         .setTimestamp();
 
     setBigTimeout(() => {
-        user.send({embedAutoUnmute});
+        user.send({embed: embedAutoUnmute});
         user.removeRole(muted);
         message.channel.send(user + ' был размучен');}, getSeconds(args[1])*1000);
     }
