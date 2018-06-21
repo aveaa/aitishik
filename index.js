@@ -278,31 +278,6 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         user.removeRole(muted);
         message.channel.send(user + ' был размучен');}, getSeconds(args[1])*1000);
     }
-
- 
-    if (['unmute', 'гтьгеу'].includes(command)) {
-        let user = message.mentions.members.first();
-        if (!user) {
-            message.channel.send('Вы забыли упомянуть пользователя');
-            return
-        } else {
-            let reason = args.join(" ").replace(user, '');
-            if (user.roles.some(r=>[muted].includes(r.id))) {
-                user.removeRole(muted);
-                message.channel.send(user + ' был размучен');
-                if (!reason) reason = 'Не указана'
-                const embed = new Discord.RichEmbed()
-                    .setTitle("Информация о муте")
-                    .setColor("af00ff")
-                    .setDescription('Вы были **размучены** пользователем ' + message.author + '.\n\nПричина: **' + reason + '.**')
-                    .setFooter(bot_name + " | " + version + " | Все права защищены")
-                    .setTimestamp();
-                user.send({embed});
-            } else {
-                message.channel.send(user + ' и так был не замучен');
-            }
-        }
-    }
    
     if(['help'].includes(command)) {
         const embed = new Discord.RichEmbed()
