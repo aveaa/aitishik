@@ -171,7 +171,7 @@ bot.on('message', message => {
         let user = message.mentions.members.first(); 
 
         if (!user) {
-            message.channel.send('Вы забыли упомянуть пользователя или вы хотите замутить того кто не является пользователем');
+            message.channel.send(message.author + ', Ошибка. Причина: *`Вы забыли упомянуть пользователя или вы хотите предупредить того кто не является пользователем`*');
             return
         }
         /*if (user.id == message.author.id) {
@@ -196,7 +196,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     let user = message.mentions.members.first(); 
     
     if (!user)
-        return message.channel.send('Вы забыли упомянуть пользователя или вы хотите замутить того кто не является пользователем');
+        return message.channel.send(message.author + ', Ошибка. Причина: *`Вы забыли упомянуть пользователя или вы хотите замутить того кто не является пользователем`*');
 
     /*if (user.id == message.author.id) {
         message.channel.send('Зачем ты пытаешься замутить самого себя?');
@@ -245,7 +245,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     if (['unmute', 'гтьгеу'].includes(command)) {
         let user = message.mentions.members.first();
         if (!user) {
-            message.channel.send('Вы забыли упомянуть пользователя');
+            message.channel.send(message.author + ', Ошибка. Причина: *`Вы забыли упомянуть пользователя или хотите размутить того кто не является пользователем`*');
             return
         } else {
             let reason = args.join(" ").replace(user, '');
@@ -265,7 +265,6 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
 
         if (unmuted) {
             unmuted = false
-            message.channel.send('Test');
             return
         }
 
@@ -298,7 +297,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         if (message.member.roles.some(r=> [moder, owner, epic].includes(r.id))) {
             if (!user) {
                 message.delete
-                message.author.send('Ошибка. Причина: не указан получатель сообщения');
+                message.author.send(message.author + ', Ошибка. Причина: *`Не указан получатель сообщения`*');
                 return
             }
             const sendMessage = args.join(" ");
@@ -306,7 +305,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             })
             message.delete().catch(O_o=>{});
         } else {
-            message.channel.send('Извините, вы не можете использовать команду send, вы должны иметь роли Модератор или Epic');
+            message.channel.send(message.author + ', Ошибка. Причина: *`Вы не можете использовать команду send, вы должны иметь роли Модератор или Epic`*');
         }
     }
 
@@ -344,10 +343,10 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         if (message.member.roles.some(r=> [moder, owner, epic].includes(r.id))) {
         const sayMessage = args.join(" ");
         message.delete().catch(O_o=>{});
-        let msg = message.channel.send(sayMessage).catch(()=>{message.reply(' не пиши просто =say. Надо писать =say \'Текст\'');
+        let msg = message.channel.send(sayMessage).catch(()=>{message.reply(message.author + ', Ошибка. *`Причина: не указан текст сообщения`*');
         });
     } else {
-            message.channel.send('Извините, вы не можете использовать команду say, вы должны иметь роли Модератор или Epic');
+            message.channel.send(message.author + ', Ошибка. Причина: *`Вы не можете использовать команду say, вы должны иметь роли Модератор или Epic`*');
     }}
  
     if(['av', 'avatar', 'ав', 'аватар', 'ava', 'a', 'ава', 'а'].includes(command)) {
@@ -414,7 +413,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         let userChoice;
 
                 if (!args[0]) {
-                    message.channel.send('Вы забыли указать что вы выбираете, камень, ножницы или бумагу');
+                    message.channel.send(message.author + ', Ошибка. Причина: *`Вы забыли указать что вы выбираете, камень, ножницы или бумагу`*');
                     return;
                 }
                 else if (['камень', 'rock', 'r', 'к'].includes(args[0].toLowerCase())) {
