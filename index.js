@@ -39,8 +39,8 @@ let four = '<:fourEmoji:457554874935279616>';
 let five = '<:fiveEmoji:457554890374250516>';
 
 const bot_name = 'Айтишник';
-let version = 'v0.9.4'
-let update = 'Вышла новая версия ' + version + '. Обновления:\n\n1. Добавлена команда =warn\n\n2. Немного переделана команда =help\n\n3. Переделана система показа ошибок\n\n4. Переделан текст в сообщениях после мута/размута/варна'
+let version = 'v0.9.4.1'
+let update = 'Вышла новая версия ' + version + '. Обновления:\n\n1. Была добавлена фраза под команду =update: "При нахождении бага кидайте скрин [Ï₸]🔥𝓐𝓝𝓓𝓡𝓔𝓨🔥#8389 в личное сообщение"'
 //Проверка на мут
 let unmuted = false
 //Функции
@@ -325,7 +325,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             .setTitle("Обновления")
             .setColor("af00ff")
             .setDescription(update)
-            .setFooter(bot_name + " | " + version + " | Все права защищены")
+            .setFooter(bot_name + " | " + version + " | Все права защищены | При нахождении бага кидайте скрин [Ï₸]🔥𝓐𝓝𝓓𝓡𝓔𝓨🔥#8389 в личное сообщение")
             .setTimestamp();
         message.channel.send({embed});
     }
