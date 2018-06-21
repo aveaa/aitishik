@@ -266,6 +266,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
 
         if (unmuted) {
             unmuted = false
+            message.channel.send('Succseed');
             return
         }
 
