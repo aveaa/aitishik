@@ -105,13 +105,13 @@ bot.on('message', message => {
         matches.forEach((match) => {
             if (!arr.includes(match.match(/https:\/\/discord.gg\/([_a-zA-Z0-9]{5,32})/gi)[3])) {
                 message.delete();
-                const embed = new Discord.RichEmbed()
+                /*const embed = new Discord.RichEmbed()
                 .setTitle("Информация о предупреждениях")
                 .setColor("af00ff")
                 .setDescription('Вы были **предупреждены**.' + '.\n\nПричина:** Пиар**.\n\nНе ведите себя плохо!')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
-                user.send({embed});
+                user.send({embed});*/
                 message.channel.send(user + ' был предупрежден. Причина: пиар.');
         }
 
