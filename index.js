@@ -111,7 +111,7 @@ bot.on('message', message => {
                 .setDescription('Вы были **предупреждены**.' + '.\n\nПричина:** Пиар**.\n\nНе ведите себя плохо!')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
-                messgae.author.send({embed});
+                message.author.send({embed});
                 message.channel.send(message.author + ' был предупрежден. Причина: пиар.');
         }
 
