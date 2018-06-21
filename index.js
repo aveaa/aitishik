@@ -96,10 +96,10 @@ bot.on('message', message => {
     if(message.channel.id === '451456071685636096') return;
     let arr = [];
     message.guild.fetchInvites().then(invites => {
-        let user = message.mentions.members.first();
+    let user = message.mentions.members.first();
         invites.forEach(invite => {
             arr.push(invite.code);
-        })
+        });
     let matches = message.content.match(/https:\/\/discord.gg\/([_a-zA-Z0-9]{5,32})/gi);
     if (matches)
         matches.forEach((match) => {
