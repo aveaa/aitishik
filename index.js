@@ -104,15 +104,15 @@ bot.on('message', message => {
     if (matches)
         matches.forEach((match) => {
             if (!arr.includes(match.match(/https:\/\/discord.gg\/([_a-zA-Z0-9]{5,32})/gi)[3])) {
-                message.delete();
                 const embed = new Discord.RichEmbed()
                 .setTitle("Информация о предупреждениях")
                 .setColor("af00ff")
-                .setDescription('Вы были **предупреждены**.' + '.\n\nПричина:** Пиар**.\n\nНе ведите себя плохо!')
+                .setDescription('Вы были **предупреждены**' + '.\n\nПричина:** Пиар.**\n\nНе ведите себя плохо!')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
                 message.author.send({embed});
                 message.channel.send(message.author + ' был предупрежден. Причина: пиар.');
+                message.delete();
         }
 
     })
@@ -185,7 +185,7 @@ bot.on('message', message => {
         const embed = new Discord.RichEmbed()
                 .setTitle("Информация о предупреждениях")
                 .setColor("af00ff")
-                .setDescription('Вы были **предупреждены** пользователем ' + message.author + '.\n\nПричина:**' + reason + '**.\n\nНе ведите себя плохо!')
+                .setDescription('Вы были **предупреждены** пользователем ' + message.author + '.\n\nПричина:**' + reason + '.**\n\nНе ведите себя плохо!')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
                 user.send({embed});
