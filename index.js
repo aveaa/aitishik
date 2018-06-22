@@ -349,6 +349,69 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             return
         }
     }
+
+    if (['ban', 'бан', 'ифт'].includes(command)) {
+        if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {
+        let user = message.mentions.members.first(); 
+        if (user === message.author) {
+            message.reply('Ошибка. Причина: **БАНИТЬ САМОГО СЕБЯ ЭТО ТУПО!**');
+            return
+        }
+        if(user.hasPermission("ADMINISTRATOR")) return message.reply('Ошибка. Причина: **Вы не можете забанить этого пользователя, т. к. у него есть право `Администратор`**');
+        if (!user) {
+            message.reply('Ошибка. Причина: **Вы забыли упомянуть пользователя или вы хотите забанить того, кто не является пользователем**');
+            return
+        }
+
+        function getSeconds(str) {
+            let seconds = 0;
+            let years = str.match(/(\d+)\s*y/);
+            let months = str.match(/(\d+)\s*M/);
+            let weeks = str.match(/(\d+)\s*w/);
+            let days = str.match(/(\d+)\s*d/);
+            let hours = str.match(/(\d+)\s*h/);
+            let minutes = str.match(/(\d+)\s*m/);
+            let secs = str.match(/(\d+)\s*s/);
+            if (years) { seconds += parseInt(years[1])*31556926; }
+            if (months) { seconds += parseInt(months[1])*2592000; }
+            if (weeks) { seconds += parseInt(weeks[1])*604800; }
+            if (days) { seconds += parseInt(days[1])*86400; }
+            if (hours) { seconds += parseInt(hours[1])*3600; }
+            if (minutes) { seconds += parseInt(minutes[1])*60; }
+            if (secs) { seconds += parseInt(secs[1]); }
+            return seconds;
+        }
+
+        let reason = args.join(" ").replace(user, '');
+        if (!reason || reason === ' ') reason = ' Не указана'
+        reason = reason.replace(args[1], '');
+        reason = reason.replace(' ', '');
+            const embed = new Discord.RichEmbed()
+                .setTitle('Информация о бане')
+                .setColor("af00ff")
+                .setDescription('Вы были **забанены** пользователем ' + message.author + '.\n\nВремя: **' + args[0] + '**.\n\nПричина:**' + reason + '.**\n\nНе надо было вести себя плохо!')
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                .setTimestamp();
+            user.send({embed})
+            message.guild.member(user).ban(reason);
+            if (args[1] && getSeconds(args[1]) !== 0 )
+
+    setBigTimeout(() => {
+        const embedAutoUnban = new Discord.RichEmbed()
+        .setTitle("Информация о бане")
+        .setColor("af00ff")
+        .setDescription('Вы были автоматически **разбанены**.\n\nПричина: **Автоматический разбан.**')
+        .setFooter(bot_name + " | " + version + " | Все права защищены")
+        .setTimestamp();
+        user.send({embed: embedAutoUnban});
+        message.channel.send(user + ' был разбанен');
+        message.guild.members.get(user.id).unban(reason)
+        }, getSeconds(args[1])*1000);
+        } else {
+            message.reply('Ошибка. Причина: **Вы не можете использовать команду ban, вы должны иметь роль Модератор');
+            return
+        }
+    }
    
     if(['help'].includes(command)) {
         const embed = new Discord.RichEmbed()
