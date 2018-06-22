@@ -174,25 +174,16 @@ bot.on('message', message => {
 
     if (['clear', 'delete', 'del', 'clr', 'сдк', 'вуд', 'сдуфк', 'вудуеу'].includes(command)) {
         async function clear() {
-            if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {   
-                if(isNaN(args[0])) {
-                    message.channel.send(message.author + ', Ошибка. Причина: **Аргумент должен являться числом**');
-                    return;
-                } else {
-                if (args[0] === 0) {
-                    message.channel.send(message.author + ', Ошибка. Причина: **Аргумент не может являться нулем');
-                    return
-                } 
-                if (args[0] === 1) {
-                    message.channel.send(message.author + ', Ошибка. Причина: **Аргумент не может являться единицей');
-                    return
-                } 
+            if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {
+                if (isNaN(args[0]))
+                    return message.reply('Ошибка. Причина: **Аргумент должен являться числом**');
+                else if(args[0] < 2)
+                    return message.reply('Ошибка. Причина: **Аргумент не может являться нулем или единицей')   
                 message.delete();
                 const fetched = await message.channel.fetchMessages({limit: args[0]});
                 message.channel.bulkDelete(fetched);
                 let messagesForm = declOfNum(fetched.size, ['сообщение', 'сообщения', 'сообщений']);
                 message.channel.send("Было успешно удалено **" + fetched.size + "** " + messagesForm)
-                }
             } else {
                 message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду clear, вы должны иметь роль Модератор**')
                 return;
