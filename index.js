@@ -675,9 +675,10 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     if ('meme', 'мем', 'ьуьу') {
         let numMeme = 0;
         if (numMeme === 0) {
-            const meme1 = new Discord.RichEmbed()
+        const meme1 = new Discord.RichEmbed()
             .setColor("af00ff")
-            .setDescription(message.author.avatarURL)
+            .setDescription('Смейся на здоровье :)')
+            .setImage(message.author.avatarURL);
         message.channel.send({embed: meme1});
         }
     }
