@@ -41,8 +41,7 @@ let five = '<:fiveEmoji:457554890374250516>';
 const bot_name = 'Айтишник';
 let version = 'v0.9.4.1'
 let update = 'Вышла новая версия ' + version + '. Обновления:\n\n1. Была добавлена фраза под команду =update: "При нахождении бага кидайте скрин [Ï₸]🔥𝓐𝓝𝓓𝓡𝓔𝓨🔥#8389 в личное сообщение"'
-//Проверка на мут
-let unmuted = false
+
 //Функции
 //Функция для генерации случайного числа от min до max
 function randomInteger(min, max) {
@@ -244,7 +243,6 @@ bot.on('message', message => {
                             .setFooter(bot_name + " | " + version + " | Все права защищены")
                             .setTimestamp();
                         user.send({embed});
-                        unmuted = true
                 }
             } else {
                 message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду unmute, вы должны иметь роль Модератор**');
@@ -295,7 +293,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     const embed = new Discord.RichEmbed()
                 .setTitle("Информация о муте")
                 .setColor("af00ff")
-                .setDescription('Вы были **замучены** пользователем ' + message.author + '\n\nВремя: **'+ args[1] + '**.\nПричина:**' + reason + '.**\n\nНе ведите себя плохо!')
+                .setDescription('Вы были **замучены** пользователем ' + message.author + '\n\nВремя: **'+ args[1] + '.**\nПричина:**' + reason + '.**\n\nНе ведите себя плохо!')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
                 user.send({embed});
@@ -303,9 +301,8 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
  
     if (args[1] && getSeconds(args[1]) !== 0 )
 
-    if (unmuted) return
-
     setBigTimeout(() => {
+        if (message.member.roles.some(r=> [muted].includes(r.id))) {
         const embedAutoUnmute = new Discord.RichEmbed()
         .setTitle("Информация о муте")
         .setColor("af00ff")
@@ -314,7 +311,11 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         .setTimestamp();
         user.send({embed: embedAutoUnmute});
         user.removeRole(muted);
-        message.channel.send(user + ' был размучен');}, getSeconds(args[1])*1000);
+        message.channel.send(user + ' был размучен');
+        } else {
+            return
+        }
+        }, getSeconds(args[1])*1000);
         } else {
             message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду mute, вы должны иметь роль Модератор**');
         }
