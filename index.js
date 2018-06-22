@@ -343,7 +343,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
                 message.author.send({embed})
-            /*message.guild.member(user).kick(reason);*/
+            message.guild.member(user).kick(reason);
         } else {
             message.reply('Ошибка. Причина: **Вы не можете использовать команду kick, вы должны иметь роль Модератор');
             return
