@@ -324,7 +324,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
 
     if (['kick', 'кик', 'лшсл'].includes(command)) {
         let user = message.mentions.members.first(); 
-        let reason = args.join(" ").slice(user);
+        let reason = args.join(" ").replace(user, '');
         message.channel.send(reason);
     }
    
