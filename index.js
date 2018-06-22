@@ -180,7 +180,7 @@ bot.on('message', message => {
                 else if(args[0] < 2)
                     return message.reply('Ошибка. Причина: **Аргумент не может являться нулем или единицей**');
                 args[0] = args[0]++   
-                const fetched = await message.channel.fetchMessages({limit: args[0]});
+                const fetched = await message.channel.fetchMessages({limit: args[0] + 1});
                 message.channel.bulkDelete(fetched);
                 let messagesForm = declOfNum(fetched.size, ['сообщение', 'сообщения', 'сообщений']);
                 message.channel.send("Было успешно удалено **" + fetched.size + "** " + messagesForm)
