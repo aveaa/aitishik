@@ -678,7 +678,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         const meme1 = new Discord.RichEmbed()
             .setColor("af00ff")
             .setDescription('Смейся на здоровье :)')
-            .setImage(message.author.avatarURL);
+            .setImage('https://cdn.discordapp.com/attachments/437290659142041602/459826306272722954/2AiLShQnwJw.png');
         message.channel.send({embed: meme1});
         }
     }
