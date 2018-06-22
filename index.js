@@ -342,7 +342,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 .setDescription('Вы были **кикнуты** пользователем ' + message.author + '.\n\nПричина:**' + reason + '.**\n\nНе ведите себя плохо!')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
-                message.author.send({embed})
+            user.send({embed})
             message.guild.member(user).kick(reason);
         } else {
             message.reply('Ошибка. Причина: **Вы не можете использовать команду kick, вы должны иметь роль Модератор');
