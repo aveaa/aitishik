@@ -353,15 +353,15 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     if (['ban', 'бан', 'ифт'].includes(command)) {
         if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {
         let user = message.mentions.members.first(); 
+        if (!user) {
+            message.reply('Ошибка. Причина: **Вы забыли упомянуть пользователя или вы хотите забанить того, кто не является пользователем**');
+            return
+        }
         if (user === message.author) {
             message.reply('Ошибка. Причина: **БАНИТЬ САМОГО СЕБЯ ЭТО ТУПО!**');
             return
         }
         if(user.hasPermission("ADMINISTRATOR")) return message.reply('Ошибка. Причина: **Вы не можете забанить этого пользователя, т. к. у него есть право `Администратор`**');
-        if (!user) {
-            message.reply('Ошибка. Причина: **Вы забыли упомянуть пользователя или вы хотите забанить того, кто не является пользователем**');
-            return
-        }
 
         function getSeconds(str) {
             let seconds = 0;
@@ -389,7 +389,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             const embed = new Discord.RichEmbed()
                 .setTitle('Информация о бане')
                 .setColor("af00ff")
-                .setDescription('Вы были **забанены** пользователем ' + message.author + '.\n\nВремя: **' + args[0] + '**.\n\nПричина:**' + reason + '.**\n\nНе надо было вести себя плохо!')
+                .setDescription('Вы были **забанены** пользователем ' + message.author + '.\n\nВремя: **' + args[1] + '**.\n\nПричина:**' + reason + '.**\n\nНе надо было вести себя плохо!')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
             user.send({embed})
