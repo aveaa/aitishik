@@ -178,6 +178,7 @@ bot.on('message', message => {
                     return message.reply('Ошибка. Причина: **Аргумент должен являться числом**');
                 else if(args[0] < 2)
                     return message.reply('Ошибка. Причина: **Аргумент не может являться нулем или единицей**');
+                else if (args[0] >= 100) args[0] = 99
                 args[0] = args[0]++   
                 const fetched = await message.channel.fetchMessages({limit: args[0] + 1});
                 message.channel.bulkDelete(fetched);
