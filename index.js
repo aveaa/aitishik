@@ -228,7 +228,6 @@ bot.on('message', message => {
 
                 if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {
 
-
                 let user = message.mentions.members.first();
                 if (!user) {
                     message.channel.send(message.author + ', Ошибка. Причина: **Вы забыли упомянуть пользователя или хотите размутить того, кто не является пользователем**');
@@ -245,6 +244,7 @@ bot.on('message', message => {
                             .setFooter(bot_name + " | " + version + " | Все права защищены")
                             .setTimestamp();
                         user.send({embed});
+                        unmuted = true
                 }
             } else {
                 message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду unmute, вы должны иметь роль Модератор**');
@@ -259,10 +259,10 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     if (!user)
         return message.channel.send(message.author + ', Ошибка. Причина: **Вы забыли упомянуть пользователя или вы хотите замутить того, кто не является пользователем**');
 
-    if (user.id == message.author.id) {
+    /*if (user.id == message.author.id) {
         message.channel.send('Зачем ты пытаешься замутить самого себя?');
         return;
-    }
+    }*/
     function getSeconds(str) {
         let seconds = 0;
         let years = str.match(/(\d+)\s*y/);
@@ -302,6 +302,8 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
 
  
     if (args[1] && getSeconds(args[1]) !== 0 )
+
+    if (unmuted) return
 
     setBigTimeout(() => {
         const embedAutoUnmute = new Discord.RichEmbed()
