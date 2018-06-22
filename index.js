@@ -672,6 +672,12 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 message.member.removeRole(caseLotteryRole);
         }
     }
+    if ('meme', 'мем', 'ьуьу') {
+        let numMeme = 0;
+        if (numMeme === 0) {
+            message.channel.send(message.author.avatarURL);
+        }
+    }
 });
 
 bot.login(process.env.BOT_TOKEN)/*.catch(err => {console.log(err)})*/;
