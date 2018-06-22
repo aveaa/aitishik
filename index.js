@@ -39,8 +39,8 @@ let four = '<:fourEmoji:457554874935279616>';
 let five = '<:fiveEmoji:457554890374250516>';
 
 const bot_name = 'Айтишник';
-let version = 'v0.9.5'
-let update = 'Вышла новая версия ' + version + '. Обновления:\n\n1. Была добавлена команда =clear.\n\n2. Исправлен баг с =unmute. Теперь вам не придет второе сообщение о размуте.\n\nСпойлер: следующее обновление будет глобальным'
+let version = 'Early Alpha v1.0.0'
+let update = 'Вышла новая версия ' + version + '. Обновления:\n\n1. Исправлены баги с командой =clear.\n\n2. Добавлена команда =kick.\n\n3. Добавлена команда =ban.\n\n4. Исправлено немного микроскопических багов связанных с сообщениеями после мута/размута/варна\n\n5. Спойлер: Будет несколько версий 1.0.0. Эта - самая первая.'
 
 //Функции
 //Функция для генерации случайного числа от min до max
@@ -363,25 +363,6 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         }
         if(user.hasPermission("ADMINISTRATOR")) return message.reply('Ошибка. Причина: **Вы не можете забанить этого пользователя, т. к. у него есть право `Администратор`**');
 
-        function getSeconds(str) {
-            let seconds = 0;
-            let years = str.match(/(\d+)\s*y/);
-            let months = str.match(/(\d+)\s*M/);
-            let weeks = str.match(/(\d+)\s*w/);
-            let days = str.match(/(\d+)\s*d/);
-            let hours = str.match(/(\d+)\s*h/);
-            let minutes = str.match(/(\d+)\s*m/);
-            let secs = str.match(/(\d+)\s*s/);
-            if (years) { seconds += parseInt(years[1])*31556926; }
-            if (months) { seconds += parseInt(months[1])*2592000; }
-            if (weeks) { seconds += parseInt(weeks[1])*604800; }
-            if (days) { seconds += parseInt(days[1])*86400; }
-            if (hours) { seconds += parseInt(hours[1])*3600; }
-            if (minutes) { seconds += parseInt(minutes[1])*60; }
-            if (secs) { seconds += parseInt(secs[1]); }
-            return seconds;
-        }
-
         let reason = args.join(" ").replace(user, '');
         if (!reason || reason === ' ') reason = ' Не указана'
         reason = reason.replace(args[1], '');
@@ -394,19 +375,8 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 .setTimestamp();
             user.send({embed})
             message.guild.member(user).ban(reason);
-            if (args[1] && getSeconds(args[1]) !== 0 )
+            message.channel.send(user + 'Был успешно забанен. Жалко пацана');
 
-    setBigTimeout(() => {
-        const embedAutoUnban = new Discord.RichEmbed()
-        .setTitle("Информация о бане")
-        .setColor("af00ff")
-        .setDescription('Вы были автоматически **разбанены**.\n\nПричина: **Автоматический разбан.**')
-        .setFooter(bot_name + " | " + version + " | Все права защищены")
-        .setTimestamp();
-        user.send({embed: embedAutoUnban});
-        message.channel.send(user + ' был разбанен');
-        user.unban(reason)        
-        }, getSeconds(args[1])*1000);
         } else {
             message.reply('Ошибка. Причина: **Вы не можете использовать команду ban, вы должны иметь роль Модератор');
             return
@@ -417,7 +387,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         const embed = new Discord.RichEmbed()
             .setTitle("Помощь")
             .setColor("af00ff")
-            .setDescription('Общедоступные команды:\n' + p + 'avatar `пользователь` - Показ аватарки пользоввателя \n' + p + 'rsp `камень | ножницы |бумага` - Миниигра "Камень, ножницы, бумага" \n' + p + 'random `число` `число` - генерация случайного числа от 0 до любого другого числа \n' + p + 'poll `вопрос` `;` `варианты через \';\'` - голосование \n' + p + 'caseinfo - информация о кейсах\n' + p + 'update - узнать о последних обновлениях\n\nКоманды доступные Модераторам или Epic-ам:\n' + p + 'mute | unmute `пользователь`- мут или размут пользователя\n' + p + 'warn `пользователь` - предупредить пользоваетеля\n'+ p + 'clear | delete `число` - удалить сообщения' + p + 'say `текст` - бот скажет вашу реплику\n' + p + 'send `пользователь` - отправить сообщение пользователю в лс')
+            .setDescription('Общедоступные команды:\n' + p + 'avatar `пользователь` - Показ аватарки пользоввателя \n' + p + 'rsp `камень | ножницы |бумага` - Миниигра "Камень, ножницы, бумага" \n' + p + 'random `число` `число` - генерация случайного числа от 0 до любого другого числа \n' + p + 'poll `вопрос` `;` `варианты через \';\'` - голосование \n' + p + 'caseinfo - информация о кейсах\n' + p + 'update - узнать о последних обновлениях\n\nКоманды доступные Модераторам или Epic-ам:\n' + p + 'mute | unmute `пользователь` - мут или размут пользователя\n' + p + 'kick `пользователь` - выгнать пользователя\n' + p + 'ban `пользователь` - забанить пользователя\n' + p + 'warn `пользователь` - предупредить пользоваетеля\n'+ p + 'clear | delete `число` - удалить сообщения\n' + p + 'say `текст` - бот скажет вашу реплику\n' + p + 'send `пользователь` - отправить сообщение пользователю в лс')
             .setFooter(bot_name + " | " + version + " | Все права защищены")
             .setTimestamp();
         message.channel.send({embed});
