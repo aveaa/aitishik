@@ -405,7 +405,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         .setTimestamp();
         user.send({embed: embedAutoUnban});
         message.channel.send(user + ' был разбанен');
-        message.guild.members.get(user.id).unban(reason)
+        user.unban(reason)        
         }, getSeconds(args[1])*1000);
         } else {
             message.reply('Ошибка. Причина: **Вы не можете использовать команду ban, вы должны иметь роль Модератор');
