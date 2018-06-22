@@ -325,7 +325,29 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     if (['kick', 'кик', 'лшсл'].includes(command)) {
         let user = message.mentions.members.first(); 
         let reason = args.join(" ").replace(user, '');
-        message.channel.send(reason);
+        if(user.hasPermission("ADMINISTRATOR")) return message.reply('Ошибка. Причина: **Вы не можете кикнуть этого пользователя, т. к. у него есть право `Администратор`**');
+        if (!user) {
+            message.reply('Ошибка. Причина: **Вы забыли упомянуть пользователя или вы хотите кикнуть того, кто не является пользователем**');
+            return
+        }
+        if (user === message.author) {
+            message.reply('Ошибка. Причина: **КИКАТЬ САМОГО СЕБЯ ЭТО ТУПО!**');
+            return
+        }
+        if (!reason || reason === ' ') reason = 'Не указана'
+        if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {
+            const embed = new Discord.RichEmbed()
+                .setTitle('Информация о кике')
+                .setColor("af00ff")
+                .setDescription('Вы были **кикнуты** пользователем ' + message.author + '.\n\nПричина: **' + reason + '**\n\nНе ведите себя плохо!')
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                .setTimestamp();
+                message.author.send({embed})
+            /*message.guild.member(user).kick(reason);*/
+        } else {
+            message.reply('Ошибка. Причина: **Вы не можете использовать команду kick, вы должны иметь роль Модератор');
+            return
+        }
     }
    
     if(['help'].includes(command)) {
