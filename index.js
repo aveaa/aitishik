@@ -167,6 +167,27 @@ bot.on('message', message => {
         }
     }
 
+    if (['clear', 'delete', 'del', 'clr', 'сдк', 'вуд', 'сдуфк', 'вудуеу'].includes(command)) {
+        async function purge() {
+            if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {   
+                if(isNaN(args[0])) {
+                    message.channel.send(message.author + ', Ошибка. Причина: **Аргумент должен являться числом**');
+                    return;
+                } else {
+                    message.delete();
+                const fetched = await message.channel.fetchMessages({limit: args[0]});
+                message.author.send(fetched.size + ' Messages found, delete...')
+                message.channel.bulkDelete(fetched)
+                .catch(error => message.author.send(`Error: ${error}`));
+                message.author.send("Was deleted " + fetched.size + " messages.")
+                }
+            } else {
+                message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду warn, вы должны иметь роль Модератор**')
+                return;
+            }
+        }
+    }
+
     if (['warn', 'варн', 'цфкт'].includes(command) && message.member.roles.some(r=>[moder, owner].includes(r.id))) {
         let user = message.mentions.members.first(); 
 
