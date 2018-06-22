@@ -169,6 +169,7 @@ bot.on('message', message => {
 
     if (['clear', 'delete', 'del', 'clr', 'сдк', 'вуд', 'сдуфк', 'вудуеу'].includes(command)) {
         async function clear() {
+            message.delete();
             let messagesForm
             if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {   
                 if(isNaN(args[0])) {
@@ -183,7 +184,6 @@ bot.on('message', message => {
                 if (args[0].endsWith('2') || args[0].endsWith('3') || args[0].endsWith('4')) messagesForm = 'сообщения'
                 if (args[0].endsWith('11') || args[0].endsWith('12') || args[0].endsWith('13') || args[0].endsWith('14')) messagesForm = 'сообщений'
                 if (args[0].endsWith('5') || args[0].endsWith('6') || args[0].endsWith('7') || args[0].endsWith('8') || args[0].endsWith('9') || args[0].endsWith('0')) messagesForm = 'сообщений'
-                message.delete();
                 const fetched = await message.channel.fetchMessages({limit: args[0]});
                 message.channel.bulkDelete(fetched)/*.catch(error => message.author.send(`Error: ${error}`));*/
                 message.channel.send("Было успешно удалено **" + fetched.size + "** " + messagesForm)
