@@ -168,7 +168,7 @@ bot.on('message', message => {
     }
 
     if (['clear', 'delete', 'del', 'clr', 'сдк', 'вуд', 'сдуфк', 'вудуеу'].includes(command)) {
-        async function clear() {
+        function clear() {
             let messagesForm
             if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {   
                 if(isNaN(args[0])) {
