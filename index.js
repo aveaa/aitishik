@@ -180,7 +180,10 @@ bot.on('message', message => {
                     message.channel.send(message.author + ', Ошибка. Причина: **Аргумент не может являться нулем');
                     return
                 } 
-                if (args[0] === 1) args[0] = args[0]++
+                if (args[0] === 1) {
+                    message.channel.send(message.author + ', Ошибка. Причина: **Аргумент не может являться единицей');
+                    return
+                } 
                 if (args[0].endsWith('1')) messagesForm = 'сообщение'
                 if (args[0].endsWith('2') || args[0].endsWith('3') || args[0].endsWith('4')) messagesForm = 'сообщения'
                 if (args[0].endsWith('11') || args[0].endsWith('12') || args[0].endsWith('13') || args[0].endsWith('14')) messagesForm = 'сообщений'
