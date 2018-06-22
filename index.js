@@ -182,8 +182,7 @@ bot.on('message', message => {
                 args[0] = args[0]++   
                 const fetched = await message.channel.fetchMessages({limit: args[0] + 1});
                 message.channel.bulkDelete(fetched);
-                let messagesForm = declOfNum(fetched.size, ['сообщение', 'сообщения', 'сообщений']);
-                args[0] = args[0] - 1
+                let messagesForm = declOfNum(args[0], ['сообщение', 'сообщения', 'сообщений']);
                 message.channel.send("Было успешно удалено **" + args[0] + "** " + messagesForm)
                 message.delete();
             } else {
