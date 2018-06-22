@@ -49,6 +49,11 @@ function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function declOfNum(number, titles) {
+    let cases = [2, 0, 1, 1, 1, 2];
+    return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
+}
+
 //Функция для отправки сообщения после мута/варна/кика/бана
  
 //Функции для перемены игр
@@ -169,7 +174,6 @@ bot.on('message', message => {
 
     if (['clear', 'delete', 'del', 'clr', 'сдк', 'вуд', 'сдуфк', 'вудуеу'].includes(command)) {
         async function clear() {
-            let messagesForm
             if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {   
                 if(isNaN(args[0])) {
                     message.channel.send(message.author + ', Ошибка. Причина: **Аргумент должен являться числом**');
@@ -183,13 +187,10 @@ bot.on('message', message => {
                     message.channel.send(message.author + ', Ошибка. Причина: **Аргумент не может являться единицей');
                     return
                 } 
-                if (args[0].endsWith('1')) messagesForm = 'сообщение'
-                if (args[0].endsWith('2') || args[0].endsWith('3') || args[0].endsWith('4')) messagesForm = 'сообщения'
-                if (args[0].endsWith('11') || args[0].endsWith('12') || args[0].endsWith('13') || args[0].endsWith('14')) messagesForm = 'сообщений'
-                if (args[0].endsWith('5') || args[0].endsWith('6') || args[0].endsWith('7') || args[0].endsWith('8') || args[0].endsWith('9') || args[0].endsWith('0')) messagesForm = 'сообщений'
                 message.delete();
                 const fetched = await message.channel.fetchMessages({limit: args[0]});
-                message.channel.bulkDelete(fetched)/*.catch(error => message.author.send(`Error: ${error}`));*/
+                message.channel.bulkDelete(fetched);
+                let messagesForm = declOfNum(fetched.size, ['сообщение', 'сообщения', 'сообщений']);
                 message.channel.send("Было успешно удалено **" + fetched.size + "** " + messagesForm)
                 }
             } else {
