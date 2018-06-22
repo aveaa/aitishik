@@ -320,6 +320,12 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду mute, вы должны иметь роль Модератор**');
         }
     }
+
+    if (['kick', 'кик', 'лшсл'].includes(command)) {
+        let user = message.mentions.members.first(); 
+        let reason = args.join(" ").slice(user);
+        message.channel.send(reason);
+    }
    
     if(['help'].includes(command)) {
         const embed = new Discord.RichEmbed()
