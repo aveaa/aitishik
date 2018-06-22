@@ -183,7 +183,8 @@ bot.on('message', message => {
                 const fetched = await message.channel.fetchMessages({limit: args[0] + 1});
                 message.channel.bulkDelete(fetched);
                 let messagesForm = declOfNum(fetched.size, ['сообщение', 'сообщения', 'сообщений']);
-                message.channel.send("Было успешно удалено **" + fetched.size + "** " + messagesForm)
+                args[0] = args[0] - 1
+                message.channel.send("Было успешно удалено **" + args[0] + "** " + messagesForm)
                 message.delete();
             } else {
                 message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду clear, вы должны иметь роль Модератор**')
