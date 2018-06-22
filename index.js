@@ -178,7 +178,8 @@ bot.on('message', message => {
                 if (isNaN(args[0]))
                     return message.reply('Ошибка. Причина: **Аргумент должен являться числом**');
                 else if(args[0] < 2)
-                    return message.reply('Ошибка. Причина: **Аргумент не может являться нулем или единицей**')   
+                    return message.reply('Ошибка. Причина: **Аргумент не может являться нулем или единицей**');
+                args[0] = args[0]++   
                 const fetched = await message.channel.fetchMessages({limit: args[0]});
                 message.channel.bulkDelete(fetched);
                 let messagesForm = declOfNum(fetched.size, ['сообщение', 'сообщения', 'сообщений']);
