@@ -672,7 +672,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 message.member.removeRole(caseLotteryRole);
         }
     }
-    if ('meme', 'мем', 'ьуьу') {
+    if (['meme', 'мем', 'ьуьу'].includes(command)) {
         let numMeme = 0;
         if (numMeme === 0) {
         const meme1 = new Discord.RichEmbed()
