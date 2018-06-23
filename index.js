@@ -711,16 +711,28 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             return
         }
     }
-    if (message.channel.id === '460037531447197696' && !message.author.bot) {
+    if (message.channel.id === '460037531447197696') {
         message.channel.fetchMessages({limit: 2}).then(msgs => {
-            if (msgs.last().author.id === message.author.id) {message.author.send('Ошибка. Причина: **Для игры нужно 2 участника**').then((msg) => {message.delete();});return;}
+            if (msgs.last().author.id === message.author.id) {
+                message.author.send('Ошибка. Причина: **Для игры нужно 2 участника**').then((msg) => {
+                    message.delete();});
+                    return;
+            }
             let word = msgs.last().edits.pop().content.match(/([А-Яа-яё\-]+).?(.*?)?/im)[1];
-            if (!word) {message.author.send('Слово где? :D').then((msg) => {message.delete();});return;}
+            if (!word) {
+                message.author.send('Слово где? :D').then((msg) => {
+                    message.delete();});
+                    return;
+                }
             let charAt = 1;
             while (['ъ', 'ь', 'ы', '-', '', ' '].includes(word.charAt(word.length - charAt).toLowerCase())) {
                 charAt++;
             }
-            if (charAt >= word.length) {message.author.send(`${client.emojis.get(emojis.error)} Где слово?? о_О`).then((msg) => {message.delete();});return;}
+            if (charAt >= word.length) {
+                message.author.send(`Ошибка. Причина: Вы написали некорректное слово`).then((msg) => {
+                    message.delete();});
+                    return;
+                }
             if (word.charAt(word.length - charAt).toLowerCase() !== message.content.match(/([А-Яа-яa-zA-Zё\-]+).?(.*?)?/im)[1].charAt(0).toLowerCase()) {
                 message.author.send(`Ошибка. Причина: **Ваше слово должно начинаться с \`${word.charAt(word.length - charAt).toLowerCase()}\`**`).then((msg) => {
                     message.delete();
