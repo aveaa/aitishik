@@ -93,7 +93,7 @@ bot.on('guildMemberAdd', (member) => {
         .setDescription('На сервер пришел ' + member + '\n\nТеперь нас **' + member.guild.memberCount + '**')
         .setFooter('Ну, это сообщение должно прийти только овнеру, и поэтому тут футер не нужен')
         .setTimestamp()
-        client.fetchUser('242975403512168449').then (user => user.send({embed}))
+        bot.fetchUser('242975403512168449').then (user => user.send({embed}))
 });
  
 //То что должно произойти после запуска бота
