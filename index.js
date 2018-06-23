@@ -676,20 +676,59 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         }
     }
     if (['meme', 'мем', 'ьуьу'].includes(command)) {
+        if (message.member.roles.some(r=>[owner].includes(r.id))) {
         let numMeme = randomInteger(0, 1);
         if (numMeme === 0) {
-        const meme1 = new Discord.RichEmbed()
-            .setColor("af00ff")
-            .setDescription('Смейся на здоровье :)')
+        const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
             .setImage('https://cdn.discordapp.com/attachments/437290659142041602/459826306272722954/2AiLShQnwJw.png');
-        message.channel.send({embed: meme1});
-        } if (numMeme === 1) {
-            const meme1 = new Discord.RichEmbed()
-                .setColor("af00ff")
-                .setDescription('Смейся на здоровье :)')
+        message.channel.send({embed: meme});
+        } else if (numMeme === 1) {
+            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
                 .setImage('https://media.discordapp.net/attachments/459832574596874247/459836174471659530/GISzdyJKc_E.png?width=314&height=301');
-            message.channel.send({embed: meme1});
+            message.channel.send({embed: meme});
+        } else if (numMeme === 2) {
+            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
+                .setImage('https://media.discordapp.net/attachments/459832574596874247/459833837661323264/2016-08-15_22-59-26.png?width=400&height=201');
+            message.channel.send({embed: meme});
+        } else if (numMeme === 3) {
+            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
+                .setImage('https://media.discordapp.net/attachments/459832574596874247/459834517176188929/PcRBSe6ao3c.png?width=389&height=301');
+            message.channel.send({embed: meme});
+        } else if (numMeme === 4) {
+            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
+                .setImage('https://media.discordapp.net/attachments/459832574596874247/459835002578796564/unknown.png?width=400&height=280');
+            message.channel.send({embed: meme});
+        } else if (numMeme === 5) {
+            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
+                .setImage('https://media.discordapp.net/attachments/459832574596874247/459835002578796564/unknown.png?width=400&height=280');
+            message.channel.send({embed: meme});
+        } else if (numMeme === 6) {
+            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
+                .setImage('https://media.discordapp.net/attachments/459832574596874247/459835002578796564/unknown.png?width=400&height=280');
+            message.channel.send({embed: meme});
+        }
+        } else {
+            return
+        }
+    }
+    if (message.channel.id === '460037531447197696' && !message.author.bot) {
+        message.channel.fetchMessages({limit: 2}).then(msgs => {
+            if (msgs.last().author.id === message.author.id) {message.author.send('Ошибка. Причина: **Для игры нужно 2 участника**').then((msg) => {message.delete();});return;}
+            let word = msgs.last().edits.pop().content.match(/([А-Яа-яё\-]+).?(.*?)?/im)[1];
+            if (!word) {message.author.send('Слово где? :D').then((msg) => {message.delete();});return;}
+            let charAt = 1;
+            while (['ъ', 'ь', 'ы', '-', '', ' '].includes(word.charAt(word.length - charAt).toLowerCase())) {
+                charAt++;
             }
+            if (charAt >= word.length) {message.author.send(`${client.emojis.get(emojis.error)} Где слово?? о_О`).then((msg) => {message.delete();});return;}
+            if (word.charAt(word.length - charAt).toLowerCase() !== message.content.match(/([А-Яа-яa-zA-Zё\-]+).?(.*?)?/im)[1].charAt(0).toLowerCase()) {
+                message.author.send(`Ошибка. Причина: **Ваше слово должно начинаться с \`${word.charAt(word.length - charAt).toLowerCase()}\`**`).then((msg) => {
+                    message.delete();
+                });
+            }
+
+        });
+        return;
     }
 });
 
