@@ -345,6 +345,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 .setTimestamp();
             user.send({embed})
             message.guild.member(user).kick(reason);
+            message.channel.send(user + 'Был кикнут успешно. Жалко пацана');
         } else {
             message.reply('Ошибка. Причина: **Вы не можете использовать команду kick, вы должны иметь роль Модератор');
             return
