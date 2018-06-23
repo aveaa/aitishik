@@ -675,14 +675,20 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         }
     }
     if (['meme', 'мем', 'ьуьу'].includes(command)) {
-        let numMeme = 0;
+        let numMeme = randomInteger(0, 1);
         if (numMeme === 0) {
         const meme1 = new Discord.RichEmbed()
             .setColor("af00ff")
             .setDescription('Смейся на здоровье :)')
             .setImage('https://cdn.discordapp.com/attachments/437290659142041602/459826306272722954/2AiLShQnwJw.png');
         message.channel.send({embed: meme1});
-        }
+        } if (numMeme === 1) {
+            const meme1 = new Discord.RichEmbed()
+                .setColor("af00ff")
+                .setDescription('Смейся на здоровье :)')
+                .setImage('https://media.discordapp.net/attachments/459832574596874247/459836174471659530/GISzdyJKc_E.png?width=314&height=301');
+            message.channel.send({embed: meme1});
+            }
     }
 });
 
