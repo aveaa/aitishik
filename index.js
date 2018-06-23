@@ -87,7 +87,14 @@ function setBigTimeout(func, timeout) {
  
 bot.on('guildMemberAdd', (member) => {
     member.send('Приветствую тебя дорогой друг, я - бот этого сервера. Познакомься с ним не торопясь. Желательно, прочитать все написанное в #info. А если понадобится помощь с моими командами, то просто напиши ' + p + 'help');
-    });
+    const embed = new Discord.RichEmbed()
+        .setTitle('Пополнение!')
+        .setColor('af00ff')
+        .setDescription('На сервер пришел ' + member + '\n\nТеперь нас **' + member.guild.memberCount + '**')
+        .setFooter('Ну, это сообщение должно прийти только овнеру, и поэтому тут футер не нужен')
+        .setTimestamp()
+        client.fetchUser('242975403512168449').then (user => user.send({embed}))
+});
  
 //То что должно произойти после запуска бота
 bot.on('ready', () => {
