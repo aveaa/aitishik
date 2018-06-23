@@ -45,6 +45,7 @@ let update = 'Вышла новая версия ' + version + '. Обновле
 //Функции
 //Функция для генерации случайного числа от min до max
 function randomInteger(min, max) {
+    max++
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
