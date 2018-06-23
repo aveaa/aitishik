@@ -39,8 +39,8 @@ let four = '<:fourEmoji:457554874935279616>';
 let five = '<:fiveEmoji:457554890374250516>';
 
 const bot_name = 'Айтишник';
-let version = 'Early Alpha v1.0.0'
-let update = 'Вышла новая версия ' + version + '. Обновления:\n\n1. Исправлены баги с командой =clear.\n\n2. Добавлена команда =kick.\n\n3. Добавлена команда =ban.\n\n4. Исправлено немного микроскопических багов связанных с сообщениеями после мута/размута/варна\n\n5. Спойлер: Будет несколько версий 1.0.0. Эта - самая первая.'
+let version = 'v1.0.0'
+let update = 'Вышла новая версия ' + version + '. Обновления:\n\n1. Исправлены баги с командой =clear.\n\n2. Добавлена команда =kick.\n\n3. Добавлена команда =ban.\n\n4. Исправлено немного микроскопических багов связанных с сообщениеями после мута/размута/варна\n\n**5. Новые обновления не скоро**'
 
 //Функции
 //Функция для генерации случайного числа от min до max
@@ -687,31 +687,59 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         let numMeme = randomInteger(0, 1);
         if (numMeme === 0) {
         const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-            .setImage('https://cdn.discordapp.com/attachments/437290659142041602/459826306272722954/2AiLShQnwJw.png');
+            .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459833837661323264/2016-08-15_22-59-26.png'); //Gogle trends
         message.channel.send({embed: meme});
         } else if (numMeme === 1) {
             const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://media.discordapp.net/attachments/459832574596874247/459836174471659530/GISzdyJKc_E.png?width=314&height=301');
+                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459834517176188929/PcRBSe6ao3c.png');//Duracell
             message.channel.send({embed: meme});
         } else if (numMeme === 2) {
             const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://media.discordapp.net/attachments/459832574596874247/459833837661323264/2016-08-15_22-59-26.png?width=400&height=201');
+                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835002578796564/unknown.png');//samsung apple
             message.channel.send({embed: meme});
         } else if (numMeme === 3) {
             const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://media.discordapp.net/attachments/459832574596874247/459834517176188929/PcRBSe6ao3c.png?width=389&height=301');
+                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835222540943361/st2_0.png');//ipad
             message.channel.send({embed: meme});
         } else if (numMeme === 4) {
             const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://media.discordapp.net/attachments/459832574596874247/459835002578796564/unknown.png?width=400&height=280');
+                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835475021004810/hsCGV4B0Yas.png');//Страхование
             message.channel.send({embed: meme});
         } else if (numMeme === 5) {
             const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://media.discordapp.net/attachments/459832574596874247/459835002578796564/unknown.png?width=400&height=280');
+                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835513587761162/PzLKV3FIW6A.png');//Футбол
             message.channel.send({embed: meme});
         } else if (numMeme === 6) {
             const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://media.discordapp.net/attachments/459832574596874247/459835002578796564/unknown.png?width=400&height=280');
+                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
+            message.channel.send({embed: meme});
+        } else if (numMeme === 7) {
+            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
+                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
+            message.channel.send({embed: meme});
+        } else if (numMeme === 8) {
+            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
+                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
+            message.channel.send({embed: meme});
+        } else if (numMeme === 9) {
+            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
+                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
+            message.channel.send({embed: meme});
+        } else if (numMeme === 10) {
+            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
+                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
+            message.channel.send({embed: meme});
+        } else if (numMeme === 11) {
+            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
+                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
+            message.channel.send({embed: meme});
+        } else if (numMeme === 12) {
+            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
+                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
+            message.channel.send({embed: meme});
+        } else if (numMeme === 13) {
+            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
+                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
             message.channel.send({embed: meme});
         }
         } else {
