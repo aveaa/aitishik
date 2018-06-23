@@ -345,7 +345,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 .setTimestamp();
             user.send({embed})
             message.guild.member(user).kick(reason);
-            message.channel.send(user + 'Был кикнут успешно. Жалко пацана');
+            message.channel.send(user + ' Был кикнут успешно. Жалко пацана');
         } else {
             message.reply('Ошибка. Причина: **Вы не можете использовать команду kick, вы должны иметь роль Модератор');
             return
@@ -674,7 +674,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 message.member.removeRole(caseLotteryRole);
         }
     }
-    if ('meme', 'мем', 'ьуьу') {
+    if (['meme', 'мем', 'ьуьу'].includes(command)) {
         let numMeme = 0;
         if (numMeme === 0) {
         const meme1 = new Discord.RichEmbed()
