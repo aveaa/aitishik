@@ -325,16 +325,17 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     if (['kick', 'кик', 'лшсл'].includes(command)) {
         if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {
         let user = message.mentions.members.first(); 
+        if (!user) {
+            message.reply('Ошибка. Причина: **Вы забыли упомянуть пользователя или вы хотите кикнуть того, кто не является пользователем**');
+            return
+        }
         let reason = args.join(" ").replace(user, '');
         if (user === message.author) {
             message.reply('Ошибка. Причина: **КИКАТЬ САМОГО СЕБЯ ЭТО ТУПО!**');
             return
         }
         if(user.hasPermission("ADMINISTRATOR")) return message.reply('Ошибка. Причина: **Вы не можете кикнуть этого пользователя, т. к. у него есть право `Администратор`**');
-        if (!user) {
-            message.reply('Ошибка. Причина: **Вы забыли упомянуть пользователя или вы хотите кикнуть того, кто не является пользователем**');
-            return
-        }
+        
         if (!reason || reason === ' ') reason = ' Не указана'
             const embed = new Discord.RichEmbed()
                 .setTitle('Информация о кике')
@@ -672,7 +673,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 message.member.removeRole(caseLotteryRole);
         }
     }
-    if (['meme', 'мем', 'ьуьу'].includes(command)) {
+    if ('meme', 'мем', 'ьуьу') {
         let numMeme = 0;
         if (numMeme === 0) {
         const meme1 = new Discord.RichEmbed()
