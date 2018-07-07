@@ -431,7 +431,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 return
             }
             const sendMessage = args.join(" ");
-            let msg = user.send('Вам пришло сообщение от ' + message.author + '. Он сказал:' + sendMessage.replace(user, '')).catch(()=>{message.reply('Ошибка. Причина: **Не указано сообщение**');
+            let msg = user.send('**Вам пришло сообщение от ' + message.author + '. Он сказал:**' + sendMessage.replace(user, '')).catch(()=>{message.reply('Ошибка. Причина: **Не указано сообщение**');
             })
             message.delete().catch(O_o=>{});
         } else {
