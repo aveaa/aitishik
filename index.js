@@ -401,8 +401,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 .setDescription('Чем я могу вам помочь?\n\n***1 - Узнать команды\n2 - Информация о сервере\n3 - Узнать правила***\n\nНапишите цифру внизу')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
-            message.channel.send({embed});
-        message.channel.send('`Чем я могу вам помочь?`\n\n***1 - Узнать команды\n2 - Информация о сервере\n3 - Узнать правила\n\nНапишите цифру внизу').then(() => {
+            message.channel.send({embed}).then(() => {
             const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 60000 });
             collector.on('collect', msg => {
             collector.stop()
