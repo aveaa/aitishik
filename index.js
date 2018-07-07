@@ -422,6 +422,23 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         }
     }
 
+    if(['sms'].includes(command)) {
+        let user = message.mentions.members.first();
+        if (message.member.roles.some(r=> [moder, owner, epic].includes(r.id))) {
+            if (!user) {
+                message.delete
+                message.author.send(message.author + ', Ошибка. Причина: **Не указан получатель сообщения**');
+                return
+            }
+            const sendMessage = args.join(" ");
+            let msg = user.send('Вам пришло сообщение от ' + message.author + '. Он сказал:' + sendMessage.replace(user, '')).catch(()=>{message.reply('Ошибка. Причина: не указано сообщение');
+            })
+            message.delete().catch(O_o=>{});
+        } else {
+            message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду send, вы должны иметь роли Модератор или Epic**');
+        }
+    }
+
     if(['rules'].includes(command)) {
         const embed = new Discord.RichEmbed()
             .setTitle("Правила сервера IT")
