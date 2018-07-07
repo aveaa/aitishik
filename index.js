@@ -398,7 +398,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         const embed = new Discord.RichEmbed()
             .setTitle("Помощь")
             .setColor("af00ff")
-            .setDescription('Общедоступные команды:\n' + p + 'avatar `пользователь` - Показ аватарки пользоввателя \n' + p + 'rsp `камень | ножницы |бумага` - Миниигра "Камень, ножницы, бумага" \n' + p + 'random `число` `число` - генерация случайного числа от 0 до любого другого числа \n' + p + 'poll `вопрос` `;` `варианты через \';\'` - голосование \n' + p + 'caseinfo - информация о кейсах\n' + p + 'update - узнать о последних обновлениях\n' + p + 'rules - узнать правила сервера\n\nКоманды доступные Модераторам или Epic-ам:\n' + p + 'mute | unmute `пользователь` - мут или размут пользователя\n' + p + 'kick `пользователь` - выгнать пользователя\n' + p + 'ban `пользователь` - забанить пользователя\n' + p + 'warn `пользователь` - предупредить пользоваетеля\n'+ p + 'clear | delete `число` - удалить сообщения\n' + p + 'say `текст` - бот скажет вашу реплику\n' + p + 'send `пользователь` - отправить сообщение пользователю в лс')
+            .setDescription('Общедоступные команды:\n' + p + 'avatar `пользователь` - Показ аватарки пользоввателя \n' + p + 'rsp `камень | ножницы |бумага` - Миниигра "Камень, ножницы, бумага" \n' + p + 'random `число` `число` - генерация случайного числа от 0 до любого другого числа \n' + p + 'poll `вопрос` `;` `варианты через \';\'` - голосование \n' + p + 'caseinfo - информация о кейсах\n' + p + 'update - узнать о последних обновлениях\n' + p + 'rules - узнать правила сервера\n\nКоманды доступные Модераторам или Epic-ам:\n' + p + 'mute | unmute `пользователь` `время` `причина` - мут или размут пользователя\n' + p + 'kick `пользователь` `причина` - выгнать пользователя\n' + p + 'ban `пользователь` `причина` - забанить пользователя\n' + p + 'warn `пользователь` `причина` - предупредить пользоваетеля\n'+ p + 'clear | delete `число` - удалить сообщения\n' + p + 'say `текст` - бот скажет вашу реплику\n' + p + 'send `пользователь` `сообщение` - отправить сообщение пользователю в лс' + p + 'sms `пользователь` `сообщение` - отправить сообщение пользователю в лс, но с указанным автором сообщения')
             .setFooter(bot_name + " | " + version + " | Все права защищены")
             .setTimestamp();
         message.channel.send({embed});
@@ -410,11 +410,11 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         if (message.member.roles.some(r=> [moder, owner, epic].includes(r.id))) {
             if (!user) {
                 message.delete
-                message.author.send(message.author + ', Ошибка. Причина: **Не указан получатель сообщения**');
+                message.reply('Ошибка. Причина: **Не указан получатель сообщения**');
                 return
             }
             const sendMessage = args.join(" ");
-            let msg = user.send(sendMessage.replace(user, '')).catch(()=>{message.reply('Ошибка. Причина: не указано сообщение');
+            let msg = user.send(sendMessage.replace(user, '')).catch(()=>{message.reply('Ошибка. Причина: **Не указано сообщение**');
             })
             message.delete().catch(O_o=>{});
         } else {
@@ -427,11 +427,11 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         if (message.member.roles.some(r=> [moder, owner, epic].includes(r.id))) {
             if (!user) {
                 message.delete
-                message.author.send(message.author + ', Ошибка. Причина: **Не указан получатель сообщения**');
+                message.reply('Ошибка. Причина: **Не указан получатель сообщения**');
                 return
             }
             const sendMessage = args.join(" ");
-            let msg = user.send('Вам пришло сообщение от ' + message.author + '. Он сказал:' + sendMessage.replace(user, '')).catch(()=>{message.reply('Ошибка. Причина: не указано сообщение');
+            let msg = user.send('Вам пришло сообщение от ' + message.author + '. Он сказал:' + sendMessage.replace(user, '')).catch(()=>{message.reply('Ошибка. Причина: **Не указано сообщение**');
             })
             message.delete().catch(O_o=>{});
         } else {
