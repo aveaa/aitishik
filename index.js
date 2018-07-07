@@ -41,6 +41,7 @@ let five = '<:fiveEmoji:457554890374250516>';
 const bot_name = 'Айтишник';
 let version = 'v1.0.0'
 let update = 'Вышла новая версия ' + version + '. Обновления:\n\n1. Исправлены баги с командой =clear.\n\n2. Добавлена команда =kick.\n\n3. Добавлена команда =ban.\n\n4. Исправлено немного микроскопических багов связанных с сообщениеями после мута/размута/варна\n\n**5. Новые обновления не скоро**'
+let rules = '1. Оскорбления других людей (Мут на 1 час). НО в случае уместного оскорбления, а не беспричинного человек не будет наказан. Также, вы не будете наказаны назвав кого то "Нуб" или подобными словами.\n2. Убийсто соклановца (Варн). НО если убийце получится доказать то что он сдделал это случайно, то он останется безнаказанным. в противном случае убийца получит варн. При наборе трех варнов он получает пожизненный бан.\n3. Рассылка порнографического контента без цензуры (Мут на 1 час). НО если на контенте присутствует цензура, то вы останетесь безнаказанным. При слишком частой рассылке с цензурой вы все также будете наказаны мутом на 1 час.\n4. Рассылка вредноносного ПО, т. е. вирусов, троянов и т. п. (Мут на 1 час). НО если ПО способно любыми способами удалить данные с жесткого диска (Шифрование, Блокирование, Полное удаление), то вы получите пожизненный бан.\n5. Реклама чего либо без разрешения администрации, или в непредназначенных для этого каналах. Для приглашений на другие сервера существует канал #invites. А для пиара других проектов зайдите в #photoshop-projects или #code-projects. Если администрация согласиться рекламировть ваш проект (Не сервер), то у вас появится право писать о его обновлених в #updates.\n6. Флуд или спам (Мут на 1 час). Для нашего сервера флуд - это сообщение(ия) в большинстве случаев занимающие большие объемы и не несущие никакого смысла, или содержащее очень малое количесво полезной информации. Спам - это большое количество повторяющихся символов, слов или фраз.\n7. Попрошайничество роли (Мут на 1 час). Попрошайничество роли - это когда человек пишет подобное сообщение: "Дайте мне роль ___". А например "Когда голосование за модератора?" в это не входит.'
 
 //Функции
 //Функция для генерации случайного числа от min до max
@@ -421,6 +422,16 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         }
     }
 
+    if(['rules'].includes(command)) {
+        const embed = new Discord.RichEmbed()
+            .setTitle("Правила сервера IT")
+            .setColor("af00ff")
+            .setDescription("**Правила сервера:**\n" + rules)
+            .setFooter(bot_name + " | " + version + " | Все права защищены")
+            .setTimestamp();
+        message.channel.send({embed});
+    }
+
     if(['update'].includes(command)) {
         const embed = new Discord.RichEmbed()
             .setTitle("Обновления")
@@ -680,70 +691,6 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             } else if (present <= 1) {
                 message.channel.send('Ты проиграл ' + yoba + ' Тебе ничего не выпало.');
                 message.member.removeRole(caseLotteryRole);
-        }
-    }
-    if (['meme', 'мем', 'ьуьу'].includes(command)) {
-        if (message.member.roles.some(r=>[owner].includes(r.id))) {
-        let numMeme = randomInteger(0, 1);
-        if (numMeme === 0) {
-        const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-            .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459833837661323264/2016-08-15_22-59-26.png'); //Gogle trends
-        message.channel.send({embed: meme});
-        } else if (numMeme === 1) {
-            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459834517176188929/PcRBSe6ao3c.png');//Duracell
-            message.channel.send({embed: meme});
-        } else if (numMeme === 2) {
-            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835002578796564/unknown.png');//samsung apple
-            message.channel.send({embed: meme});
-        } else if (numMeme === 3) {
-            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835222540943361/st2_0.png');//ipad
-            message.channel.send({embed: meme});
-        } else if (numMeme === 4) {
-            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835475021004810/hsCGV4B0Yas.png');//Страхование
-            message.channel.send({embed: meme});
-        } else if (numMeme === 5) {
-            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835513587761162/PzLKV3FIW6A.png');//Футбол
-            message.channel.send({embed: meme});
-        } else if (numMeme === 6) {
-            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
-            message.channel.send({embed: meme});
-        } else if (numMeme === 7) {
-            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
-            message.channel.send({embed: meme});
-        } else if (numMeme === 8) {
-            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
-            message.channel.send({embed: meme});
-        } else if (numMeme === 9) {
-            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
-            message.channel.send({embed: meme});
-        } else if (numMeme === 10) {
-            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
-            message.channel.send({embed: meme});
-        } else if (numMeme === 11) {
-            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
-            message.channel.send({embed: meme});
-        } else if (numMeme === 12) {
-            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
-            message.channel.send({embed: meme});
-        } else if (numMeme === 13) {
-            const meme = new Discord.RichEmbed().setColor("af00ff").setDescription('Смейся на здоровье :)')
-                .setImage('https://cdn.discordapp.com/attachments/459832574596874247/459835536677404672/t3Xs0VvjSc8.png');//Из школы через окно
-            message.channel.send({embed: meme});
-        }
-        } else {
-            return
         }
     }
     if (message.channel.id === '460037531447197696') {
