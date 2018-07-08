@@ -97,7 +97,7 @@ bot.on('guildMemberAdd', (member) => {
         bot.fetchUser('242975403512168449').then (user => user.send({embed}))
 });
 
-bot.on('guildMemberLeave', (member) => {
+bot.on('guildMemberRemove', (member) => {
     member.send('Прощай, ' + member + '. Мы будем скучать');
     const embed = new Discord.RichEmbed()
         .setTitle('Он ушел')
