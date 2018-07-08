@@ -100,7 +100,7 @@ bot.on('guildMemberAdd', (member) => {
 bot.on('guildMemberLeave', (member) => {
     member.send('Прощай, ' + member + '. Мы будем скучать');
     const embed = new Discord.RichEmbed()
-        .setTitle('Он ушео')
+        .setTitle('Он ушел')
         .setColor('af00ff')
         .setDescription(member + ' ушел :(.\n\nТеперь нас **' + member.guild.memberCount + '**')
         .setFooter(bot_name + " | " + version + " | Все права защищены")
