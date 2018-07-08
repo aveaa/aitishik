@@ -581,15 +581,12 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     }*/
    
     if (['random', 'r'].includes(command)) {
-
-        if(isNaN(args[0])) {
-            message.reply('Ошибка. Причина:** Аргумент(ы) должен(ы) являться числом(ми)**');
-            return
-        }
         
-        if (!args[1]) args[1] = args[0];
- 
-        let rand = randomInteger(parseInt(args[0]), parseInt(args[1]));
+        if (!args[0]) message.reply('Ошибка. Причина: **Вы забыли указать первый аргумент'); return;
+
+        if (!args[1]) args[1] = 1
+
+        let rand = randomInteger(args[0], args[1]);
         const embed = new Discord.RichEmbed()
             .setTitle("Информация")
             .setColor("af00ff")
