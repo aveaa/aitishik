@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
+const fs = require('fs');
 
 /** @namespace process.env.BOT_TOKEN */
  
@@ -548,6 +549,17 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     } else {
             message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду say, вы должны иметь роли Модератор или Epic**');
     }}
+
+    /*let matches = message.content.match(/@everyon/gi);
+    if (matches) {
+        setBigTimeout(() => {
+        message.author.send('Вы использовали @everyone. Следующий участник сможет использовать это только через 24 ч.');
+        if (matches) {
+            message.delete();
+            message.author.send('Вы не можете использовать ')
+        }
+        }, 86400000)
+    }*/
  
     if(['av', 'avatar', 'ав', 'аватар', 'ava', 'a', 'ава', 'а'].includes(command)) {
         let user = message.mentions.members.first();
@@ -584,7 +596,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         
         if (!args[0]) message.reply('Ошибка. Причина: **Вы забыли указать первый аргумент'); return;
 
-        if (!args[1]) args[1] = 1
+        if (!args[1]) args[1] = 1;
 
         let rand = randomInteger(args[0], args[1]);
         const embed = new Discord.RichEmbed()
