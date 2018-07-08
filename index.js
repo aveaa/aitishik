@@ -87,12 +87,23 @@ function setBigTimeout(func, timeout) {
 }
  
 bot.on('guildMemberAdd', (member) => {
-    member.send('Приветствую тебя дорогой друг, я - бот этого сервера. Познакомься с ним не торопясь. Желательно, прочитать все написанное в #info. А если понадобится помощь с моими командами, то просто напиши ' + p + 'help');
+    member.send('**Приветствую тебя ' + member + ', я - бот этого сервера. Познакомься с сервером не торопясь. Желательно, прочитать все написанное в #info. А если понадобится помощь, то просто напиши ' + p + 'help**');
     const embed = new Discord.RichEmbed()
         .setTitle('Пополнение!')
         .setColor('af00ff')
         .setDescription('На сервер пришел ' + member + '\n\nТеперь нас **' + member.guild.memberCount + '**')
-        .setFooter('Ну, это сообщение должно прийти только овнеру, и поэтому тут футер не нужен')
+        .setFooter(bot_name + " | " + version + " | Все права защищены")
+        .setTimestamp()
+        bot.fetchUser('242975403512168449').then (user => user.send({embed}))
+});
+
+bot.on('guildMemberLeave', (member) => {
+    member.send('Прощай, ' + member + '. Мы будем скучать');
+    const embed = new Discord.RichEmbed()
+        .setTitle('Он ушео')
+        .setColor('af00ff')
+        .setDescription(member + ' ушел :(.\n\nТеперь нас **' + member.guild.memberCount + '**')
+        .setFooter(bot_name + " | " + version + " | Все права защищены")
         .setTimestamp()
         bot.fetchUser('242975403512168449').then (user => user.send({embed}))
 });
@@ -106,7 +117,7 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
     if(message.channel.type !== 'text') return;
-    if(message.channel.id === '451456071685636096') return;
+    if(message.channel.id === '465232989987799050') return;
     let arr = [];
     message.guild.fetchInvites().then(invites => {
     let user = message.mentions.members.first();
