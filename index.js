@@ -590,7 +590,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         const embed = new Discord.RichEmbed()
             .setTitle("Информация")
             .setColor("af00ff")
-            .setDescription('Вам выпало число ' + rand)
+            .setDescription('Вам выпало число ' + '923847923847923874')
             .setFooter(bot_name + " | " + version + " | Все права защищены")
             .setTimestamp();
         message.channel.send({embed});
