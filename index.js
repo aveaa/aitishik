@@ -409,7 +409,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         const embed = new Discord.RichEmbed()
                 .setTitle("Помощь")
                 .setColor("af00ff")
-                .setDescription('Чем я могу вам помочь?\n\n***1 - Узнать команды\n2 - Информация о сервере\n3 - Узнать о возможностях ролей, и как из получать***\n\nНапишите цифру внизу')
+                .setDescription('Чем я могу вам помочь?\n\n***1 - Узнать команды\n2 - Информация о сервере\n3 - Узнать о возможностях ролей, и как из получать\n4 - Узнать правила сервера\n5 - Информация о кейсах***\n\nНапишите цифру внизу')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
             message.channel.send({embed}).then(() => {
@@ -439,6 +439,24 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 .setTitle("Информация о ролях")
                 .setColor("af00ff")
                 .setDescription('**Покупные роли:**\n\nО ролях **Plus**, **Color**, **Elite**, **Наблюдатель**, **Epic** вы можете прочитать в нашем магазине написав коману !shop\n\n**Роли за активность:**\n\n**IT Новичок** - Дает возможность прикреплять файлы к сообщению (Нужен 3 Lvl)\n**IT Любитель** - Дает возможность встраивать ссылки (Нужен 5 Lvl)\n**Разбирающийся в IT сфере** - Открывет доступ к реакциям и позволяет пользоваться внешними эмодзи (Нужен 8 Lvl)\n**Хороший IT-шник** - Позволяет отправлять /tts сообщения и открывает доступ к @everуonе (Нужен 15 Lvl)\n**IT Специалист** - Позволяет смотреть журнал аудита (Нужен 25 Lvl)\n\n**Другие роли:**\n\n**YouTuber** - Вы будете показаны отдельно отучастников онлайн (Нужно иметь YouTube канал с +100 подписщиками)\n**Модератор** - Позволяет делать всё (Нужно подать заявку, подождать пока заявку примут, и выиграть на голосовании)\n**Заместитель Owner** - Вы выше модераторов (Эта роль выдается одному из модератров когда Owner слишком занят чтобы следить за сервером)\n\nТакже, есть еще много других ролей, но вы их либо никак не получите, либо они слишком не важны для этого списка')
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                .setTimestamp();
+            message.channel.send({embed});
+            }
+            if (msg.content === '4') {
+                const embed = new Discord.RichEmbed()
+                .setTitle("Правила")
+                .setColor("af00ff")
+                .setDescription(rules)
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                .setTimestamp();
+            message.channel.send({embed});
+            }
+            if (msg.content === '5') {
+                const embed = new Discord.RichEmbed()
+                .setTitle("Информация о кейсах")
+                .setColor("af00ff")
+                .setDescription(p + 'open case - открыть обычный кейс \n' + p + 'open magiccase - открыть магичский кейс \n' + p + 'open legendarycase - открыть легендарный кейс\n' + p + 'open caselottery - открыть кейс-лотерею')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
             message.channel.send({embed});
