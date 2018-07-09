@@ -50,13 +50,13 @@ function randomInteger(min, max) {
     max++
     return Math.floor(Math.random() * (max - min)) + min;
 }
-
+//Низнаю чо она делает, но чота крутое
 function declOfNum(number, titles) {
     let cases = [2, 0, 1, 1, 1, 2];
     return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
 }
 
-//Функция для отправки сообщения после мута/варна/кика/бана
+//Функция для отправки сообщения после мута/варна/кика/бана (Не будет)
  
 //Функции для перемены игр
 function game1() {
@@ -504,6 +504,10 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         } else {
             message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду send, вы должны иметь роли Модератор или Epic**');
         }
+    }
+
+    if(['piar'].includes(command) && message.member.roles.some(r=>[owner].includes(r.id))) {
+        bot.fetchUser('242975403512168449', '285372240198107136').then (user => user.send('Пиар тест'))
     }
 
     if(['rules'].includes(command)) {
