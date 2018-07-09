@@ -117,9 +117,6 @@ bot.on('ready', () => {
 });
 
 bot.on('message', message => {
-    function promotion (id, msg) {
-        bot.fetchUser(id).then (user => user.send(msg));
-    }
     if(message.channel.type !== 'text') return;
     if(message.channel.id === '465232989987799050') return;
     if (message.author.bot) return;
@@ -510,6 +507,9 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     }
 
     if(['piar'].includes(command) && message.member.roles.some(r=>[owner].includes(r.id))) {
+        function promotion (id, msg) {
+            bot.fetchUser(id).then (user => user.send(msg));
+        }
         let piarMsg = 'Привет, я - бот который представляет сервер IT, На этом сервере ты сможешь пропиарить свои проекты. Показать свой талант кодера запостив свой проект в канал предназначенный для этого, или показать талант фотошопера, запостив изображение в предназначенный для этого канал, поделись своим творчеством. И еще ты можешь поиграть с нами в разные игры на сходках, или поиграть с мной в "Камень, ножницы, бумага" :). Кстати о моих командах, узнать о них ты можешь лишь зайдя на сервер, и написав команду. Заработать привелегии (роли), все также легко. Просто пиши много сообщений, у тебя будет повышаться уровень, и тебе за это дадут новые роли. Или повыполняй задания в играх и получи деньги. На которые ты сможешь купить еще роли. И еще у нас есть много чего интересного. Переходи по ссылке https://discord.gg/p79PCNR'
         promotion('242975403512168449', piarMsg);
         message.channel.send('Пропиарено успешно :white_check_mark:');
