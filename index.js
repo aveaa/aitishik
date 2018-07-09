@@ -506,7 +506,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         }
     }
 
-    if ('Test'.includes(command)) {
+    if (['WriteNumber'].includes(command)) {
         let numbers = [1, 2, 3, 4, 5]
         for (let i = 0; i > numbers.length; i++) {
             message.channel.send(numbers[i]);
