@@ -153,12 +153,12 @@ bot.on('message', message => {
    
     if (message.channel.type !== 'text') return;
 
-    let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
+    /*let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
     let msg2 = message.content.toUpperCase
     let sender = message.author
 
     if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
-    if (!userData[sender.id + message.guild.id].money)
+    if (!userData[sender.id + message.guild.id].money)*/
  
     if (['poll', 'vote'].includes(command)) {
         let question
