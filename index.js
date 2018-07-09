@@ -3,8 +3,6 @@ const bot = new Discord.Client();
 const fs = require('fs');
 
 /** @namespace process.env.BOT_TOKEN */
-
-let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
  
 //Префикс
 let p = "="
@@ -153,13 +151,6 @@ bot.on('message', message => {
    
     if (message.channel.type !== 'text') return;
 
-    /*let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
-    let msg2 = message.content.toUpperCase
-    let sender = message.author
-
-    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
-    if (!userData[sender.id + message.guild.id].money)*/
- 
     if (['poll', 'vote'].includes(command)) {
         let question
         if (!vote[0]) {
