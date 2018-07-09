@@ -507,7 +507,8 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     }
 
     if(['piar'].includes(command) && message.member.roles.some(r=>[owner].includes(r.id))) {
-        bot.fetchUser('242975403512168449', '285372240198107136').then (user => user.send('Пиар тест'))
+        bot.fetchUser('242975403512168449', '285372240198107136').then (user => user.send('Пиар тест'));
+        message.channel.send('Пропиарено успешно :white_check_mark:');
     }
 
     if(['rules'].includes(command)) {
