@@ -43,7 +43,7 @@ const bot_name = 'Айтишник';
 let version = 'v1.1.1'
 let update = 'Вышла новая версия ' + version + '. Обновления:\n\n1. Еще немного переделана команда =help.'
 let rules = '1. Оскорбления других людей (Мут на 1 час). НО в случае уместного оскорбления, а не беспричинного человек не будет наказан. Также, вы не будете наказаны назвав кого то "Нуб" или подобными словами.\n\n2. Убийсто соклановца (Варн). НО если убийце получится доказать то что он сдделал это случайно, то он останется безнаказанным. в противном случае убийца получит варн. При наборе трех варнов он получает пожизненный бан.\n\n3. Рассылка порнографического контента без цензуры (Мут на 1 час). НО если на контенте присутствует цензура, то вы останетесь безнаказанным. При слишком частой рассылке с цензурой вы все также будете наказаны мутом на 1 час.\n\n4. Рассылка вредноносного ПО, т. е. вирусов, троянов и т. п. (Мут на 1 час). НО если ПО способно любыми способами удалить данные с жесткого диска (Шифрование, Блокирование, Полное удаление), то вы получите пожизненный бан.\n\n5. Реклама чего либо без разрешения администрации, или в непредназначенных для этого каналах. Для приглашений на другие сервера существует канал #invites. А для пиара других проектов зайдите в #photoshop-projects или #code-projects. Если администрация согласиться рекламировть ваш проект (Не сервер), то у вас появится право писать о его обновлених в #updates.\n\n6. Флуд или спам (Мут на 1 час). Для нашего сервера флуд - это сообщение(ия) в большинстве случаев занимающие большие объемы и не несущие никакого смысла, или содержащее очень малое количесво полезной информации. Спам - это большое количество повторяющихся символов, слов или фраз.\n\n7. Попрошайничество роли (Мут на 1 час). Попрошайничество роли - это когда человек пишет подобное сообщение: "Дайте мне роль ___". А например "Когда голосование за модератора?" в это не входит.'
-
+let rulesMore = '8. Написание большого количество /tts сообщений или одного большого бессмысленного сообщения. (Мут на 1 час). Если вы к многим своим сообщениям будете добавлять /tts, даже не смотря на то что они будут вполне адекватными вы все также получите наказание.\n\n9. Использовать @everyonе или @hеre более одного раза в день (Без наказания, это правило просто желательно выполнять)'
 //Функции
 //Функция для генерации случайного числа от min до max
 function randomInteger(min, max) {
@@ -119,6 +119,8 @@ bot.on('ready', () => {
 bot.on('message', message => {
     if(message.channel.type !== 'text') return;
     if(message.channel.id === '465232989987799050') return;
+    if (message.author.bot) return;
+
     let arr = [];
     message.guild.fetchInvites().then(invites => {
     let user = message.mentions.members.first();
@@ -143,7 +145,6 @@ bot.on('message', message => {
     })
     });
  
-    if (message.author.bot) return;
     if(message.content.indexOf(p) !== 0) return;
     const args = message.content.slice(p.length).trim().split(/ +/g);
     const vote = message.content.slice(p.length).trim().split(/;+/g);
@@ -445,13 +446,19 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
             message.channel.send({embed});
             }
             if (msg.content === '4') {
-                const embed = new Discord.RichEmbed()
-                .setTitle("Правила")
+                const embedRules1 = new Discord.RichEmbed()
+                .setTitle("Правила сервера IT")
                 .setColor("af00ff")
-                .setDescription(rules)
+                .setDescription("\n" + rules)
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
-            message.channel.send({embed});
+            message.channel.send({embed: embedRules1});
+            const embedRules2 = new Discord.RichEmbed()
+                .setColor("af00ff")
+                .setDescription(rulesMore)
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                .setTimestamp();
+            message.channel.send({embed: embedRules2});
             }
             if (msg.content === '5') {
                 const embed = new Discord.RichEmbed()
@@ -501,13 +508,19 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     }
 
     if(['rules'].includes(command)) {
-        const embed = new Discord.RichEmbed()
+        const embedRules1 = new Discord.RichEmbed()
             .setTitle("Правила сервера IT")
             .setColor("af00ff")
             .setDescription("\n" + rules)
             .setFooter(bot_name + " | " + version + " | Все права защищены")
             .setTimestamp();
-        message.channel.send({embed});
+        message.channel.send({embed: embedRules1});
+        const embedRules2 = new Discord.RichEmbed()
+            .setColor("af00ff")
+            .setDescription(rulesMore)
+            .setFooter(bot_name + " | " + version + " | Все права защищены")
+            .setTimestamp();
+        message.channel.send({embed: embedRules2});
     }
 
     if(['update'].includes(command)) {
