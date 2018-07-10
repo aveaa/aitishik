@@ -164,28 +164,29 @@ bot.on('message', message => {
             else if (word = 'b') {code = 1.7; return code;}
             else if (word = 'c') {code = 2.6; return code;}
             else if (word = 'd') {code = 1.7; return code;}
-            if (word = 'e') {code = 2.7; return code;}
-            if (word = 'f') {code = 2.2; return code;}
-            if (word = 'g') {code = 1.2; return code;}
-            if (word = 'h') {code = 1.8; return code;}
-            if (word = 'i') {code = 2; return code;}
-            if (word = 'j') {code = 1.5; return code;}
-            if (word = 'k') {code = 1.2; return code;}
-            if (word = 'l') {code = 2.3; return code;}
-            if (word = 'm') {code = 1.7; return code;}
-            if (word = 'n') {code = 1.3; return code;}
-            if (word = 'o') {code = 2.6; return code;}
-            if (word = 'p') {code = 1.5; return code;}
-            if (word = 'q') {code = 3; return code;}
-            if (word = 'r') {code = 2.9; return code;}
-            if (word = 's') {code = 2.3; return code;}
-            if (word = 't') {code = 1.7; return code;}
-            if (word = 'u') {code = 2.6; return code;}
-            if (word = 'v') {code = 1.5; return code;}
-            if (word = 'w') {code = 2.4; return code;}
-            if (word = 'x') {code = 1.1; return code;}
-            if (word = 'y') {code = 2.4; return code;}
-            if (word = 'z') {code = 2.6; return code;}
+            else if (word = 'e') {code = 2.7; return code;}
+            else if (word = 'f') {code = 2.2; return code;}
+            else if (word = 'g') {code = 1.2; return code;}
+            else if (word = 'h') {code = 1.8; return code;}
+            else if (word = 'i') {code = 2; return code;}
+            else if (word = 'j') {code = 1.5; return code;}
+            else if (word = 'k') {code = 1.2; return code;}
+            else if (word = 'l') {code = 2.3; return code;}
+            else if (word = 'm') {code = 1.7; return code;}
+            else if (word = 'n') {code = 1.3; return code;}
+            else if (word = 'o') {code = 2.6; return code;}
+            else if (word = 'p') {code = 1.5; return code;}
+            else if (word = 'q') {code = 3; return code;}
+            else if (word = 'r') {code = 2.9; return code;}
+            else if (word = 's') {code = 2.3; return code;}
+            else if (word = 't') {code = 1.7; return code;}
+            else if (word = 'u') {code = 2.6; return code;}
+            else if (word = 'v') {code = 1.5; return code;}
+            else if (word = 'w') {code = 2.4; return code;}
+            else if (word = 'x') {code = 1.1; return code;}
+            else if (word = 'y') {code = 2.4; return code;}
+            else if (word = 'z') {code = 2.6; return code;}
+            else {code = 2; return code;}
         }
         let nullSymbols
         if (args[0].length >= 10) nullSymbols = 10;
@@ -202,7 +203,6 @@ bot.on('message', message => {
         if (numberOfNullLetters != 0) {codesOfNullLetters = 1.5 * numberOfNullLetters;}
         else codesOfNullLetters = 0;
         percents = percents + codesOfNullLetters
-        message.channel.send(percents + '%');
         //return allCodes = aCode + bCode + cCode + dCode + eCode + fCode + gCode + hCode + iCode + jCode + kCode + lCode + mCode + nCode + oCode + pCode +qCode + rCode + sCode + tCode + uCode + vCode + wCode + xCode + yCode + zCode 
         if (percents <= 99) {loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';}
         if (percents <= 89) {loveText = 'Превосходно!:heartpulse:'; shkala = '■■■■■■■■□□';}
