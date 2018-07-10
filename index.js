@@ -189,16 +189,16 @@ bot.on('message', message => {
             else {code = 2; return code;}
         }
         let nullSymbols
-        if (args[0].length >= 10) nullSymbols = 10;
+        /*if (args[0].length >= 10) nullSymbols = 10;
         else if (args[0].length >= 20) nullSymbols = 20;
-        else nullSymbols = 30
+        else nullSymbols = 30*/
         let loveText
         let shkala
         let percents
         for (let i = 0; i < args[0].length; i++) {
             percents = letterCheckng(args[0][i]) + letterCheckng(args[0][i]); 
         }
-        let numberOfNullLetters = nullSymbols - args[0].length;
+        let numberOfNullLetters = 30 - args[0].length;
         let codesOfNullLetters
         if (numberOfNullLetters != 0) {codesOfNullLetters = 1.5 * numberOfNullLetters;}
         else codesOfNullLetters = 0;
