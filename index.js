@@ -198,11 +198,11 @@ bot.on('message', message => {
         for (let i = 0; i < args[0].length; i++) {
             percents = letterCheckng(args[0][i]) + letterCheckng(args[0][i]); 
         }
-        let numberOfNullLetters = 30 - args[0].length;
+        /*let numberOfNullLetters = 30 - args[0].length;
         let codesOfNullLetters
-        if (numberOfNullLetters != 0) {codesOfNullLetters = 1.5 * numberOfNullLetters;}
+        if (numberOfNullLetters != 0) codesOfNullLetters = 1.5 * numberOfNullLetters;
         else codesOfNullLetters = 0;
-        percents = percents + codesOfNullLetters
+        percents = percents + codesOfNullLetters*/
         //return allCodes = aCode + bCode + cCode + dCode + eCode + fCode + gCode + hCode + iCode + jCode + kCode + lCode + mCode + nCode + oCode + pCode +qCode + rCode + sCode + tCode + uCode + vCode + wCode + xCode + yCode + zCode 
         if (percents <= 99) {loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';}
         if (percents <= 89) {loveText = 'Превосходно!:heartpulse:'; shkala = '■■■■■■■■□□';}
