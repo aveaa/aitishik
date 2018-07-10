@@ -161,7 +161,6 @@ bot.on('message', message => {
         let blackShkala = '■'
         let testForPercents
         let whiteShkala = '□□□□□□□□□'
-        if (percents < '10') shkala = '■□□□□□□□□□'; testForPercents = 'Ужасно'
         for (let i = 0; i < percents; i = i + 10) {
             blackShkala = blackShkala + '■'
         }
