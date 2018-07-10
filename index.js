@@ -165,7 +165,7 @@ bot.on('message', message => {
             blackShkala = blackShkala + '■'
         }
         for (let i = 0; i < percents; i = i + 10) {
-            whiteShkala = whiteShkala - '□' 
+            whiteShkala = whiteShkala.replace('□'); 
         }
         message.channel.send(percents + '% `[' + blackShkala + whiteShkala + ']`');
         //message.channel.send('**Проверка на любовь...**\n`' + args[0] + '▼`\n`' + args[1] + '▲`\n\n');
