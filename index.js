@@ -168,7 +168,6 @@ bot.on('message', message => {
             whiteShkala = whiteShkala.replace('□', ''); 
         }
         percents = percents * 5
-        if (percents = 100) loveText = 'ИДЕАЛЬНО!!!:heart_exclamation:'
         if (percents <= 99) loveText = 'Невероятно!!!:heart_eyes:'
         if (percents <= 90) loveText = 'Превосходно!:heartpulse:'
         if (percents <= 80) loveText = 'Очень хорошо!:sparkling_heart: '
@@ -179,6 +178,7 @@ bot.on('message', message => {
         if (percents <= 30) loveText = 'Плохо:frowning2:';
         if (percents <= 20) loveText = 'Очень плохо:disappointed_relieved:';
         if (percents <= 10) loveText = 'Ужасно:sob:';
+        if (percents = 100) loveText = 'ИДЕАЛЬНО!!!:heart_exclamation:'
         const embed = new Discord.RichEmbed()
                 .setTitle(":heart:МАТЧМЕЙКИНГ:heart:")
                 .setColor("ff00b0")
