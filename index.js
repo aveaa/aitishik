@@ -45,6 +45,12 @@ let update = 'Вышла новая версия ' + version + '. Обновле
 let rules = '1. Оскорбления других людей (Мут на 1 час). НО в случае уместного оскорбления, а не беспричинного человек не будет наказан. Также, вы не будете наказаны назвав кого то "Нуб" или подобными словами.\n\n2. Убийсто соклановца (Варн). НО если убийце получится доказать то что он сдделал это случайно, то он останется безнаказанным. в противном случае убийца получит варн. При наборе трех варнов он получает пожизненный бан.\n\n3. Рассылка порнографического контента без цензуры (Мут на 1 час). НО если на контенте присутствует цензура, то вы останетесь безнаказанным. При слишком частой рассылке с цензурой вы все также будете наказаны мутом на 1 час.\n\n4. Рассылка вредноносного ПО, т. е. вирусов, троянов и т. п. (Мут на 1 час). НО если ПО способно любыми способами удалить данные с жесткого диска (Шифрование, Блокирование, Полное удаление), то вы получите пожизненный бан.\n\n5. Реклама чего либо без разрешения администрации, или в непредназначенных для этого каналах. Для приглашений на другие сервера существует канал #invites. А для пиара других проектов зайдите в #photoshop-projects или #code-projects. Если администрация согласиться рекламировть ваш проект (Не сервер), то у вас появится право писать о его обновлених в #updates.\n\n6. Флуд или спам (Мут на 1 час). Для нашего сервера флуд - это сообщение(ия) в большинстве случаев занимающие большие объемы и не несущие никакого смысла, или содержащее очень малое количесво полезной информации. Спам - это большое количество повторяющихся символов, слов или фраз.\n\n7. Попрошайничество роли (Мут на 1 час). Попрошайничество роли - это когда человек пишет подобное сообщение: "Дайте мне роль ___". А например "Когда голосование за модератора?" в это не входит.'
 let rulesMore = '8. Написание большого количество /tts сообщений или одного большого бессмысленного сообщения. (Мут на 1 час). Если вы к многим своим сообщениям будете добавлять /tts, даже не смотря на то что они будут вполне адекватными вы все также получите наказание.\n\n9. Использовать @everyonе или @hеre более одного раза в день (Без наказания, это правило просто желательно выполнять)'
 //Функции
+function percentCalculating (arg1, arg2) {
+    arg1 = arg1[]
+    for (let i = 0; i < arg1.length; i++) {
+
+    }
+}
 //Функция для генерации случайного числа от min до max
 function randomInteger(min, max) {
     max++
@@ -155,11 +161,47 @@ bot.on('message', message => {
     if (message.channel.type !== 'text') return;
 
     if (['ship', 'love', 'шип'].includes(command)) {
+        if (args[0].length > 30 || args[1].length > 30) return message.reply('Ошибка. Причина: **Аргумент не может быть длиннее 30 символов');
         if (!args[0]) args[0] = message.guild.members.random();
         if (!args[1]) args[1] = message.author
-        let percents = randomInteger(0, 100);
+        function letterCheckng (word) {
+            if (word = 'a') let aCode = 1.9; return aCode;
+            if (word = 'b') let bCode = 1.7; return bCode;
+            if (word = 'c') let cCode = 2.6; return cCode;
+            if (word = 'd') let dCode = 1.7; return dCode;
+            if (word = 'e') let eCode = 2.7; return eCode;
+            if (word = 'f') let fCode = 2.2; return fCode;
+            if (word = 'g') let gCode = 1.2; return gCode;
+            if (word = 'h') let hCode = 1.8; return hCode;
+            if (word = 'i') let iCode = 2; return iCode;
+            if (word = 'j') let jCode = 1.5; return jCode;
+            if (word = 'k') let kCode = 1.2; return kCode;
+            if (word = 'l') let lCode = 2.3; return lCode; 
+            if (word = 'm') let mCode = 1.7; return mCode;
+            if (word = 'n') let nCode = 1.3; return nCode;
+            if (word = 'o') let oCode = 2.6; return oCode;
+            if (word = 'p') let pCode = 1.5; return pCode;
+            if (word = 'q') let qCode = 3; return qCode;
+            if (word = 'r') let rCode = 2.9; return rCode;
+            if (word = 's') let sCode = 2.3; return sCode;
+            if (word = 't') let tCode = 1.7; return tCode;
+            if (word = 'u') let uCode = 2.6; return uCode;
+            if (word = 'v') let vCode = 1.5; return vCode; 
+            if (word = 'w') let wCode = 2.4; return wCode;
+            if (word = 'x') let xCode = 1.1; return xCode;
+            if (word = 'y') let yCode = 2.4; return yCode;
+            if (word = 'z') let zCode = 2.6; return zCode;
+        }
         let loveText
         let shkala
+        let percents
+        for (let i = 0; i < args[0].length; i++) {
+            percents = letterCheckng(args[0][i]) + letterCheckng(args[0][i]); 
+        }
+        let numberOfNullLetters = 30 - args[0].length;
+        let codesOfNullLetters = 1.5 * numberOfNullLetters
+        percents = percents + codesOfNullLetters
+        //return allCodes = aCode + bCode + cCode + dCode + eCode + fCode + gCode + hCode + iCode + jCode + kCode + lCode + mCode + nCode + oCode + pCode +qCode + rCode + sCode + tCode + uCode + vCode + wCode + xCode + yCode + zCode 
         if (percents <= 99){ loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';}
         if (percents <= 89) {loveText = 'Превосходно!:heartpulse:'; shkala = '■■■■■■■■□□';}
         if (percents <= 69) {loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□';}
@@ -169,7 +211,7 @@ bot.on('message', message => {
         if (percents <= 29) {loveText = 'Плохо:frowning2:'; shkala = '■■■□□□□□□□';}
         if (percents <= 19) {loveText = 'Очень плохо:disappointed_relieved:'; shkala = '■■□□□□□□□□';}
         if (percents <= 9) {loveText = 'Ужасно:sob:'; shkala = '■□□□□□□□□□';}
-        if (percents === 100) {loveText = 'ИДЕАЛЬНО!!!:heart_exclamation:'; shkala = '■■■■■■■■■■';}
+        if (percents >= 100) {loveText = 'ИДЕАЛЬНО!!!:heart_exclamation:'; shkala = '■■■■■■■■■■';}
         const embed = new Discord.RichEmbed()
             .setTitle(":heart:МАТЧМЕЙКИНГ:heart:")
             .setColor("ff00b0")
