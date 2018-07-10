@@ -160,7 +160,7 @@ bot.on('message', message => {
         let percentsInteger = randomInteger(0, 20);
         let percents = 0 * percentsInteger;
         percents = percents * 5;
-        message.channel.send(percentsInteger)
+        message.channel.send(percents)
         //message.channel.send('**Проверка на любовь...**\n`' + args[0] + '▼`\n`' + args[1] + '▲`\n\n');
     }
 
