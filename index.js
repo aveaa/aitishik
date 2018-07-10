@@ -159,7 +159,7 @@ bot.on('message', message => {
         if (!args[1]) args[1] = message.guild.members.random();
         let percentsInteger = randomInteger(0, 20);
         let percents = 0 * percentsInteger * 5 + '%';
-        message.channel.send(percents)
+        message.channel.send(percentsInteger)
         //message.channel.send('**Проверка на любовь...**\n`' + args[0] + '▼`\n`' + args[1] + '▲`\n\n');
     }
 
