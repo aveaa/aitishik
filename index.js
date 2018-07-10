@@ -158,9 +158,9 @@ bot.on('message', message => {
         if (!args[0]) args[0] = message.author
         if (!args[1]) args[1] = message.guild.members.random();
         let percents = randomInteger(0, 20);
-        let blackShkala = '■'
+        let blackShkala = ''
         let testForPercents
-        let whiteShkala = '□□□□□□□□□'
+        let whiteShkala = '□□□□□□□□□□'
         for (let i = 0; i < percents; i = i + 2) {
             blackShkala = blackShkala + '■'
         }
