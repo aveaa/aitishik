@@ -160,16 +160,16 @@ bot.on('message', message => {
         let percents = randomInteger(0, 100);
         let loveText
         let shkala
-        if (percents <= 99) loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';
-        if (percents <= 89) loveText = 'Превосходно!:heartpulse:'; shkala = '■■■■■■■■□□';
-        if (percents <= 69) loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□';
-        if (percents <= 59) loveText = 'Дружески:+1:'; shkala = '■■■■■■□□□□';
-        if (percents <= 49) loveText = 'Неплохо:confused:'; shkala = '■■■■■□□□□□';
-        if (percents <= 39) loveText = 'Средне:thinking:'; shkala = '■■■■□□□□□□';
-        if (percents <= 29) loveText = 'Плохо:frowning2:'; shkala = '■■■□□□□□□□';
-        if (percents <= 19) loveText = 'Очень плохо:disappointed_relieved:'; shkala = '■■□□□□□□□□';
-        if (percents <= 9) loveText = 'Ужасно:sob:'; shkala = '■□□□□□□□□□';
-        if (percents === 100) loveText = 'ИДЕАЛЬНО!!!:heart_exclamation:'; shkala = '■■■■■■■■■■';
+        if (percents <= 99){ loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';}
+        if (percents <= 89) {loveText = 'Превосходно!:heartpulse:'; shkala = '■■■■■■■■□□';}
+        if (percents <= 69) {loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□';}
+        if (percents <= 59) {loveText = 'Дружески:+1:'; shkala = '■■■■■■□□□□';}
+        if (percents <= 49) {loveText = 'Неплохо:confused:'; shkala = '■■■■■□□□□□';}
+        if (percents <= 39) {loveText = 'Средне:thinking:'; shkala = '■■■■□□□□□□';}
+        if (percents <= 29) {loveText = 'Плохо:frowning2:'; shkala = '■■■□□□□□□□';}
+        if (percents <= 19) {loveText = 'Очень плохо:disappointed_relieved:'; shkala = '■■□□□□□□□□';}
+        if (percents <= 9) {loveText = 'Ужасно:sob:'; shkala = '■□□□□□□□□□';}
+        if (percents === 100) {loveText = 'ИДЕАЛЬНО!!!:heart_exclamation:'; shkala = '■■■■■■■■■■';}
         const embed = new Discord.RichEmbed()
             .setTitle(":heart:МАТЧМЕЙКИНГ:heart:")
             .setColor("ff00b0")
