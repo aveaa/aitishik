@@ -159,7 +159,7 @@ bot.on('message', message => {
         if (!args[1]) args[1] = message.guild.members.random();
         let percents = randomInteger(0, 20);
         let blackShkala = ''
-        let testForPercents
+        let loveText
         let whiteShkala = '□□□□□□□□□□'
         for (let i = 0; i < percents; i = i + 2) {
             blackShkala = blackShkala + '■'
@@ -168,10 +168,23 @@ bot.on('message', message => {
             whiteShkala = whiteShkala.replace('□', ''); 
         }
         percents = percents * 5
+        for (let i = 0; i < percents; i = i + 5) {
+            if (i = 100) loveText = 'ИДЕАЛЬНО!!! :heart_exclamation:'
+            if (i <= 99) loveText = 'Невероятно!!! :heart_eyes:'
+            if (i <= 90) loveText = 'Превосходно! :heartpulse:'
+            if (i <= 80) loveText = 'Очень хорошо! :sparkling_heart: '
+            if (i <= 70) loveText = 'Ууу ( ͡° ͜ʖ ͡°)';
+            if (i <= 60) loveText = 'Дружески :+1:';
+            if (i <= 50) loveText = 'Неплохо :confused:';
+            if (i <= 40) loveText = 'Средне :thinking:';
+            if (i <= 30) loveText = 'Плохо :frowning2:';
+            if (i <= 20) loveText = 'Очень плохо :disappointed_relieved:';
+            if (i <= 10) loveText = 'Ужасно :sob:';
+        }
         const embed = new Discord.RichEmbed()
                 .setTitle(":heart:МАТЧМЕЙКИНГ:heart:")
                 .setColor("ff00b0")
-                .setDescription('▼***' + args[0] + '***\n▲***' + args[1] + '***\n\nЛюбовь в проценатх :revolving_hearts::**' + percents + '%** `[' + blackShkala + whiteShkala + ']`\n\nВердикт: **undefind** :D')
+                .setDescription('▼***' + args[0] + '***\n▲***' + args[1] + '***\n\nЛюбовь в проценатх :revolving_hearts:: **' + percents + '%** `[' + blackShkala + whiteShkala + ']`\n\nВердикт: **undefind** :D')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
             message.channel.send({embed});
