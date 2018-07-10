@@ -155,8 +155,8 @@ bot.on('message', message => {
     if (message.channel.type !== 'text') return;
 
     if (['ship', 'love', 'шип'].includes(command)) {
-        if (!args[0]) args[0] = message.author
-        if (!args[1]) args[1] = message.guild.members.random();
+        if (!args[0]) args[0] = message.guild.members.random();
+        if (!args[1]) args[1] = message.author
         let percents = randomInteger(0, 20);
         let blackShkala = ''
         let loveText
