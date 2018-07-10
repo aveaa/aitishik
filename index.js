@@ -157,35 +157,26 @@ bot.on('message', message => {
     if (['ship', 'love', 'шип'].includes(command)) {
         if (!args[0]) args[0] = message.guild.members.random();
         if (!args[1]) args[1] = message.author
-        let percents = randomInteger(0, 20);
-        let blackShkala = ''
+        let percents = randomInteger(0, 100);
         let loveText
-        let whiteShkala = '□□□□□□□□□□'
-        for (let i = 0; i < percents; i = i + 2) {
-            blackShkala = blackShkala + '■'
-        }
-        for (let i = 0; i < percents; i = i + 2) {
-            whiteShkala = whiteShkala.replace('□', ''); 
-        }
-        percents = percents * 5
-        if (percents <= 99) loveText = 'Невероятно!!!:heart_eyes:'
-        if (percents <= 90) loveText = 'Превосходно!:heartpulse:'
-        if (percents <= 80) loveText = 'Очень хорошо!:sparkling_heart: '
-        if (percents <= 70) loveText = 'Ууу ( ͡° ͜ʖ ͡°)';
-        if (percents <= 60) loveText = 'Дружески:+1:';
-        if (percents <= 50) loveText = 'Неплохо:confused:';
-        if (percents <= 40) loveText = 'Средне:thinking:';
-        if (percents <= 30) loveText = 'Плохо:frowning2:';
-        if (percents <= 20) loveText = 'Очень плохо:disappointed_relieved:';
-        if (percents <= 10) loveText = 'Ужасно:sob:';
-        if (percents === 100) loveText = 'ИДЕАЛЬНО!!!:heart_exclamation:'
+        let shkala
+        if (percents <= 99) loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';
+        if (percents <= 89) loveText = 'Превосходно!:heartpulse:'; shkala = '■■■■■■■■□□';
+        if (percents <= 69) loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□';
+        if (percents <= 59) loveText = 'Дружески:+1:'; shkala = '■■■■■■□□□□';
+        if (percents <= 49) loveText = 'Неплохо:confused:'; shkala = '■■■■■□□□□□';
+        if (percents <= 39) loveText = 'Средне:thinking:'; shkala = '■■■■□□□□□□';
+        if (percents <= 29) loveText = 'Плохо:frowning2:'; shkala = '■■■□□□□□□□';
+        if (percents <= 19) loveText = 'Очень плохо:disappointed_relieved:'; shkala = '■■□□□□□□□□';
+        if (percents <= 9) loveText = 'Ужасно:sob:'; shkala = '■□□□□□□□□□';
+        if (percents === 100) loveText = 'ИДЕАЛЬНО!!!:heart_exclamation:'; shkala = '■■■■■■■■■■';
         const embed = new Discord.RichEmbed()
-                .setTitle(":heart:МАТЧМЕЙКИНГ:heart:")
-                .setColor("ff00b0")
-                .setDescription('▼***' + args[0] + '***\n▲***' + args[1] + '***\n\n:revolving_hearts:Любовь в проценатх: **' + percents + '%** `[' + blackShkala + whiteShkala + ']`\n\nВердикт: **' + loveText + '**')
-                .setFooter(bot_name + " | " + version + " | Все права защищены")
-                .setTimestamp();
-            message.channel.send({embed});
+            .setTitle(":heart:МАТЧМЕЙКИНГ:heart:")
+            .setColor("ff00b0")
+            .setDescription('▼***' + args[0] + '***\n▲***' + args[1] + '***\n\n:revolving_hearts:Любовь в проценатх: **' + percents + '%** `[' + blackShkala + whiteShkala + ']`\n\nВердикт: **' + loveText + '**')
+            .setFooter(bot_name + " | " + version + " | Все права защищены")
+            .setTimestamp();
+        message.channel.send({embed});
     }
 
     if (['poll', 'vote'].includes(command)) {
