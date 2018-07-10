@@ -202,8 +202,9 @@ bot.on('message', message => {
         if (numberOfNullLetters != 0) {codesOfNullLetters = 1.5 * numberOfNullLetters;}
         else codesOfNullLetters = 0;
         percents = percents + codesOfNullLetters
+        message.channel.send(percents + '%');
         //return allCodes = aCode + bCode + cCode + dCode + eCode + fCode + gCode + hCode + iCode + jCode + kCode + lCode + mCode + nCode + oCode + pCode +qCode + rCode + sCode + tCode + uCode + vCode + wCode + xCode + yCode + zCode 
-        if (percents <= 99){ loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';}
+        if (percents <= 99) {loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';}
         if (percents <= 89) {loveText = 'Превосходно!:heartpulse:'; shkala = '■■■■■■■■□□';}
         if (percents <= 69) {loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□';}
         if (percents <= 59) {loveText = 'Дружески:+1:'; shkala = '■■■■■■□□□□';}
