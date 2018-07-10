@@ -159,32 +159,33 @@ bot.on('message', message => {
         if (!args[0]) args[0] = message.guild.members.random();
         if (!args[1]) args[1] = message.author
         function letterCheckng (word) {
-            if (word = 'a') let aCode = 1.9; return aCode;
-            if (word = 'b') let bCode = 1.7; return bCode;
-            if (word = 'c') let cCode = 2.6; return cCode;
-            if (word = 'd') let dCode = 1.7; return dCode;
-            if (word = 'e') let eCode = 2.7; return eCode;
-            if (word = 'f') let fCode = 2.2; return fCode;
-            if (word = 'g') let gCode = 1.2; return gCode;
-            if (word = 'h') let hCode = 1.8; return hCode;
-            if (word = 'i') let iCode = 2; return iCode;
-            if (word = 'j') let jCode = 1.5; return jCode;
-            if (word = 'k') let kCode = 1.2; return kCode;
-            if (word = 'l') let lCode = 2.3; return lCode; 
-            if (word = 'm') let mCode = 1.7; return mCode;
-            if (word = 'n') let nCode = 1.3; return nCode;
-            if (word = 'o') let oCode = 2.6; return oCode;
-            if (word = 'p') let pCode = 1.5; return pCode;
-            if (word = 'q') let qCode = 3; return qCode;
-            if (word = 'r') let rCode = 2.9; return rCode;
-            if (word = 's') let sCode = 2.3; return sCode;
-            if (word = 't') let tCode = 1.7; return tCode;
-            if (word = 'u') let uCode = 2.6; return uCode;
-            if (word = 'v') let vCode = 1.5; return vCode; 
-            if (word = 'w') let wCode = 2.4; return wCode;
-            if (word = 'x') let xCode = 1.1; return xCode;
-            if (word = 'y') let yCode = 2.4; return yCode;
-            if (word = 'z') let zCode = 2.6; return zCode;
+            let code
+            if (word = 'a') {code = 1.9; return code;}
+            if (word = 'b') {code = 1.7; return code;}
+            if (word = 'c') {code = 2.6; return code;}
+            if (word = 'd') {code = 1.7; return code;}
+            if (word = 'e') {code = 2.7; return code;}
+            if (word = 'f') {code = 2.2; return code;}
+            if (word = 'g') {code = 1.2; return code;}
+            if (word = 'h') {code = 1.8; return code;}
+            if (word = 'i') {code = 2; return code;}
+            if (word = 'j') {code = 1.5; return code;}
+            if (word = 'k') {code = 1.2; return code;}
+            if (word = 'l') {code = 2.3; return code;}
+            if (word = 'm') {code = 1.7; return code;}
+            if (word = 'n') {code = 1.3; return code;}
+            if (word = 'o') {code = 2.6; return code;}
+            if (word = 'p') {code = 1.5; return code;}
+            if (word = 'q') {code = 3; return code;}
+            if (word = 'r') {code = 2.9; return code;}
+            if (word = 's') {code = 2.3; return code;}
+            if (word = 't') {code = 1.7; return code;}
+            if (word = 'u') {code = 2.6; return code;}
+            if (word = 'v') {code = 1.5; return code;}
+            if (word = 'w') {code = 2.4; return code;}
+            if (word = 'x') {code = 1.1; return code;}
+            if (word = 'y') {code = 2.4; return code;}
+            if (word = 'z') {code = 2.6; return code;}
         }
         let loveText
         let shkala
