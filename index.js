@@ -173,7 +173,7 @@ bot.on('message', message => {
         const embed = new Discord.RichEmbed()
             .setTitle(":heart:МАТЧМЕЙКИНГ:heart:")
             .setColor("ff00b0")
-            .setDescription('▼***' + args[0] + '***\n▲***' + args[1] + '***\n\n:revolving_hearts:Любовь в проценатх: **' + percents + '%** `[' + blackShkala + whiteShkala + ']`\n\nВердикт: **' + loveText + '**')
+            .setDescription('▼***' + args[0] + '***\n▲***' + args[1] + '***\n\n:revolving_hearts:Любовь в проценатх: **' + percents + '%** `[' + shkala + ']`\n\nВердикт: **' + loveText + '**')
             .setFooter(bot_name + " | " + version + " | Все права защищены")
             .setTimestamp();
         message.channel.send({embed});
