@@ -96,6 +96,7 @@ bot.on('guildMemberAdd', (member) => {
         .setFooter(bot_name + " | " + version + " | Все права защищены")
         .setTimestamp()
         bot.fetchUser('242975403512168449').then (user => user.send({embed}))
+        client.channels.get('465797314276229120').send(member + 'Прилетел на сервер. Нас стало **' + member.guild.memberCount + '**');
 });
 
 bot.on('guildMemberRemove', (member) => {
@@ -106,7 +107,8 @@ bot.on('guildMemberRemove', (member) => {
         .setDescription(member + ' ушел :(.\n\nТеперь нас **' + member.guild.memberCount + '**')
         .setFooter(bot_name + " | " + version + " | Все права защищены")
         .setTimestamp()
-        bot.fetchUser('242975403512168449').then (user => user.send({embed}))
+        bot.fetchUser('242975403512168449').then (user => user.send({embed}));
+        client.channels.get('465797314276229120').send(member + 'Покинул нас. Остались **' + member.guild.memberCount + '** пользователей');
 });
  
 //То что должно произойти после запуска бота
