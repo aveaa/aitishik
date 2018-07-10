@@ -198,7 +198,8 @@ bot.on('message', message => {
             percents = letterCheckng(args[0][i]) + letterCheckng(args[0][i]); 
         }
         let numberOfNullLetters = nullSymbols - args[0].length;
-        if (numberOfNullLetters != 0) let codesOfNullLetters = 1.5 * numberOfNullLetters;
+        let codesOfNullLetters
+        if (numberOfNullLetters != 0) {codesOfNullLetters = 1.5 * numberOfNullLetters;}
         else let codesOfNullLetters = 0;
         percents = percents + codesOfNullLetters
         //return allCodes = aCode + bCode + cCode + dCode + eCode + fCode + gCode + hCode + iCode + jCode + kCode + lCode + mCode + nCode + oCode + pCode +qCode + rCode + sCode + tCode + uCode + vCode + wCode + xCode + yCode + zCode 
