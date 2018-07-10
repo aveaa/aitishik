@@ -171,7 +171,7 @@ bot.on('message', message => {
         const embed = new Discord.RichEmbed()
                 .setTitle("МАТЧМЕЙКИНГ")
                 .setColor("af00ff")
-                .setDescription('▼***' + args[0] + '*** `▲`\n***' + args[1] + '***\n\n' + percents + '% `[' + blackShkala + whiteShkala + ']`\n\nВердикт: **undefind** :D')
+                .setDescription('▼***' + args[0] + '***\n▲***' + args[1] + '***\n\n' + percents + '% `[' + blackShkala + whiteShkala + ']`\n\nВердикт: **undefind** :D')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
             message.channel.send({embed});
