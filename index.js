@@ -155,9 +155,9 @@ bot.on('message', message => {
     if (message.channel.type !== 'text') return;
 
     if (['ship', 'love', 'шип'].includes(command)) {
-        if (args[0].length > 30 || args[1].length > 30) return message.reply('Ошибка. Причина: **Аргумент не может быть длиннее 30 символов');
         if (!args[0]) args[0] = message.guild.members.random();
         if (!args[1]) args[1] = message.author
+        if (args[0].length > 30 || args[1].length > 30) return message.reply('Ошибка. Причина: **Аргумент не может быть длиннее 30 символов');
         function letterCheckng (word) {
             let code
             if (word = 'a') {code = 1.9; return code;}
