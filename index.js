@@ -159,6 +159,17 @@ bot.on('message', message => {
         if (!args[1]) args[1] = message.guild.members.random();
         let percents = randomInteger(0, 20) * 5 + '%';
         message.channel.send(percents)
+        let blackShkala = '■'
+        let testForPercents
+        let whiteShkala = '□□□□□□□□□'
+        if (percents < '10') shkala = '■□□□□□□□□□'; testForPercents = 'Ужасно'
+        for (let i = 0; i < percents; i = i + 10) {
+            blackShkala = blackShkala + '■'
+        }
+        for (let i = 0; i < percents; i = i + 10) {
+            whiteShkala = whiteShkala - '□' 
+        }
+        message.channel.send(percents + ' [' + blackShkala + whiteShkala + ']');
         //message.channel.send('**Проверка на любовь...**\n`' + args[0] + '▼`\n`' + args[1] + '▲`\n\n');
     }
 
