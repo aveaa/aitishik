@@ -161,9 +161,9 @@ bot.on('message', message => {
         function letterCheckng (word) {
             let code
             if (word = 'a') {code = 1.9; return code;}
-            if (word = 'b') {code = 1.7; return code;}
-            if (word = 'c') {code = 2.6; return code;}
-            if (word = 'd') {code = 1.7; return code;}
+            else if (word = 'b') {code = 1.7; return code;}
+            else if (word = 'c') {code = 2.6; return code;}
+            else if (word = 'd') {code = 1.7; return code;}
             if (word = 'e') {code = 2.7; return code;}
             if (word = 'f') {code = 2.2; return code;}
             if (word = 'g') {code = 1.2; return code;}
@@ -187,14 +187,19 @@ bot.on('message', message => {
             if (word = 'y') {code = 2.4; return code;}
             if (word = 'z') {code = 2.6; return code;}
         }
+        let nullSymbols
+        if (args[0].length >= 10) nullSymbols = 10;
+        else if (args[0].length >= 20) nullSymbols = 20;
+        else nullSymbols = 30
         let loveText
         let shkala
         let percents
         for (let i = 0; i < args[0].length; i++) {
             percents = letterCheckng(args[0][i]) + letterCheckng(args[0][i]); 
         }
-        let numberOfNullLetters = 30 - args[0].length;
-        let codesOfNullLetters = 1.5 * numberOfNullLetters
+        let numberOfNullLetters = nullSymbols - args[0].length;
+        if (numberOfNullLetters != 0) let codesOfNullLetters = 1.5 * numberOfNullLetters;
+        else let codesOfNullLetters = 0;
         percents = percents + codesOfNullLetters
         //return allCodes = aCode + bCode + cCode + dCode + eCode + fCode + gCode + hCode + iCode + jCode + kCode + lCode + mCode + nCode + oCode + pCode +qCode + rCode + sCode + tCode + uCode + vCode + wCode + xCode + yCode + zCode 
         if (percents <= 99){ loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';}
