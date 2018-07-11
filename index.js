@@ -154,6 +154,10 @@ bot.on('message', message => {
    
     if (message.channel.type !== 'text') return;
 
+    function sendMsg (msg) {
+        message.channel.send(msg)
+    }
+
     if (['ship', 'love', 'шип'].includes(command)) {
         if (!args[0]) args[0] = message.guild.members.random();
         if (!args[1]) args[1] = message.author
@@ -198,6 +202,7 @@ bot.on('message', message => {
         for (let i = 0; i < args[0].length; i++) {
             percents = letterCheckng(args[0][i]) + letterCheckng(args[0][i]); 
         }
+        sendMsg(percents);
         /*let numberOfNullLetters = 30 - args[0].length;
         let codesOfNullLetters
         if (numberOfNullLetters != 0) codesOfNullLetters = 1.5 * numberOfNullLetters;
