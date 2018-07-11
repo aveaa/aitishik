@@ -200,11 +200,11 @@ bot.on('message', message => {
         let loveText
         let shkala
         let percents
-        foreach (args[0].split(''), (letter) => {
+        args[0].split('').forEach((letter) => {
             percentsArgs1 += letterCheckng(letter);
         })
-        foreach (args[1].split(''), (letter) => {
-            percentsArgs1 += letterCheckng(letter);
+        args[1].split('').forEach( (letter) => {
+            percentsArgs2 += letterCheckng(letter);
         })
         percents = percentsArgs1 + percentsArgs2
         if (percents <= 99) {loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';}
