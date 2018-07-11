@@ -47,32 +47,32 @@ let rulesMore = '8. Написание большого количество /tt
 //Функции
 function letterCheckng (word) {
     let code
-    if (word = 'a') code = 1.9; 
-    else if (word = 'b') code = 1.7; 
-    else if (word = 'c') code = 2.6; 
-    else if (word = 'd') code = 1.7; 
-    else if (word = 'e') code = 2.7; 
-    else if (word = 'f') code = 2.2; 
-    else if (word = 'g') code = 1.2; 
-    else if (word = 'h') code = 1.8; 
-    else if (word = 'i') code = 2; 
-    else if (word = 'j') code = 1.5; 
-    else if (word = 'k') code = 1.2; 
-    else if (word = 'l') code = 2.3; 
-    else if (word = 'm') code = 1.7; 
-    else if (word = 'n') code = 1.3; 
-    else if (word = 'o') code = 2.6; 
-    else if (word = 'p') code = 1.5; 
-    else if (word = 'q') code = 3; 
-    else if (word = 'r') code = 2.9; 
-    else if (word = 's') code = 2.3; 
-    else if (word = 't') code = 1.7; 
-    else if (word = 'u') code = 2.6; 
-    else if (word = 'v') code = 1.5; 
-    else if (word = 'w') code = 2.4; 
-    else if (word = 'x') code = 1.1; 
-    else if (word = 'y') code = 2.4; 
-    else if (word = 'z') code = 2.6; 
+    if (word === 'a') code = 1.9; 
+    else if (word === 'b') code = 1.7; 
+    else if (word === 'c') code = 2.6; 
+    else if (word === 'd') code = 1.7; 
+    else if (word === 'e') code = 2.7; 
+    else if (word === 'f') code = 2.2; 
+    else if (word === 'g') code = 1.2; 
+    else if (word === 'h') code = 1.8; 
+    else if (word === 'i') code = 2; 
+    else if (word === 'j') code = 1.5; 
+    else if (word === 'k') code = 1.2; 
+    else if (word === 'l') code = 2.3; 
+    else if (word === 'm') code = 1.7; 
+    else if (word === 'n') code = 1.3; 
+    else if (word === 'o') code = 2.6; 
+    else if (word === 'p') code = 1.5; 
+    else if (word === 'q') code = 3; 
+    else if (word === 'r') code = 2.9; 
+    else if (word === 's') code = 2.3; 
+    else if (word === 't') code = 1.7; 
+    else if (word === 'u') code = 2.6; 
+    else if (word === 'v') code = 1.5; 
+    else if (word === 'w') code = 2.4; 
+    else if (word === 'x') code = 1.1; 
+    else if (word === 'y') code = 2.4; 
+    else if (word === 'z') code = 2.6; 
     else code = 2;
     return code
 }
@@ -201,7 +201,7 @@ bot.on('message', message => {
         let shkala
         let percentsArgs1
         let percentsArgs2
-        sendMsg(letterCheckng(args[0][3]));
+        sendMsg(letterCheckng(args[0][0]));
         let percents = randomInteger(0, 100)
         /*for (let i = 0; i < args[0].length; i++) {
             percentsArgs1 = letterCheckng(args[0][i]) + letterCheckng(args[0][i]); 
