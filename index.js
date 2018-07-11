@@ -200,12 +200,15 @@ bot.on('message', message => {
         let loveText
         let shkala
         let percents
+        let args0percents
+        let args1percents
         args[0].split('').forEach((letter) => {
-            percents += letterCheckng(letter);
+            args0percents += letterCheckng(letter);
         })
         args[1].split('').forEach( (letter) => {
-            percents += letterCheckng(letter);
+            args1percents += letterCheckng(letter);
         })
+        percents = args0percents + args1percents
         if (percents <= 99) {loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';}
         if (percents <= 89) {loveText = 'Превосходно!:heartpulse:'; shkala = '■■■■■■■■□□';}
         if (percents <= 79) {loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□';}
