@@ -203,7 +203,7 @@ bot.on('message', message => {
         let percentsArgs2
         sendMsg(letterCheckng(args[0][0]));
         let percents = randomInteger(0, 100)
-        /*for (let i = 0; i < args[0].length; i++) {
+        for (let i = 0; i < args[0].length; i++) {
             percentsArgs1 = letterCheckng(args[0][i]) + letterCheckng(args[0][i]); 
             sendMsg(percents);
         }
@@ -212,13 +212,7 @@ bot.on('message', message => {
             sendMsg(percents);
         }
         sendMsg(percentsArgs1 + percentsArgs2);
-        percents = percentsArgs1 + percentsArgs2*/
-        /*let numberOfNullLetters = 30 - args[0].length;
-        let codesOfNullLetters
-        if (numberOfNullLetters != 0) codesOfNullLetters = 1.5 * numberOfNullLetters;
-        else codesOfNullLetters = 0;
-        percents = percents + codesOfNullLetters*/
-        //return allCodes = aCode + bCode + cCode + dCode + eCode + fCode + gCode + hCode + iCode + jCode + kCode + lCode + mCode + nCode + oCode + pCode +qCode + rCode + sCode + tCode + uCode + vCode + wCode + xCode + yCode + zCode 
+        percents = percentsArgs1 + percentsArgs2
         if (percents <= 99) {loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';}
         if (percents <= 89) {loveText = 'Превосходно!:heartpulse:'; shkala = '■■■■■■■■□□';}
         if (percents <= 79) {loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□';}
