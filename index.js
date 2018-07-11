@@ -199,19 +199,13 @@ bot.on('message', message => {
         else nullSymbols = 30*/
         let loveText
         let shkala
-        let percentsArgs1
-        let percentsArgs2
-        sendMsg(letterCheckng(args[0][0]));
-        let percents = randomInteger(0, 100)
+        let percents
         for (let i = 0; i < args[0].length; i++) {
             percentsArgs1 = letterCheckng(args[0][i]) + letterCheckng(args[0][i]); 
-            sendMsg(percents);
         }
         for (let i = 0; i < args[1].length; i++) {
             percentsArgs2 = letterCheckng(args[1][i]) + letterCheckng(args[0][i]); 
-            sendMsg(percents);
         }
-        sendMsg(percentsArgs1 + percentsArgs2);
         percents = percentsArgs1 + percentsArgs2
         if (percents <= 99) {loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';}
         if (percents <= 89) {loveText = 'Превосходно!:heartpulse:'; shkala = '■■■■■■■■□□';}
