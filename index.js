@@ -202,6 +202,9 @@ bot.on('message', message => {
         for (let i = 0; i < args[0].length; i++) {
             percents = letterCheckng(args[0][i]) + letterCheckng(args[0][i]); 
         }
+        for (let i = 0; i < args[1].length; i++) {
+            percents = letterCheckng(args[1][i]) + letterCheckng(args[0][i]); 
+        }
         sendMsg(percents);
         /*let numberOfNullLetters = 30 - args[0].length;
         let codesOfNullLetters
