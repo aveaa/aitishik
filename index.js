@@ -45,6 +45,36 @@ let update = 'Вышла новая версия ' + version + '. Обновле
 let rules = '1. Оскорбления других людей (Мут на 1 час). НО в случае уместного оскорбления, а не беспричинного человек не будет наказан. Также, вы не будете наказаны назвав кого то "Нуб" или подобными словами.\n\n2. Убийсто соклановца (Варн). НО если убийце получится доказать то что он сдделал это случайно, то он останется безнаказанным. в противном случае убийца получит варн. При наборе трех варнов он получает пожизненный бан.\n\n3. Рассылка порнографического контента без цензуры (Мут на 1 час). НО если на контенте присутствует цензура, то вы останетесь безнаказанным. При слишком частой рассылке с цензурой вы все также будете наказаны мутом на 1 час.\n\n4. Рассылка вредноносного ПО, т. е. вирусов, троянов и т. п. (Мут на 1 час). НО если ПО способно любыми способами удалить данные с жесткого диска (Шифрование, Блокирование, Полное удаление), то вы получите пожизненный бан.\n\n5. Реклама чего либо без разрешения администрации, или в непредназначенных для этого каналах. Для приглашений на другие сервера существует канал #invites. А для пиара других проектов зайдите в #photoshop-projects или #code-projects. Если администрация согласиться рекламировть ваш проект (Не сервер), то у вас появится право писать о его обновлених в #updates.\n\n6. Флуд или спам (Мут на 1 час). Для нашего сервера флуд - это сообщение(ия) в большинстве случаев занимающие большие объемы и не несущие никакого смысла, или содержащее очень малое количесво полезной информации. Спам - это большое количество повторяющихся символов, слов или фраз.\n\n7. Попрошайничество роли (Мут на 1 час). Попрошайничество роли - это когда человек пишет подобное сообщение: "Дайте мне роль ___". А например "Когда голосование за модератора?" в это не входит.'
 let rulesMore = '8. Написание большого количество /tts сообщений или одного большого бессмысленного сообщения. (Мут на 1 час). Если вы к многим своим сообщениям будете добавлять /tts, даже не смотря на то что они будут вполне адекватными вы все также получите наказание.\n\n9. Использовать @everyonе или @hеre более одного раза в день (Без наказания, это правило просто желательно выполнять)'
 //Функции
+function letterCheckng (word) {
+    let code
+    if (word = 'a') {code = 1.9; return code;}
+    else if (word = 'b') {code = 1.7; return code;}
+    else if (word = 'c') {code = 2.6; return code;}
+    else if (word = 'd') {code = 1.7; return code;}
+    else if (word = 'e') {code = 2.7; return code;}
+    else if (word = 'f') {code = 2.2; return code;}
+    else if (word = 'g') {code = 1.2; return code;}
+    else if (word = 'h') {code = 1.8; return code;}
+    else if (word = 'i') {code = 2; return code;}
+    else if (word = 'j') {code = 1.5; return code;}
+    else if (word = 'k') {code = 1.2; return code;}
+    else if (word = 'l') {code = 2.3; return code;}
+    else if (word = 'm') {code = 1.7; return code;}
+    else if (word = 'n') {code = 1.3; return code;}
+    else if (word = 'o') {code = 2.6; return code;}
+    else if (word = 'p') {code = 1.5; return code;}
+    else if (word = 'q') {code = 3; return code;}
+    else if (word = 'r') {code = 2.9; return code;}
+    else if (word = 's') {code = 2.3; return code;}
+    else if (word = 't') {code = 1.7; return code;}
+    else if (word = 'u') {code = 2.6; return code;}
+    else if (word = 'v') {code = 1.5; return code;}
+    else if (word = 'w') {code = 2.4; return code;}
+    else if (word = 'x') {code = 1.1; return code;}
+    else if (word = 'y') {code = 2.4; return code;}
+    else if (word = 'z') {code = 2.6; return code;}
+    else {code = 2; return code;}
+}
 //Функция для генерации случайного числа от min до max
 function randomInteger(min, max) {
     max++
@@ -162,36 +192,6 @@ bot.on('message', message => {
         if (!args[0]) args[0] = message.guild.members.random();
         if (!args[1]) args[1] = message.author
         if (args[0].length > 30 || args[1].length > 30) return message.reply('Ошибка. Причина: **Аргумент не может быть длиннее 30 символов');
-        function letterCheckng (word) {
-            let code
-            if (word = 'a') {code = 1.9; return code;}
-            else if (word = 'b') {code = 1.7; return code;}
-            else if (word = 'c') {code = 2.6; return code;}
-            else if (word = 'd') {code = 1.7; return code;}
-            else if (word = 'e') {code = 2.7; return code;}
-            else if (word = 'f') {code = 2.2; return code;}
-            else if (word = 'g') {code = 1.2; return code;}
-            else if (word = 'h') {code = 1.8; return code;}
-            else if (word = 'i') {code = 2; return code;}
-            else if (word = 'j') {code = 1.5; return code;}
-            else if (word = 'k') {code = 1.2; return code;}
-            else if (word = 'l') {code = 2.3; return code;}
-            else if (word = 'm') {code = 1.7; return code;}
-            else if (word = 'n') {code = 1.3; return code;}
-            else if (word = 'o') {code = 2.6; return code;}
-            else if (word = 'p') {code = 1.5; return code;}
-            else if (word = 'q') {code = 3; return code;}
-            else if (word = 'r') {code = 2.9; return code;}
-            else if (word = 's') {code = 2.3; return code;}
-            else if (word = 't') {code = 1.7; return code;}
-            else if (word = 'u') {code = 2.6; return code;}
-            else if (word = 'v') {code = 1.5; return code;}
-            else if (word = 'w') {code = 2.4; return code;}
-            else if (word = 'x') {code = 1.1; return code;}
-            else if (word = 'y') {code = 2.4; return code;}
-            else if (word = 'z') {code = 2.6; return code;}
-            else {code = 2; return code;}
-        }
         let nullSymbols
         /*if (args[0].length >= 10) nullSymbols = 10;
         else if (args[0].length >= 20) nullSymbols = 20;
@@ -202,9 +202,11 @@ bot.on('message', message => {
         let percentsArgs2
         for (let i = 0; i < args[0].length; i++) {
             percentsArgs1 = letterCheckng(args[0][i]) + letterCheckng(args[0][i]); 
+            sendMsg(percents);
         }
         for (let i = 0; i < args[1].length; i++) {
             percentsArgs2 = letterCheckng(args[1][i]) + letterCheckng(args[0][i]); 
+            sendMsg(percents);
         }
         sendMsg(percentsArgs1 + percentsArgs2);
         let percents = percentsArgs1 + percentsArgs2
