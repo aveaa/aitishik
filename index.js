@@ -208,7 +208,8 @@ bot.on('message', message => {
         args[1].split('').forEach( (letter) => {
             args1percents += letterCheckng(letter);
         })
-        percents = args0percents + args1percents
+        percents = args0percents + args1percents;
+        if (isNaN(percents)) percents = randomInteger(0, 100);
         if (percents <= 99) {loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';}
         if (percents <= 89) {loveText = 'Превосходно!:heartpulse:'; shkala = '■■■■■■■■□□';}
         if (percents <= 79) {loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□';}
