@@ -200,8 +200,9 @@ bot.on('message', message => {
         let shkala
         let percentsArgs1
         let percentsArgs2
-        let percents
-        for (let i = 0; i < args[0].length; i++) {
+        sendMsg(letterCheckng(args[0]));
+        let percents = randomInteger(0, 100)
+        /*for (let i = 0; i < args[0].length; i++) {
             percentsArgs1 = letterCheckng(args[0][i]) + letterCheckng(args[0][i]); 
             sendMsg(percents);
         }
@@ -210,7 +211,7 @@ bot.on('message', message => {
             sendMsg(percents);
         }
         sendMsg(percentsArgs1 + percentsArgs2);
-        percents = percentsArgs1 + percentsArgs2
+        percents = percentsArgs1 + percentsArgs2*/
         /*let numberOfNullLetters = 30 - args[0].length;
         let codesOfNullLetters
         if (numberOfNullLetters != 0) codesOfNullLetters = 1.5 * numberOfNullLetters;
@@ -219,13 +220,14 @@ bot.on('message', message => {
         //return allCodes = aCode + bCode + cCode + dCode + eCode + fCode + gCode + hCode + iCode + jCode + kCode + lCode + mCode + nCode + oCode + pCode +qCode + rCode + sCode + tCode + uCode + vCode + wCode + xCode + yCode + zCode 
         if (percents <= 99) {loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';}
         if (percents <= 89) {loveText = 'Превосходно!:heartpulse:'; shkala = '■■■■■■■■□□';}
-        if (percents <= 69) {loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□';}
-        if (percents <= 59) {loveText = 'Дружески:+1:'; shkala = '■■■■■■□□□□';}
-        if (percents <= 49) {loveText = 'Неплохо:confused:'; shkala = '■■■■■□□□□□';}
-        if (percents <= 39) {loveText = 'Средне:thinking:'; shkala = '■■■■□□□□□□';}
-        if (percents <= 29) {loveText = 'Плохо:frowning2:'; shkala = '■■■□□□□□□□';}
-        if (percents <= 19) {loveText = 'Очень плохо:disappointed_relieved:'; shkala = '■■□□□□□□□□';}
-        if (percents <= 9) {loveText = 'Ужасно:sob:'; shkala = '■□□□□□□□□□';}
+        if (percents <= 79) {loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□';}
+        if (percents <= 69) {loveText = 'Дружески:+1:'; shkala = '■■■■■■□□□□';}
+        if (percents <= 59) {loveText = 'Неплохо:confused:'; shkala = '■■■■■□□□□□';}
+        if (percents <= 49) {loveText = 'Средне:thinking:'; shkala = '■■■■□□□□□□';}
+        if (percents <= 49) {loveText = 'Плохо:frowning2:'; shkala = '■■■□□□□□□□';}
+        if (percents <= 29) {loveText = 'Очень плохо:disappointed_relieved:'; shkala = '■■□□□□□□□□';}
+        if (percents <= 19) {loveText = 'Ужасно:sob:'; shkala = '■□□□□□□□□□';}
+        if (percents <= 9) {loveText = 'Хуже некуда:sob:'; shkala = '□□□□□□□□□□';}
         if (percents >= 100) {loveText = 'ИДЕАЛЬНО!!!:heart_exclamation:'; shkala = '■■■■■■■■■■';}
         const embed = new Discord.RichEmbed()
             .setTitle(":heart:МАТЧМЕЙКИНГ:heart:")
