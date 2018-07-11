@@ -200,6 +200,7 @@ bot.on('message', message => {
         let shkala
         let percentsArgs1
         let percentsArgs2
+        let percents
         for (let i = 0; i < args[0].length; i++) {
             percentsArgs1 = letterCheckng(args[0][i]) + letterCheckng(args[0][i]); 
             sendMsg(percents);
@@ -209,7 +210,7 @@ bot.on('message', message => {
             sendMsg(percents);
         }
         sendMsg(percentsArgs1 + percentsArgs2);
-        let percents = percentsArgs1 + percentsArgs2
+        percents = percentsArgs1 + percentsArgs2
         /*let numberOfNullLetters = 30 - args[0].length;
         let codesOfNullLetters
         if (numberOfNullLetters != 0) codesOfNullLetters = 1.5 * numberOfNullLetters;
