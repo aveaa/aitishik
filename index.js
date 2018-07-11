@@ -223,11 +223,11 @@ bot.on('message', message => {
         if (percents <= 29) {loveText = 'Очень плохо:disappointed_relieved:'; shkala = '■■□□□□□□□□';}
         if (percents <= 19) {loveText = 'Ужасно:sob:'; shkala = '■□□□□□□□□□';}
         if (percents <= 9) {loveText = 'Хуже некуда:sob:'; shkala = '□□□□□□□□□□';}
-        if (percents >= 100) {loveText = 'ИДЕАЛЬНО!!!:heart_exclamation:'; shkala = '■■■■■■■■■■';}
+        if (percents >= 100) {loveText = 'ИДЕАЛЬНО!!!:heart_exclamation:'; shkala = '■■■■■■■■■■'; percents = 100;}
         const embed = new Discord.RichEmbed()
             .setTitle(":heart:МАТЧМЕЙКИНГ:heart:")
             .setColor("ff00b0")
-            .setDescription('▼***' + args[0] + '***\n▲***' + args[1] + '***\n\n:revolving_hearts:Любовь в проценатх: **' + percents + '%** `[' + shkala + ']`\n\nВердикт: **' + loveText + '**')
+            .setDescription('▼***' + args[0] + '***\n▲***' + args[1] + '***\n\n:revolving_hearts:Любовь в проценатах: **' + percents + '%** `[' + shkala + ']`\n\nВердикт: **' + loveText + '**')
             .setFooter(bot_name + " | " + version + " | Все права защищены")
             .setTimestamp();
         message.channel.send({embed});
