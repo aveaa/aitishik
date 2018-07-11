@@ -200,7 +200,7 @@ bot.on('message', message => {
         let shkala
         let percentsArgs1
         let percentsArgs2
-        sendMsg(letterCheckng(args[0][1]));
+        sendMsg(letterCheckng(args[0][3]));
         let percents = randomInteger(0, 100)
         /*for (let i = 0; i < args[0].length; i++) {
             percentsArgs1 = letterCheckng(args[0][i]) + letterCheckng(args[0][i]); 
