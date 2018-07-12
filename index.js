@@ -146,7 +146,37 @@ bot.on('guildMemberRemove', (member) => {
 bot.on('ready', () => {
     //Запуск цикла перемены игр
     setTimeout(game1, 1000)
-    console.log('Успешный запуск');
+    console.log('=Бот запущен успешно=\n    Экономика работает...\n    Команды работают...\n    Количество гильдий на которых присутствует бот: Не доработано');
+});
+
+let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
+
+bot.on('message', message => { //Событие для экономики
+    if(message.channel.type !== 'text') return;
+    if(message.channel.id === '465232989987799050') return;
+    if (message.author.bot) return;
+    if(message.content.indexOf(p) !== 0) return;
+    const vote = message.content.slice(p.length).trim().split(/;+/g);
+    const args = message.content.slice(p.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+    let sender = message.author;
+    let msg = message.content.toLocaleUpperCase();
+
+    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {};
+    if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 1000;
+
+    fs.writeFile('Storage/userData.json', JSON.stringify(userData), (err) => {
+        if (err) console.error(err);
+    })
+    if(['money', 'cash', 'balance', 'bal', 'mon'].includes(command)) {
+        const embed = new Discord.RichEmbed()
+                .setTitle("Баланс")
+                .setColor("af00ff")
+                .setDescription('На счету у ' + sender + ' ' + userData[sender.id + message.guild.id].money)
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                .setTimestamp();
+            message.channel.send({embed});
+    }
 });
 
 bot.on('message', message => {
@@ -179,8 +209,8 @@ bot.on('message', message => {
     });
  
     if(message.content.indexOf(p) !== 0) return;
-    const args = message.content.slice(p.length).trim().split(/ +/g);
     const vote = message.content.slice(p.length).trim().split(/;+/g);
+    const args = message.content.slice(p.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
    
     if (message.channel.type !== 'text') return;
