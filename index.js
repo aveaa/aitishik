@@ -202,14 +202,14 @@ bot.on('message', message => {
         let percents
         let args0percents
         let args1percents
-        /*Array.of(args[0]).forEach((letter) => {
+        Array.of(args[0]).forEach((letter) => {
             args0percents += letterCheckng(letter);
         })
         Array.of(args[1]).forEach( (letter) => {
             args1percents += letterCheckng(letter);
         })
-        percents = args0percents + args1percents;*/
-        if (isNaN(percents)) percents = randomInteger(0, 100)
+        percents = args0percents + args1percents;
+        //if (isNaN(percents)) percents = randomInteger(0, 100)
         if (percents <= 99) {loveText = 'Невероятно!!! :heart_eyes:'; shkala = '■■■■■■■■■□';}
         if (percents <= 89) {loveText = 'Превосходно! :heartpulse:'; shkala = '■■■■■■■■□□';}
         if (percents <= 79) {loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□';}
