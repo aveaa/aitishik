@@ -127,7 +127,7 @@ bot.on('guildMemberAdd', (member) => {
         .setFooter(bot_name + " | " + version + " | Все права защищены")
         .setTimestamp()
         bot.fetchUser('242975403512168449').then (user => user.send({embed}))
-        client.channels.get('465797314276229120').send(member + 'Прилетел на сервер. Нас стало **' + member.guild.memberCount + '**');
+        bot.channels.get('465797314276229120').send(member + 'Прилетел на сервер. Нас стало **' + member.guild.memberCount + '**');
 });
 
 bot.on('guildMemberRemove', (member) => {
@@ -139,7 +139,7 @@ bot.on('guildMemberRemove', (member) => {
         .setFooter(bot_name + " | " + version + " | Все права защищены")
         .setTimestamp()
         bot.fetchUser('242975403512168449').then (user => user.send({embed}));
-        client.channels.get('465797314276229120').send(member + 'Покинул нас. Остались **' + member.guild.memberCount + '** пользователей');
+        bot.channels.get('465797314276229120').send(member + 'Покинул нас. Остались **' + member.guild.memberCount + '** пользователей');
 });
  
 //То что должно произойти после запуска бота
@@ -202,14 +202,14 @@ bot.on('message', message => {
         let percents
         let args0percents
         let args1percents
-        /*args[0].split('').forEach((letter) => {
+        /*Array.of(args[0]).forEach((letter) => {
             args0percents += letterCheckng(letter);
         })
-        args[1].split('').forEach( (letter) => {
+        Array.of(args[1]).forEach( (letter) => {
             args1percents += letterCheckng(letter);
         })
         percents = args0percents + args1percents;*/
-        percents = randomInteger(0, 100);
+        if (isNaN(percents)) percents = randomInteger(0, 100)
         if (percents <= 99) {loveText = 'Невероятно!!! :heart_eyes:'; shkala = '■■■■■■■■■□';}
         if (percents <= 89) {loveText = 'Превосходно! :heartpulse:'; shkala = '■■■■■■■■□□';}
         if (percents <= 79) {loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□';}
