@@ -209,18 +209,18 @@ bot.on('message', message => {
             args1percents += letterCheckng(letter);
         })
         percents = args0percents + args1percents;
-        if (isNaN(percents)) percents = randomInteger(0, 100);
-        if (percents <= 99) {loveText = 'Невероятно!!!:heart_eyes:'; shkala = '■■■■■■■■■□';}
-        if (percents <= 89) {loveText = 'Превосходно!:heartpulse:'; shkala = '■■■■■■■■□□';}
+        percents = randomInteger(0, 100);
+        if (percents <= 99) {loveText = 'Невероятно!!! :heart_eyes:'; shkala = '■■■■■■■■■□';}
+        if (percents <= 89) {loveText = 'Превосходно! :heartpulse:'; shkala = '■■■■■■■■□□';}
         if (percents <= 79) {loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□';}
-        if (percents <= 69) {loveText = 'Дружески:+1:'; shkala = '■■■■■■□□□□';}
-        if (percents <= 59) {loveText = 'Неплохо:confused:'; shkala = '■■■■■□□□□□';}
-        if (percents <= 49) {loveText = 'Средне:thinking:'; shkala = '■■■■□□□□□□';}
-        if (percents <= 49) {loveText = 'Плохо:frowning2:'; shkala = '■■■□□□□□□□';}
-        if (percents <= 29) {loveText = 'Очень плохо:disappointed_relieved:'; shkala = '■■□□□□□□□□';}
-        if (percents <= 19) {loveText = 'Ужасно:sob:'; shkala = '■□□□□□□□□□';}
-        if (percents <= 9) {loveText = 'Хуже некуда:sob:'; shkala = '□□□□□□□□□□';}
-        if (percents >= 100) {loveText = 'ИДЕАЛЬНО!!!:heart_exclamation:'; shkala = '■■■■■■■■■■'; percents = 100;}
+        if (percents <= 69) {loveText = 'Дружески :+1:'; shkala = '■■■■■■□□□□';}
+        if (percents <= 59) {loveText = 'Неплохо :confused:'; shkala = '■■■■■□□□□□';}
+        if (percents <= 49) {loveText = 'Средне :thinking:'; shkala = '■■■■□□□□□□';}
+        if (percents <= 49) {loveText = 'Плохо :frowning2:'; shkala = '■■■□□□□□□□';}
+        if (percents <= 29) {loveText = 'Очень плохо :disappointed_relieved:'; shkala = '■■□□□□□□□□';}
+        if (percents <= 19) {loveText = 'Ужасно :sob:'; shkala = '■□□□□□□□□□';}
+        if (percents <= 9) {loveText = 'Хуже некуда :poop:'; shkala = '□□□□□□□□□□';}
+        if (percents >= 100) {loveText = 'ИДЕАЛЬНО!!! :heart_exclamation:'; shkala = '■■■■■■■■■■'; percents = 100;}
         const embed = new Discord.RichEmbed()
             .setTitle(":heart:МАТЧМЕЙКИНГ:heart:")
             .setColor("ff00b0")
