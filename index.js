@@ -149,9 +149,9 @@ bot.on('ready', () => {
     console.log('=Бот запущен успешно=\n    Экономика работает...\n    Команды работают...\n    Количество гильдий на которых присутствует бот: Не доработано');
 });
 
-let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
+//let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
 
-bot.on('message', message => { //Событие для экономики
+//bot.on('message', message => { //Событие для экономики
     if(message.channel.type !== 'text') return;
     if(message.channel.id === '465232989987799050') return;
     if (message.author.bot) return;
@@ -177,7 +177,7 @@ bot.on('message', message => { //Событие для экономики
                 .setTimestamp();
             message.channel.send({embed});
     }
-});
+//});
 
 bot.on('message', message => {
     if(message.channel.type !== 'text') return;
@@ -953,5 +953,4 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     }
 });
 
-bot.login(//process.env.BOT_TOKEN)/*.catch(err => {console.log(err)})*/
-'NDQ0NTA5NTU1NDI3MjQ2MTAw.Dik27g.B1hOC37_2QoAuIYRWtEyyFKfyYk');
+bot.login(process.env.BOT_TOKEN)/*.catch(err => {console.log(err)})'*/
