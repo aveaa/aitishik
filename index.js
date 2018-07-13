@@ -151,7 +151,7 @@ bot.on('ready', () => {
 
 //let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
 
-//bot.on('message', message => { //Событие для экономики
+/*bot.on('message', message => { //Событие для экономики
     if(message.channel.type !== 'text') return;
     if(message.channel.id === '465232989987799050') return;
     if (message.author.bot) return;
@@ -177,7 +177,7 @@ bot.on('ready', () => {
                 .setTimestamp();
             message.channel.send({embed});
     }
-//});
+});*/
 
 bot.on('message', message => {
     if(message.channel.type !== 'text') return;
