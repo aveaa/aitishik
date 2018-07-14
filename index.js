@@ -227,7 +227,7 @@ bot.on('message', message => { //Событие message для экономик�
                 return message.channel.send(`**Вам не хватает` + i.money - itemPrice + currency + '**');
             }
             economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
-                message.channel.send('**Вы успешно купили ' + itemName + '. У вас осталось '+ i.money + currency + '**');
+                message.channel.send(`**Вы успешно купили ` + itemName + `. У вас осталось `+ i.money + currency + `**`);
                 if (itemName === 'Булочка') {
                     //message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "Булочка"));
                     message.channel.send('Это была очень вкусная булочка, Но ты потратил деньги в пустую, потому что на нашем сервере у тебя нет голода ¯\\_(ツ)_/¯'); 
