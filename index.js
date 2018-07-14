@@ -1,36 +1,20 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 const fs = require('fs');
+const economy = require('discord-eco');
 
 /** @namespace process.env.BOT_TOKEN */
  
 //Префикс
 let p = "="
+//Валюта
+let currency = '₽'
 //ID Создателя
 let creator_id = `242975403512168449`
 //ID Ролей
-let moder = `437291491724099586`
-let owner = `437291380625113108`
-let plus = '437308696805113857'
-let color = `437594996758020099`
-let elite = `437308437991260170`
-let watcher = '437309176105009152' //Watcher - Наблюдатель
-let epic = '437584248677990410'
-let textChannel = '446351322997063692' //textChannel - Разрешение на создание текстового канала
-let warn1 = '449221480346288139';
-let warn2 = '449221534360403978';
-let warn3 = '449221570901180417';
-let muted = '439490675281756172';
-//ID Кейсов
-let caseRole = `444419306155933716`
-let magicCaseRole = '444419909947097089'
-let legendaryCaseRole = '444420023755210752'
-let caseLotteryRole = '444420247282253825'
-//ID Тесктовых каналов
-let chat = '437290659142041602'
-//ID Голосовых каналов
-let music = '437306582305341443'
-let CXODKA = '442419802947059722'//Сходка
+let moder = `467284420303257621`
+let people = '467301169610489866'
+let owner = '437291380625113108'
 //Эмодзи
 let yoba = '<:yoba:437618349917339658>';
 let one = '<:oneEmoji:457554835676332032>';
@@ -119,7 +103,8 @@ function setBigTimeout(func, timeout) {
 }
  
 bot.on('guildMemberAdd', (member) => {
-    member.send('**Приветствую тебя ' + member + ', я - бот этого сервера. Познакомься с сервером не торопясь. Желательно, прочитать все написанное в #info. А если понадобится помощь, то просто напиши ' + p + 'help**');
+    member.addRole(people);
+    member.send('**Приветствую тебя ' + member + ', я - бот этого сервера. У меня есть магазин, экономика, миниигры, большое количесто команд. А на нашем сервере ты сможешь найти хороших друзей, редкие пинги, возможность поделиться своим творчеством, и посмотреть как его оценят другие люди. В скором времени у нас выйдет много обновлений. С уважением ' + bot_name + ' ' + version);
     const embed = new Discord.RichEmbed()
         .setTitle('Пополнение!')
         .setColor('af00ff')
@@ -127,7 +112,7 @@ bot.on('guildMemberAdd', (member) => {
         .setFooter(bot_name + " | " + version + " | Все права защищены")
         .setTimestamp()
         bot.fetchUser('242975403512168449').then (user => user.send({embed}))
-        bot.channels.get('465797314276229120').send(member + 'Прилетел на сервер. Нас стало **' + member.guild.memberCount + '**');
+        bot.channels.get('467307902252613652').send(member + 'Прилетел на сервер. Нас стало **' + member.guild.memberCount + '**');
 });
 
 bot.on('guildMemberRemove', (member) => {
@@ -139,19 +124,24 @@ bot.on('guildMemberRemove', (member) => {
         .setFooter(bot_name + " | " + version + " | Все права защищены")
         .setTimestamp()
         bot.fetchUser('242975403512168449').then (user => user.send({embed}));
-        bot.channels.get('465797314276229120').send(member + 'Покинул нас. Остались **' + member.guild.memberCount + '** пользователей');
+        bot.channels.get('467307902252613652').send(member + 'Покинул нас. Остались **' + member.guild.memberCount + '** пользователей');
 });
+
+bot.on('removeChannel', (message) => {
+    message.guild.leave().catch();
+    return;
+})
  
 //То что должно произойти после запуска бота
 bot.on('ready', () => {
     //Запуск цикла перемены игр
     setTimeout(game1, 1000)
-    console.log('=Бот запущен успешно=\n    Экономика работает...\n    Команды работают...\n    Количество гильдий на которых присутствует бот: Не доработано');
+    console.log('Бот запущен успешно\n    Экономика работает...\n    Команды работают...\n    Количество гильдий на которых присутствует бот: ' + bot.guilds.size);
 });
 
-//let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
+const items = JSON.parse(fs.readFileSync('items.json', 'utf8'));
 
-/*bot.on('message', message => { //Событие для экономики
+bot.on('message', message => { //Событие message для экономики
     if(message.channel.type !== 'text') return;
     if(message.channel.id === '465232989987799050') return;
     if (message.author.bot) return;
@@ -159,25 +149,93 @@ bot.on('ready', () => {
     const vote = message.content.slice(p.length).trim().split(/;+/g);
     const args = message.content.slice(p.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-    let sender = message.author;
-    let msg = message.content.toLocaleUpperCase();
-
-    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {};
-    if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 1000;
-
-    fs.writeFile('Storage/userData.json', JSON.stringify(userData), (err) => {
-        if (err) console.error(err);
-    })
     if(['money', 'cash', 'balance', 'bal', 'mon'].includes(command)) {
-        const embed = new Discord.RichEmbed()
-                .setTitle("Баланс")
-                .setColor("af00ff")
-                .setDescription('На счету у ' + sender + ' ' + userData[sender.id + message.guild.id].money)
+        let user = message.mentions.members.first(); 
+        let balanceText = 'Баланс'
+        if (user === message.member) balanceText = 'Ваш баланс'
+        if (!user) user = message.member
+        economy.fetchBalance(user.id).then((i) => {
+            const embed = new Discord.RichEmbed()
+                .setAuthor(user.displayName, user.user.avatarURL)
+                .setColor("af00ff") 
+                .addField(balanceText,'**' + i.money + currency + '**',true)
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
-                .setTimestamp();
-            message.channel.send({embed});
+                message.channel.send({embed})
+        })
     }
-});*/
+    if (['balset', 'add-money', 'a-m', 'am', 'bs'].includes(command)) {
+        let user = message.mentions.members.first(); 
+        if (message.member.roles.some(r=>[moder, owner].includes(r.id))) {
+            if (!args[0]) {
+                message.reply('Ошибкаю Причина: **Не указан аргумент. Правильное использование: =balset <пользователь> <количество>.**');
+                return;
+            }
+            if (isNaN(args[1])) {
+                message.reply('Ошибкаю Причина: **Второй аргумент должен являться числом**');
+                return
+            }
+            if (!user) {
+                message.reply('Ошибкаю Причина: **Пользователь указан неправильно**');
+                return;
+            }
+            economy.updateBalance(user.id, parseInt(args[1])).then((i) => {
+                message.channel.send('**' + user + ' Успешно получил ' + args[1] + currency + '**');
+            })
+        } else {
+            message.reply('Ошибка. Причина: **У вас недостаточно прав для использования этой команды.**')
+        }
+    }
+    if (['buy', 'b'].includes(command)) {
+        let categories = []; 
+        if (!args.join(" ")) { 
+            for (var i in items) { 
+                if (!categories.includes(items[i].type)) {
+                    categories.push(items[i].type)
+                }
+            }
+            const embed = new Discord.RichEmbed()
+                .setDescription(`Магазин IT`)
+                .setColor("af00ff")
+            for (var i = 0; i < categories.length; i++) { 
+                var tempDesc = '';
+                for (var c in items) { 
+                    if (categories[i] === items[c].type) {
+                        tempDesc += `${items[c].name} — ` + currency + `${items[c].price} — ${items[c].desc}\n`;
+                    }
+                }
+                embed.addField(categories[i], tempDesc);
+            }
+            return message.channel.send({
+                embed
+            });
+        }
+        let itemName = '';
+        let itemPrice = 0;
+        let itemDesc = '';
+        for (var i in items) { 
+            if (args.join(" ").trim().toUpperCase() === items[i].name.toUpperCase()) { 
+                itemName = items[i].name;
+                itemPrice = items[i].price;
+                itemDesc = items[i].desc;
+            }
+        }
+        if (itemName === '') {
+            return message.channel.send(`**Я не знаю предмет ${args.join(" ").trim()} o_O. И не смогу тебе его продать**`)
+        }
+        economy.fetchBalance(message.author.id + message.guild.id).then((i) => { 
+            if (i.money <= itemPrice) { 
+                return message.channel.send(`**Вам не хватает` + i.money - itemPrice + currency + '**');
+            }
+            economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
+                message.channel.send('**Вы успешно купили ' + itemName + '. У вас осталось '+ i.money + currency + '**');
+                if (itemName === 'Булочка') {
+                    //message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "Булочка"));
+                    message.channel.send('Это была очень вкусная булочка, Но ты потратил деньги в пустую, потому что на нашем сервере у тебя нет голода ¯\\_(ツ)_/¯'); 
+                }
+            })
+        })
+    }
+});
 
 bot.on('message', message => {
     if(message.channel.type !== 'text') return;
@@ -232,6 +290,7 @@ bot.on('message', message => {
         let percents
         let args0percents
         let args1percents
+        let feels
         Array.of(args[0]).forEach((letter) => {
             args0percents += letterCheckng(letter);
         })
@@ -240,21 +299,21 @@ bot.on('message', message => {
         })
         percents = args0percents + args1percents;
         if (isNaN(percents)) percents = randomInteger(0, 100)
-        if (percents <= 99) {loveText = 'Невероятно!!! :heart_eyes:'; shkala = '■■■■■■■■■□';}
-        if (percents <= 89) {loveText = 'Превосходно! :heartpulse:'; shkala = '■■■■■■■■□□';}
-        if (percents <= 79) {loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□';}
-        if (percents <= 69) {loveText = 'Дружески :+1:'; shkala = '■■■■■■□□□□';}
-        if (percents <= 59) {loveText = 'Неплохо :confused:'; shkala = '■■■■■□□□□□';}
-        if (percents <= 49) {loveText = 'Средне :thinking:'; shkala = '■■■■□□□□□□';}
-        if (percents <= 49) {loveText = 'Плохо :frowning2:'; shkala = '■■■□□□□□□□';}
-        if (percents <= 29) {loveText = 'Очень плохо :disappointed_relieved:'; shkala = '■■□□□□□□□□';}
-        if (percents <= 19) {loveText = 'Ужасно :sob:'; shkala = '■□□□□□□□□□';}
-        if (percents <= 9) {loveText = 'Хуже некуда :poop:'; shkala = '□□□□□□□□□□';}
-        if (percents >= 100) {loveText = 'ИДЕАЛЬНО!!! :heart_exclamation:'; shkala = '■■■■■■■■■■'; percents = 100;}
+        if (percents <= 99) {loveText = 'Невероятно!!! :heart_eyes:'; shkala = '■■■■■■■■■□'; feels = 'Любят';}
+        if (percents <= 89) {loveText = 'Превосходно! :heartpulse:'; shkala = '■■■■■■■■□□'; feels = 'Любят';}
+        if (percents <= 79) {loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□'; feels = 'Любят';}
+        if (percents <= 69) {loveText = 'Дружески :+1:'; shkala = '■■■■■■□□□□'; feels = 'Дружеские';}
+        if (percents <= 59) {loveText = 'Неплохо :confused:'; shkala = '■■■■■□□□□□'; feels = 'Дружеские';}
+        if (percents <= 49) {loveText = 'Средне :thinking:'; shkala = '■■■■□□□□□□'; feels = 'Дружеские';}
+        if (percents <= 49) {loveText = 'Плохо :frowning2:'; shkala = '■■■□□□□□□□'; feels = 'Ненавидят';}
+        if (percents <= 29) {loveText = 'Очень плохо :disappointed_relieved:'; shkala = '■■□□□□□□□□'; feels = 'Ненавидят';}
+        if (percents <= 19) {loveText = 'Ужасно :sob:'; shkala = '■□□□□□□□□□'; feels = 'Ненавидят';}
+        if (percents <= 9) {loveText = 'Хуже некуда :poop:'; shkala = '□□□□□□□□□□'; feels = 'Ненавидят';}
+        if (percents >= 100) {loveText = 'ИДЕАЛЬНО!!! :heart_exclamation:'; shkala = '■■■■■■■■■■'; percents = 100; feels = 'Без ума';}
         const embed = new Discord.RichEmbed()
             .setTitle(":heart:МАТЧМЕЙКИНГ:heart:")
             .setColor("ff00b0")
-            .setDescription('▼***' + args[0] + '***\n▲***' + args[1] + '***\n\n:revolving_hearts:Любовь в проценатах: **' + percents + '%** `[' + shkala + ']`\n\nВердикт: **' + loveText + '**')
+            .setDescription('▼***' + args[0] + '***\n▲***' + args[1] + '***\n\n:revolving_hearts:Любовь в проценатах: **' + percents + '%** `[' + shkala + ']`\n:revolving_hearts:Отношение друг к другу: ' + feels + '\n\nВердикт: **' + loveText + '**')
             .setFooter(bot_name + " | " + version + " | Все права защищены")
             .setTimestamp();
         message.channel.send({embed});
