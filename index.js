@@ -368,6 +368,18 @@ bot.on('message', message => { //Событие message для экономик�
                 else if (itemName === 'Watcher') {if (message.member.roles.some(r=>[watcher].includes(r.id))) {economy.updateBalance(message.author.id + message.guild.id, '700'); message.channel.send('**У вас уже была роль ' + itemName + '. Мы вернули вам деньги**');}; message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));}
                 else if (itemName === 'Epic') {if (message.member.roles.some(r=>[epic].includes(r.id))) {economy.updateBalance(message.author.id + message.guild.id, '1500'); message.channel.send('**У вас уже была роль ' + itemName + '. Мы вернули вам деньги**');}; message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));}
                 else if (itemName === 'Ultra Sphere') message.channel.send('**Поздравляем с покупкой самого загадочного предмета в магазине :tada:. ');
+                else if (itemName === 'Красный') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Оранжевый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Желтый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Зеленый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Светло-синий') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Синий') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Фиолетовый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Кроваво-красный') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Токсичный') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Лавовый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Аква') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Ярко-розовый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
             })
         })
     }
