@@ -15,6 +15,10 @@ let creator_id = `242975403512168449`
 let moder = `467284420303257621`
 let people = '467301169610489866'
 let owner = '437291380625113108'
+let plus = '468089974320005121'
+let premium = '468090066145771521'
+let watcher = '468090164523040768'
+let epic = '468090270739595266'
 //Эмодзи
 let yoba = '<:yoba:437618349917339658>';
 let one = '<:oneEmoji:457554835676332032>';
@@ -112,7 +116,7 @@ bot.on('guildMemberAdd', (member) => {
         .setFooter(bot_name + " | " + version + " | Все права защищены")
         .setTimestamp()
         bot.fetchUser('242975403512168449').then (user => user.send({embed}))
-        bot.channels.get('467307902252613652').send(member + 'Прилетел на сервер. Нас стало **' + member.guild.memberCount + '**');
+        bot.channels.get('467307902252613652').send(member + ' Прилетел на сервер. Нас стало **' + member.guild.memberCount + '**');
 });
 
 bot.on('guildMemberRemove', (member) => {
@@ -149,43 +153,170 @@ bot.on('message', message => { //Событие message для экономик�
     const vote = message.content.slice(p.length).trim().split(/;+/g);
     const args = message.content.slice(p.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-    if(['money', 'cash', 'balance', 'bal', 'mon'].includes(command)) {
+
+    /*if(['money', 'cash', 'balance', 'bal', 'mon'].includes(command)) {
         let user = message.mentions.members.first(); 
-        let balanceText = 'Баланс'
-        if (user === message.member) balanceText = 'Ваш баланс'
-        if (!user) user = message.member
-        economy.fetchBalance(user.id).then((i) => {
+        if (!user) user = message.author
+        economy.fetchBalance(user.id + message.guild.id).then((i) => {
             const embed = new Discord.RichEmbed()
-                .setAuthor(user.displayName, user.user.avatarURL)
                 .setColor("af00ff") 
-                .addField(balanceText,'**' + i.money + currency + '**',true)
+                .addField('Баланс','**' + i.money + currency + '**',true)
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
+                //.setAuthor(user.displayName, user.user.avatarURL)
                 message.channel.send({embed})
         })
-    }
-    if (['balset', 'add-money', 'a-m', 'am', 'bs'].includes(command)) {
+    }*/
+    if (['rsp', 'кнб', 'кыз'].includes(command)) {
+        let userChoice;
+                if (!args[0]) {
+                    message.channel.send(message.author + ', Ошибка. Причина: **Вы забыли указать что вы выбираете, камень, ножницы или бумагу**');
+                    return;
+                }
+                else if (['камень', 'rock', 'r', 'к'].includes(args[0].toLowerCase())) {
+                    userChoice = 'камень';
+                }
+                else if (['бумагу', 'бумага', 'paper', 'p', 'б'].includes(args[0].toLowerCase())) {
+                    userChoice = 'бумагу';
+                }
+                else if (['scissors', 'ножницы', 's', 'н'].includes(args[0].toLowerCase())) {
+                    userChoice = 'ножницы';
+                } else {
+                    userChoice = 'Incorrect';
+                }
+                let computerChoice = Math.random();
+                if (computerChoice < 0.34) {
+                    computerChoice = "камень";
+                } else if(computerChoice <= 0.67) {
+                    computerChoice = "бумагу";
+                } else {
+                    computerChoice = "ножницы";
+                }
+                function rspCW(userChoice, computerChoice) {
+                    let award = randomInteger(1, 3);
+                    if (userChoice === computerChoice) {
+                        return "ничья!";
+                    }
+                    else if(userChoice === "камень") {
+                        if(computerChoice === "ножницы") {
+                            economy.updateBalance(message.author.id + message.guild.id, parseInt(award))
+                            return "ты выиграл(а)! И получаешь **" + award + currency + '**';
+                        }
+                        else if (computerChoice === "бумагу") {
+                            return "ты проиграл.";
+                        }
+                    }
+                    else if(userChoice === "бумагу") {
+                        if(computerChoice === "камень") {
+                            economy.updateBalance(message.author.id + message.guild.id, parseInt(award))
+                            return "ты выиграл(а)! И получаешь **" + award + currency + '**';
+                        } else if (computerChoice === "ножницы") {
+                            return "ты проиграл.";
+                        }
+                    }
+                    else if(userChoice === "ножницы") {
+                        if(computerChoice === "бумагу") {
+                            economy.updateBalance(message.author.id + message.guild.id, parseInt(award))
+                            return "ты выиграл(а)! И получаешь **" + award + currency + '**';
+                        } else if (computerChoice === "камень") {
+                            return "ты проиграл.";
+                        }
+                    }
+                    else if (userChoice === 'Incorrect') {
+                        return "ты не выбрал ни камень, ни ножницы, ни бумагу";
+                    }
+                }
+                if (userChoice === 'Incorrect') {
+                    message.channel.send(message.author + ", " + rspCW(userChoice, computerChoice))
+                }
+                else {
+                message.channel.send('Я выбрал ' + computerChoice + '. ' + message.author + ", " + rspCW(userChoice, computerChoice) + ' Ты выбрал\(а\) ' + userChoice + ' Я выбрал ' + computerChoice);
+             }};
+    if ('bal'.includes(command)) {
+    economy.fetchBalance(message.author.id + message.guild.id).then((i) => { 
+        const embed = new Discord.RichEmbed()
+            .setAuthor(message.member.displayName, message.author.avatarURL)
+            .setFooter(bot_name + " | " + version + " | Все права защищены")
+            .setColor("af00ff") 
+            .addField('Баланс', '**' + i.money + currency + '**',true)
+        message.channel.send({embed})
+    })
+}
+    if (['add-money', 'a-m', 'am'].includes(command)) {
         let user = message.mentions.members.first(); 
         if (message.member.roles.some(r=>[moder, owner].includes(r.id))) {
             if (!args[0]) {
-                message.reply('Ошибкаю Причина: **Не указан аргумент. Правильное использование: =balset <пользователь> <количество>.**');
+                message.channel.send(`**Вы забыли указать пользователя. =add-money <пользователь> <количество>**`);
                 return;
             }
             if (isNaN(args[1])) {
-                message.reply('Ошибкаю Причина: **Второй аргумент должен являться числом**');
-                return
+                message.channel.send(`**Вы забыли указать количество. =add-money <пользователь> <количество>**`);
+                return; 
             }
-            if (!user) {
-                message.reply('Ошибкаю Причина: **Пользователь указан неправильно**');
-                return;
+            let defineduser = '';
+            if (!args[0]) { 
+                defineduser = message.author.id;
+            } else { 
+                let firstMentioned = message.mentions.users.first();
+                defineduser = firstMentioned.id;
             }
-            economy.updateBalance(user.id, parseInt(args[1])).then((i) => {
-                message.channel.send('**' + user + ' Успешно получил ' + args[1] + currency + '**');
-            })
+            economy.updateBalance(defineduser + message.guild.id, parseInt(args[1])).then((i) => { 
+                message.channel.send(`**Пользователь получил ${args[1]}${currency} успешно**`)
+            });    
         } else {
             message.reply('Ошибка. Причина: **У вас недостаточно прав для использования этой команды.**')
         }
     }
-    if (['buy', 'b'].includes(command)) {
+    if (['remove-money', 'r-m', 'rm'].includes(command)) {
+        let user = message.mentions.members.first(); 
+        if (message.member.roles.some(r=>[moder, owner].includes(r.id))) {
+            if (!args[0]) {
+                message.channel.send(`**Вы забыли указать пользователя. =remove-money <пользователь> <количество>**`);
+                return;
+            }
+            if (isNaN(args[1])) {
+                message.channel.send(`**Вы забыли указать количество. =remove-money <пользователь> <количество>**`);
+                return; 
+            }
+            let defineduser = '';
+            if (!args[0]) { 
+                defineduser = message.author.id;
+            } else { 
+                let firstMentioned = message.mentions.users.first();
+                defineduser = firstMentioned.id;
+            }
+            economy.updateBalance(defineduser + message.guild.id, -parseInt(args[1])).then((i) => { 
+                message.channel.send(`**Списано ${args[1]}${currency} со счета ` + user + ` успешно**`)
+            });    
+        } else {
+            message.reply('Ошибка. Причина: **У вас недостаточно прав для использования этой команды.**')
+        }
+    }
+    if (['shop', 's'].includes(command)) {
+        let categories = []; 
+            for (var i in items) { 
+                if (!categories.includes(items[i].type)) {
+                    categories.push(items[i].type)
+                }
+            }
+            const embed = new Discord.RichEmbed()
+                .setTitle(`Магазин IT`)
+                .setDescription('Как пятерочка, только цены ниже :D')
+                .setColor("af00ff")
+            for (var i = 0; i < categories.length; i++) { 
+                var tempDesc = '';
+                for (var c in items) { 
+                    if (categories[i] === items[c].type) {
+                        tempDesc += `**${items[c].name} — ` + currency + `${items[c].price}**\n${items[c].desc}\n\n`;
+                    }
+                }
+                embed.addField(categories[i], tempDesc);
+            }
+            return message.channel.send({
+                embed
+            });
+        }
+    
+        if (['buy', 'b'].includes(command)) {
         let categories = []; 
         if (!args.join(" ")) { 
             for (var i in items) { 
@@ -194,13 +325,14 @@ bot.on('message', message => { //Событие message для экономик�
                 }
             }
             const embed = new Discord.RichEmbed()
-                .setDescription(`Магазин IT`)
+                .setTitle(`Магазин IT`)
+                .setDescription('Как пятерочка, только цены ниже :D')
                 .setColor("af00ff")
             for (var i = 0; i < categories.length; i++) { 
                 var tempDesc = '';
                 for (var c in items) { 
                     if (categories[i] === items[c].type) {
-                        tempDesc += `${items[c].name} — ` + currency + `${items[c].price} — ${items[c].desc}\n`;
+                        tempDesc += `**${items[c].name} — ` + currency + `${items[c].price}**\n${items[c].desc}\n\n`;
                     }
                 }
                 embed.addField(categories[i], tempDesc);
@@ -220,18 +352,22 @@ bot.on('message', message => { //Событие message для экономик�
             }
         }
         if (itemName === '') {
-            return message.channel.send(`**Я не знаю предмет ${args.join(" ").trim()} o_O. И не смогу тебе его продать**`)
+            return message.channel.send(`**Я не знаю предмет "${args.join(" ").trim()}" o_O. И не смогу тебе его продать**`)
         }
-        economy.fetchBalance(message.author.id + message.guild.id).then((i) => { 
+        economy.fetchBalance(message.member.id + message.guild.id).then((i) => { 
             if (i.money <= itemPrice) { 
                 return message.channel.send(`**Вам не хватает` + i.money - itemPrice + currency + '**');
             }
-            economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
+            economy.updateBalance(message.member.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
                 message.channel.send(`**Вы успешно купили ` + itemName + `. У вас осталось `+ i.money + currency + `**`);
-                if (itemName === 'Булочка') {
-                    //message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "Булочка"));
-                    message.channel.send('Это была очень вкусная булочка, Но ты потратил деньги в пустую, потому что на нашем сервере у тебя нет голода ¯\\_(ツ)_/¯'); 
-                }
+                if (itemName === 'Булочка') message.channel.send('**Это была очень вкусная булочка, Но ты потратил деньги в пустую, потому что на нашем сервере у тебя нет голода ¯\\_(ツ)_/¯. Возможно что эта система будет добавлена в будущем**'); 
+                else if (itemName === 'Булочка премиум') message.channel.send('**Это была очень вкусная булочка, Но ты потратил деньги в пустую, потому что на нашем сервере у тебя нет голода ¯\\_(ツ)_/¯. Возможно что эта система будет добавлена в будущем**'); 
+                else if (itemName === 'Бургер') message.channel.send('**Это был очень вкусный бургер, Но ты потратил деньги в пустую, потому что на нашем сервере у тебя нет голода ¯\\_(ツ)_/¯. Возможно что эта система будет добавлена в будущем**'); 
+                else if (itemName === 'Plus') {if (message.member.roles.some(r=>[plus].includes(r.id))) {economy.updateBalance(message.author.id + message.guild.id, '50'); message.channel.send('**У вас уже была роль ' + itemName + '. Мы вернули вам деньги**');}; message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));}
+                else if (itemName === 'Premium') {if (message.member.roles.some(r=>[premium].includes(r.id))) {economy.updateBalance(message.author.id + message.guild.id, '350'); message.channel.send('**У вас уже была роль ' + itemName + '. Мы вернули вам деньги**');}; message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));}
+                else if (itemName === 'Watcher') {if (message.member.roles.some(r=>[watcher].includes(r.id))) {economy.updateBalance(message.author.id + message.guild.id, '700'); message.channel.send('**У вас уже была роль ' + itemName + '. Мы вернули вам деньги**');}; message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));}
+                else if (itemName === 'Epic') {if (message.member.roles.some(r=>[epic].includes(r.id))) {economy.updateBalance(message.author.id + message.guild.id, '1500'); message.channel.send('**У вас уже была роль ' + itemName + '. Мы вернули вам деньги**');}; message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));}
+                else if (itemName === 'Ultra Sphere') message.channel.send('**Поздравляем с покупкой самого загадочного предмета в магазине :tada:. ');
             })
         })
     }
@@ -607,7 +743,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 const embed = new Discord.RichEmbed()
                 .setTitle("Информация о ролях")
                 .setColor("af00ff")
-                .setDescription('**Покупные роли:**\n\nО ролях **Plus**, **Color**, **Elite**, **Наблюдатель**, **Epic** вы можете прочитать в нашем магазине написав коману !shop\n\n**Роли за активность:**\n\n**IT Новичок** - Дает возможность прикреплять файлы к сообщению (Нужен 3 Lvl)\n**IT Любитель** - Дает возможность встраивать ссылки (Нужен 5 Lvl)\n**Разбирающийся в IT сфере** - Открывет доступ к реакциям и позволяет пользоваться внешними эмодзи (Нужен 8 Lvl)\n**Хороший IT-шник** - Позволяет отправлять /tts сообщения и открывает доступ к @everуonе (Нужен 15 Lvl)\n**IT Специалист** - Позволяет смотреть журнал аудита (Нужен 25 Lvl)\n\n**Другие роли:**\n\n**YouTuber** - Вы будете показаны отдельно отучастников онлайн (Нужно иметь YouTube канал с +100 подписщиками)\n**Модератор** - Позволяет делать всё (Нужно подать заявку, подождать пока заявку примут, и выиграть на голосовании)\n**Заместитель Owner** - Вы выше модераторов (Эта роль выдается одному из модератров когда Owner слишком занят чтобы следить за сервером)\n\nТакже, есть еще много других ролей, но вы их либо никак не получите, либо они слишком не важны для этого списка')
+                .setDescription('**Покупные роли:**\n\nО ролях **Plus**, **Premium**, **Watcher**, **Epic** вы можете прочитать в нашем магазине написав коману =shop\n\n**Роли за активность:**\n\n**IT Новичок** - Дает возможность прикреплять файлы к сообщению (Нужен 2 Lvl)\n**IT Любитель** - Дает возможность встраивать ссылки (Нужен 4 Lvl)\n**Разбирающийся в IT сфере** - Открывет доступ к реакциям и позволяет пользоваться внешними эмодзи (Нужен 8 Lvl)\n**Хороший IT-шник** - Позволяет отправлять /tts сообщения и открывает доступ к @everуonе (Нужен 16 Lvl)\n**IT Специалист** - Позволяет смотреть журнал аудита (Нужен 25 Lvl)\n\n**Другие роли:**\n\n**YouTuber** - Вы будете показаны отдельно отучастников онлайн (Нужно иметь YouTube канал с +100 подписщиками)\n**Модератор** - Позволяет делать всё (Нужно подать заявку, подождать пока заявку примут, и выиграть на голосовании)\n**Заместитель Owner** - Вы выше модераторов (Эта роль выдается одному из модератров когда Owner слишком занят чтобы следить за сервером)\n\nТакже, есть еще много других ролей, но вы их либо никак не получите, либо они слишком не важны для этого списка')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
             message.channel.send({embed});
@@ -671,25 +807,6 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         } else {
             message.channel.send(message.author + ', Ошибка. Причина: **Вы не можете использовать команду send, вы должны иметь роли Модератор или Epic**');
         }
-    }
-
-    if (['WriteNumber'].includes(command)) {
-        let numbers = [1, 2, 3, 4, 5]
-        for (let i = 0; i < numbers.length; i++) {
-            message.channel.send(numbers[i]);
-        }
-    }
-
-    if(['piar'].includes(command) && message.member.roles.some(r=>[owner].includes(r.id))) {
-        function promotion (id, msg) {
-            bot.fetchUser(id).then ((user) => {user.send(msg)});
-        }
-        let piarMsg = 'Привет, я - бот который представляет сервер IT, На этом сервере ты сможешь пропиарить свои проекты. Показать свой талант кодера запостив свой проект в канал предназначенный для этого, или показать талант фотошопера, запостив изображение в предназначенный для этого канал, поделись своим творчеством. И еще ты можешь поиграть с нами в разные игры на сходках, или поиграть с мной в "Камень, ножницы, бумага" :). Кстати о моих командах, узнать о них ты можешь лишь зайдя на сервер, и написав команду. Заработать привелегии (роли), все также легко. Просто пиши много сообщений, у тебя будет повышаться уровень, и тебе за это дадут новые роли. Или повыполняй задания в играх и получи деньги. На которые ты сможешь купить еще роли. И еще у нас есть много чего интересного. Переходи по ссылке https://discord.gg/p79PCNR';
-        let piaredPeople = ['389033250330509320', '242975403512168449']
-        for (let i = 0; i < piaredPeople.length; i++) {
-            promotion(piaredPeople[i], piarMsg);
-        }
-        message.channel.send('Пропиарено успешно :white_check_mark:');
     }
 
     if(['rules'].includes(command)) {
@@ -805,81 +922,6 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
         message.channel.send({embed});
     }
 
-    if (message.content.match(/@clan member`s/gi)) {
-        message.channel.send(message.author + ', за упоминание, полагается наказание');
-    }
-
-    if (message.content.match(/@veryone/gi)) {
-        message.channel.send(message.author + ', плати налоги за упоминания');
-    }
-
-    if (message.content.match(/@ere/gi)) {
-        message.channel.send(message.author + ', плати налоги за упоминания');
-    }
- 
-    //Камень, ножницы, бумага
-    if (['rsp', 'кнб', 'кыз'].includes(command)) {
-        let userChoice;
-
-                if (!args[0]) {
-                    message.channel.send(message.author + ', Ошибка. Причина: **Вы забыли указать что вы выбираете, камень, ножницы или бумагу**');
-                    return;
-                }
-                else if (['камень', 'rock', 'r', 'к'].includes(args[0].toLowerCase())) {
-                    userChoice = 'камень';
-                }
-                else if (['бумагу', 'бумага', 'paper', 'p', 'б'].includes(args[0].toLowerCase())) {
-                    userChoice = 'бумагу';
-                }
-                else if (['scissors', 'ножницы', 's', 'н'].includes(args[0].toLowerCase())) {
-                    userChoice = 'ножницы';
-                } else {
-                    userChoice = 'Incorrect';
-                }
-                let computerChoice = Math.random();
-                if (computerChoice < 0.34) {
-                    computerChoice = "камень";
-                } else if(computerChoice <= 0.67) {
-                    computerChoice = "бумагу";
-                } else {
-                    computerChoice = "ножницы";
-                }
-                function rspCW(userChoice, computerChoice) {
-                    if (userChoice === computerChoice) {
-                        return "ничья!";
-                    }
-                    else if(userChoice === "камень") {
-                        if(computerChoice === "ножницы") {
-                            return "ты выиграл!";
-                        }
-                        else if (computerChoice === "бумагу") {
-                            return "ты проиграл.";
-                        }
-                    }
-                    else if(userChoice === "бумагу") {
-                        if(computerChoice === "камень") {
-                            return "ты выиграл!";
-                        } else if (computerChoice === "ножницы") {
-                            return "ты проиграл.";
-                        }
-                    }
-                    else if(userChoice === "ножницы") {
-                        if(computerChoice === "бумагу") {
-                            return "ты выиграл!";
-                        } else if (computerChoice === "камень") {
-                            return "ты проиграл.";
-                        }
-                    }
-                    else if (userChoice === 'Incorrect') {
-                        return "ты не выбрал ни камень, ни ножницы, ни бумагу";
-                    }
-                }
-                if (userChoice === 'Incorrect') {
-                    message.channel.send(message.author + ", " + rspCW(userChoice, computerChoice))
-                }
-                else {
-                message.channel.send('Я выбрал ' + computerChoice + '. ' + message.author + ", " + rspCW(userChoice, computerChoice) + ' Ты выбрал\(а\) ' + userChoice + ' Я выбрал ' + computerChoice);
-             }};
     //Кейсы
     if (message.content.startsWith(p + 'open case') && message.member.roles.some(r=>[caseRole].includes(r.id))) {
             let present = randomInteger(1, 6);
@@ -1012,4 +1054,4 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     }
 });
 
-bot.login(process.env.BOT_TOKEN)/*.catch(err => {console.log(err)})'*/
+bot.login(process.env.BOT_TOKEN)
