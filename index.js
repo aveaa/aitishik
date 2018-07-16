@@ -147,7 +147,7 @@ bot.on('ready', () => {
 });
 
 const items = JSON.parse(fs.readFileSync('items.json', 'utf8'));
-const colors = JSON.parse(fs.readFileSync('colors.json', 'utf8'));
+//const colors = JSON.parse(fs.readFileSync('colors.json', 'utf8'));
 
 bot.on('message', message => {
     if (message.author.bot) return;
@@ -315,54 +315,26 @@ bot.on('message', message => { //Событие message для экономик�
         }
     }
     if (['shop', 's', 's'].includes(command)) {
-        if (args[0] === 1) {
-        let categories = []; 
-            for (var i in items) { 
-                if (!categories.includes(items[i].type)) {
-                    categories.push(items[i].type)
-                }
+    let categories = []; 
+        for (var i in items) { 
+            if (!categories.includes(items[i].type)) {
+                categories.push(items[i].type)
             }
-            const embed = new Discord.RichEmbed()
-                .setTitle(`Магазин IT ролей и еды`)
-                .setDescription('Как пятерочка, только цены ниже :D')
-                .setColor("af00ff")
-            for (var i = 0; i < categories.length; i++) { 
-                var tempDesc = '';
-                for (var c in items) { 
-                    if (categories[i] === items[c].type) {
-                        tempDesc += `**${items[c].name} — ` + currency + `${items[c].price}**\n${items[c].desc}\n\n`;
-                    }
-                }
-                embed.addField(categories[i], tempDesc);
-            }
-            return message.channel.send({
-                embed
-            });
-            }
-        else if (args[0] === 2) {
-            let categories = []; 
-            for (var i in colors) { 
-                if (!categories.includes(colors[i].type)) {
-                    categories.push(colors[i].type)
-                }
-            }
-            const embed = new Discord.RichEmbed()
-                .setTitle(`Магазин IT цветов`)
-                .setDescription('Покрась меня полностью')
-                .setColor("af00ff")
-            for (var i = 0; i < categories.length; i++) { 
-                var tempDesc = '';
-                for (var c in colors) { 
-                    if (categories[i] === colors[c].type) {
-                        tempDesc += `**${colors[c].name} — ` + currency + `${colors[c].price}**\n${colors[c].desc}\n\n`;
-                    }
-                }
-                embed.addField(categories[i], tempDesc);
-            }
-            return message.channel.send({
-                embed
-            });
         }
+        const embed = new Discord.RichEmbed()
+            .setTitle(`Магазин IT ролей и еды`)
+            .setDescription('Как пятерочка, только цены ниже :D')
+            .setColor("af00ff")
+        for (var i = 0; i < categories.length; i++) { 
+            var tempDesc = '';
+            for (var c in items) { 
+                if (categories[i] === items[c].type) {
+                    tempDesc += `**${items[c].name} — ` + currency + `${items[c].price}**\n${items[c].desc}\n\n`;
+                }
+            }
+             embed.addField(categories[i], tempDesc);
+        }
+        return message.channel.send({embed});
     }
     
         if (['buy', 'b'].includes(command)) {
@@ -453,6 +425,21 @@ bot.on('message', message => {
 
     function sendMsg (msg) {
         message.channel.send(msg)
+    }
+
+    if (['8ball', 'ball', '8'].includes(command)) {
+        let numOfAnswer = randomInteger(1, 11);
+        if (numOfAnswer = 1) message.reply('Без сомннения!');
+        if (numOfAnswer = 2) message.reply('Да, конечно');
+        if (numOfAnswer = 3) message.reply('Да');
+        if (numOfAnswer = 4) message.reply('С высокой долей вероятности');
+        if (numOfAnswer = 5) message.reply('Скорее всего');
+        if (numOfAnswer = 6) message.reply('Абсолютно нет!');
+        if (numOfAnswer = 7) message.reply('Никак нет');
+        if (numOfAnswer = 8) message.reply('Нет');
+        if (numOfAnswer = 9) message.reply('Неа');
+        if (numOfAnswer = 10) message.reply('Сомневаюсь');
+        if (numOfAnswer = 11) message.reply('Спроси позднее, я не знаю');
     }
 
     if (['ship', 'love', 'шип'].includes(command)) {
