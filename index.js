@@ -9,6 +9,9 @@ const economy = require('discord-eco');
 let p = "="
 //Валюта
 let currency = '₽'
+//Кулдаун
+let cooldown = new Set();
+let cdseconds = 10;
 //ID Создателя
 let creator_id = `242975403512168449`
 //ID Ролей
@@ -145,27 +148,19 @@ bot.on('ready', () => {
 
 const items = JSON.parse(fs.readFileSync('items.json', 'utf8'));
 
-bot.on('message', message => { //Событие message для экономики
-    if(message.channel.type !== 'text') return;
-    if(message.channel.id === '465232989987799050') return;
+bot.on('message', message => {
     if (message.author.bot) return;
     if(message.content.indexOf(p) !== 0) return;
-    const vote = message.content.slice(p.length).trim().split(/;+/g);
+    if(message.channel.type !== 'text') return;
     const args = message.content.slice(p.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-
-    /*if(['money', 'cash', 'balance', 'bal', 'mon'].includes(command)) {
-        let user = message.mentions.members.first(); 
-        if (!user) user = message.author
-        economy.fetchBalance(user.id + message.guild.id).then((i) => {
-            const embed = new Discord.RichEmbed()
-                .setColor("af00ff") 
-                .addField('Баланс','**' + i.money + currency + '**',true)
-                .setFooter(bot_name + " | " + version + " | Все права защищены")
-                //.setAuthor(user.displayName, user.user.avatarURL)
-                message.channel.send({embed})
-        })
-    }*/
+    if (cooldown.has(message.author.id)) {
+        message.delete();
+        message.reply('Ошибка. Причина **Вы не можете использовать эту команду так часто. Её можно использовать раз в 10 секунд')
+    }
+    if (!message.member.hasPermission("ADMINISTRATOR")) {
+        cooldown.add(message.author.id);
+    }
     if (['rsp', 'кнб', 'кыз'].includes(command)) {
         let userChoice;
                 if (!args[0]) {
@@ -231,6 +226,32 @@ bot.on('message', message => { //Событие message для экономик�
                 else {
                 message.channel.send('Я выбрал ' + computerChoice + '. ' + message.author + ", " + rspCW(userChoice, computerChoice) + ' Ты выбрал\(а\) ' + userChoice + ' Я выбрал ' + computerChoice);
              }};
+    setTimeout(() => {
+        cooldown.delete(message.author.id)
+    }, cdseconds * 1000)
+})
+
+bot.on('message', message => { //Событие message для экономики
+    if(message.channel.type !== 'text') return;
+    if(message.channel.id === '465232989987799050') return;
+    if (message.author.bot) return;
+    if(message.content.indexOf(p) !== 0) return;
+    const vote = message.content.slice(p.length).trim().split(/;+/g);
+    const args = message.content.slice(p.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+
+    /*if(['money', 'cash', 'balance', 'bal', 'mon'].includes(command)) {
+        let user = message.mentions.members.first(); 
+        if (!user) user = message.author
+        economy.fetchBalance(user.id + message.guild.id).then((i) => {
+            const embed = new Discord.RichEmbed()
+                .setColor("af00ff") 
+                .addField('Баланс','**' + i.money + currency + '**',true)
+                .setFooter(bot_name + " | " + version + " | Все права защищены")
+                //.setAuthor(user.displayName, user.user.avatarURL)
+                message.channel.send({embed})
+        })
+    }*/
     if ('bal'.includes(command)) {
     economy.fetchBalance(message.author.id + message.guild.id).then((i) => { 
         const embed = new Discord.RichEmbed()
