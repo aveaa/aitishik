@@ -501,15 +501,15 @@ bot.on('message', message => {
             return;
         }
         if (numOfAnswer === 1) message.reply('Без сомннения!');
-        if (numOfAnswer === 2) message.reply('Да, конечно');
-        if (numOfAnswer === 3) message.reply('Да');
-        if (numOfAnswer === 4) message.reply('С высокой долей вероятности');
-        if (numOfAnswer === 5) message.reply('Скорее всего');
-        if (numOfAnswer === 6) message.reply('Абсолютно нет!');
-        if (numOfAnswer === 7) message.reply('Никак нет');
-        if (numOfAnswer === 8) message.reply('Нет');
-        if (numOfAnswer === 9) message.reply('Неа');
-        if (numOfAnswer === 10) message.reply('Сомневаюсь');
+        else if (numOfAnswer === 2) message.reply('Да, конечно');
+        else if (numOfAnswer === 3) message.reply('Да');
+        else if (numOfAnswer === 4) message.reply('С высокой долей вероятности');
+        else if (numOfAnswer === 5) message.reply('Скорее всего');
+        else if (numOfAnswer === 6) message.reply('Абсолютно нет!');
+        else if (numOfAnswer === 7) message.reply('Никак нет');
+        else if (numOfAnswer === 8) message.reply('Нет');
+        else if (numOfAnswer === 9) message.reply('Неа');
+        else if (numOfAnswer === 10) message.reply('Сомневаюсь');
         else message.reply('Спроси позднее, я не знаю');
     }
 
