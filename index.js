@@ -339,9 +339,9 @@ bot.on('message', message => { //Событие message для экономик�
                 }
             else {
                 let categories = []; 
-                for (var i in items) { 
-                    if (!categories.includes(items[i].type)) {
-                        categories.push(items[i].type)
+                for (var i in colors) { 
+                    if (!categories.includes(colors[i].type)) {
+                        categories.push(colors[i].type)
                     }
                 }
                 const embed = new Discord.RichEmbed()
@@ -350,9 +350,9 @@ bot.on('message', message => { //Событие message для экономик�
                     .setColor("af00ff")
                 for (var i = 0; i < categories.length; i++) { 
                     var tempDesc = '';
-                    for (var c in items) { 
-                        if (categories[i] === items[c].type) {
-                            tempDesc += `**${items[c].name} — ` + currency + `${items[c].price}**\n${items[c].desc}\n\n`;
+                    for (var c in colors) { 
+                        if (categories[i] === colors[c].type) {
+                            tempDesc += `**${colors[c].name} — ` + currency + `${colors[c].price}**\n${colors[c].desc}\n\n`;
                         }
                     }
                      embed.addField(categories[i], tempDesc);
