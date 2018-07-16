@@ -11,7 +11,7 @@ let p = "="
 let currency = '₽'
 //Кулдаун
 let cooldown = new Set();
-let cdseconds = 10;
+let cdseconds = 5;
 //ID Создателя
 let creator_id = `242975403512168449`
 //ID Ролей
@@ -254,7 +254,7 @@ bot.on('message', message => { //Событие message для экономик�
                 message.channel.send({embed})
         })
     }*/
-    if ('bal'.includes(command)) {
+    if (['bal', 'money', 'cash', 'mon', 'balance'].includes(command)) {
     economy.fetchBalance(message.author.id + message.guild.id).then((i) => { 
         const embed = new Discord.RichEmbed()
             .setAuthor(message.member.displayName, message.author.avatarURL)
@@ -426,24 +426,27 @@ bot.on('message', message => {
     function sendMsg (msg) {
         message.channel.send(msg)
     }
-    function repMsg (msg) {
+    function replMsg (msg) {
         message.reply(msg)
     }
 
     if (['8ball', 'ball', '8'].includes(command)) {
         let numOfAnswer = randomInteger(1, 11);
-        if (!args[0]) repMsg('Ошибка. Причина: **Не указан аргумент**\n\nПравильное использование:\n=8ball `<вопрос>`')
-        if (numOfAnswer = 1) message.reply('Без сомннения!');
-        else if (numOfAnswer = 2) message.reply('Да, конечно');
-        else if (numOfAnswer = 3) message.reply('Да');
-        else if (numOfAnswer = 4) message.reply('С высокой долей вероятности');
-        else if (numOfAnswer = 5) message.reply('Скорее всего');
-        else if (numOfAnswer = 6) message.reply('Абсолютно нет!');
-        else if (numOfAnswer = 7) message.reply('Никак нет');
-        else if (numOfAnswer = 8) message.reply('Нет');
-        else if (numOfAnswer = 9) message.reply('Неа');
-        else if (numOfAnswer = 10) message.reply('Сомневаюсь');
-        else message.reply('Спроси позднее, я не знаю');
+        if (!args[0]) {
+            replMsg('Ошибка. Причина: **Не указан аргумент**\n\nПравильное использование:\n=8ball `<вопрос>`'); 
+            return;
+        }
+        if (numOfAnswer = 1) replMsg('Без сомннения!');
+        else if (numOfAnswer = 2) replMsg('Да, конечно');
+        else if (numOfAnswer = 3) replMsg('Да');
+        else if (numOfAnswer = 4) replMsg('С высокой долей вероятности');
+        else if (numOfAnswer = 5) replMsg('Скорее всего');
+        else if (numOfAnswer = 6) replMsg('Абсолютно нет!');
+        else if (numOfAnswer = 7) replMsg('Никак нет');
+        else if (numOfAnswer = 8) replMsg('Нет');
+        else if (numOfAnswer = 9) replMsg('Неа');
+        else if (numOfAnswer = 10) replMsg('Сомневаюсь');
+        else replMsg('Спроси позднее, я не знаю');
     }
 
     if (['ship', 'love', 'шип'].includes(command)) {
