@@ -158,6 +158,7 @@ bot.on('message', message => {
     if (cooldown.has(message.author.id)) {
         message.delete();
         message.reply('Ошибка. Причина **Вы не можете использовать эту команду так часто. Её можно использовать раз в 10 секунд**')
+        return
     }
     if (!message.member.hasPermission("ADMINISTRATOR")) {
         cooldown.add(message.author.id);
