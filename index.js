@@ -323,8 +323,8 @@ bot.on('message', message => { //Событие message для экономик�
                     }
                 }
                 const embed = new Discord.RichEmbed()
-                    .setTitle(`Магазин IT ролей и еды`)
-                    .setDescription('Как пятерочка, только цены ниже :D')
+                    .setTitle(`Магазин IT цветов`)
+                    .setDescription('Покрась меня полностью')
                     .setColor("af00ff")
                 for (var i = 0; i < categories.length; i++) { 
                     var tempDesc = '';
@@ -361,7 +361,7 @@ bot.on('message', message => { //Событие message для экономик�
             }
     }
     
-        if (['buy', 'b'].includes(command)) {
+    if (['buy', 'b'].includes(command)) {
         let categories = []; 
         if (!args.join(" ")) { 
             message.reply('Ошибка. Причина: **Я не знаю предмет "Пустота" ???**');
@@ -395,6 +395,46 @@ bot.on('message', message => { //Событие message для экономик�
                 else if (itemName === 'Epic') {if (message.member.roles.some(r=>[epic].includes(r.id))) {economy.updateBalance(message.author.id + message.guild.id, '1500'); message.channel.send('**У вас уже была роль ' + itemName + '. Мы вернули вам деньги**');}; message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));}
                 else if (itemName === 'Ultra Sphere') message.channel.send('**Поздравляем с покупкой самого загадочного предмета в магазине :tada:. ');
                 else if (itemName === 'Красный') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Оранжевый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Желтый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Зеленый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Светло-синий') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Синий') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Фиолетовый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Кроваво-красный') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Токсичный') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Лавовый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Аква') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+                else if (itemName === 'Ярко-розовый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
+            })
+        })
+    }
+    if (['buy-color', 'bc', 'b-c'].includes(command)) {
+        let categories = []; 
+        if (!args.join(" ")) { 
+            message.reply('Ошибка. Причина: **Я не цвет "Прозрачный" ???**');
+            return
+        }
+        let itemName = '';
+        let itemPrice = 0;
+        let itemDesc = '';
+        for (var i in colors) { 
+            if (args.join(" ").trim().toUpperCase() === colors[i].name.toUpperCase()) { 
+                itemName = colors[i].name;
+                itemPrice = colors[i].price;
+                itemDesc = colors[i].desc;
+            }
+        }
+        if (itemName === '') {
+            return message.channel.send(`**Я не знаю предмет "${args.join(" ").trim()}" o_O. И не смогу тебе его продать**`)
+        }
+        economy.fetchBalance(message.member.id + message.guild.id).then((i) => { 
+            if (i.money <= itemPrice) { 
+                return message.channel.send(`**Вам не хватает` + i.money - itemPrice + currency + '**');
+            }
+            economy.updateBalance(message.member.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
+                message.channel.send(`**Вы успешно купили ` + itemName + `. У вас осталось `+ i.money + currency + `**`);
+                if (itemName === 'Красный') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
                 else if (itemName === 'Оранжевый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
                 else if (itemName === 'Желтый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
                 else if (itemName === 'Зеленый') message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", itemName));
@@ -794,7 +834,7 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
                 const embed = new Discord.RichEmbed()
                 .setTitle("Помощь по экономике")
                 .setColor("af00ff")
-                .setDescription('<...> - Обязательный параметр\n[...] - Необязательный параметр**\n\nКоманды для заработка денег:**\n' + p + 'rsp `<камень | ножницы | бумага>` - Дает от 1 до 3 рублей\n\n**Другие команды:**\n' + p + 'money - узнать свой баланс\n' + p + 'shop - магазин\n' + p + 'buy `[предмет]` - купить предмет из магазина\n' + p + 'add-money `<пользователь>` - добавить деньги пользователю\n' + p + 'remove-money `<пользователь>` - списать деньги с пользователя')
+                .setDescription('<...> - Обязательный параметр\n[...] - Необязательный параметр**\n\nКоманды для заработка денег:**\n' + p + 'rsp `<камень | ножницы | бумага>` - Дает от 1 до 3 рублей\n\n**Другие команды:**\n' + p + 'money - узнать свой баланс\n' + p + 'shop - магазин\n' + p + 'buy `<предмет>` - купить предмет из магазина\n' + p + 'buy-color `<цвет>` - купить цвет' + p + 'add-money `<пользователь>` - добавить деньги пользователю\n' + p + 'remove-money `<пользователь>` - списать деньги с пользователя')
                 .setFooter(bot_name + " | " + version + " | Все права защищены")
                 .setTimestamp();
             message.channel.send({embed});
