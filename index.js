@@ -147,6 +147,7 @@ bot.on('ready', () => {
 });
 
 const items = JSON.parse(fs.readFileSync('items.json', 'utf8'));
+const colors = JSON.parse(fs.readFileSync('colors.json', 'utf8'));
 
 bot.on('message', message => {
     if (message.author.bot) return;
@@ -156,7 +157,7 @@ bot.on('message', message => {
     const command = args.shift().toLowerCase();
     if (cooldown.has(message.author.id)) {
         message.delete();
-        message.reply('Ошибка. Причина **Вы не можете использовать эту команду так часто. Её можно использовать раз в 10 секунд')
+        message.reply('Ошибка. Причина **Вы не можете использовать эту команду так часто. Её можно использовать раз в 10 секунд**')
     }
     if (!message.member.hasPermission("ADMINISTRATOR")) {
         cooldown.add(message.author.id);
@@ -312,7 +313,8 @@ bot.on('message', message => { //Событие message для экономик�
             message.reply('Ошибка. Причина: **У вас недостаточно прав для использования этой команды.**')
         }
     }
-    if (['shop', 's'].includes(command)) {
+    if (['shop', 's', 's'].includes(command)) {
+        if (args[0] === 1) {
         let categories = []; 
             for (var i in items) { 
                 if (!categories.includes(items[i].type)) {
@@ -320,7 +322,7 @@ bot.on('message', message => { //Событие message для экономик�
                 }
             }
             const embed = new Discord.RichEmbed()
-                .setTitle(`Магазин IT`)
+                .setTitle(`Магазин IT ролей и еды`)
                 .setDescription('Как пятерочка, только цены ниже :D')
                 .setColor("af00ff")
             for (var i = 0; i < categories.length; i++) { 
@@ -328,6 +330,30 @@ bot.on('message', message => { //Событие message для экономик�
                 for (var c in items) { 
                     if (categories[i] === items[c].type) {
                         tempDesc += `**${items[c].name} — ` + currency + `${items[c].price}**\n${items[c].desc}\n\n`;
+                    }
+                }
+                embed.addField(categories[i], tempDesc);
+            }
+            return message.channel.send({
+                embed
+            });
+            }
+        else if (args[0] === 2) {
+            let categories = []; 
+            for (var i in colors) { 
+                if (!categories.includes(colors[i].type)) {
+                    categories.push(colors[i].type)
+                }
+            }
+            const embed = new Discord.RichEmbed()
+                .setTitle(`Магазин IT цветов`)
+                .setDescription('Покрась меня полностью')
+                .setColor("af00ff")
+            for (var i = 0; i < categories.length; i++) { 
+                var tempDesc = '';
+                for (var c in colors) { 
+                    if (categories[i] === colors[c].type) {
+                        tempDesc += `**${colors[c].name} — ` + currency + `${colors[c].price}**\n${colors[c].desc}\n\n`;
                     }
                 }
                 embed.addField(categories[i], tempDesc);
@@ -336,31 +362,13 @@ bot.on('message', message => { //Событие message для экономик�
                 embed
             });
         }
+    }
     
         if (['buy', 'b'].includes(command)) {
         let categories = []; 
         if (!args.join(" ")) { 
-            for (var i in items) { 
-                if (!categories.includes(items[i].type)) {
-                    categories.push(items[i].type)
-                }
-            }
-            const embed = new Discord.RichEmbed()
-                .setTitle(`Магазин IT`)
-                .setDescription('Как пятерочка, только цены ниже :D')
-                .setColor("af00ff")
-            for (var i = 0; i < categories.length; i++) { 
-                var tempDesc = '';
-                for (var c in items) { 
-                    if (categories[i] === items[c].type) {
-                        tempDesc += `**${items[c].name} — ` + currency + `${items[c].price}**\n${items[c].desc}\n\n`;
-                    }
-                }
-                embed.addField(categories[i], tempDesc);
-            }
-            return message.channel.send({
-                embed
-            });
+            message.reply('Ошибка. Причина: **Я не знаю предмет "Пустота" ???**');
+            return
         }
         let itemName = '';
         let itemPrice = 0;
