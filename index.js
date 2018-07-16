@@ -147,7 +147,7 @@ bot.on('ready', () => {
 });
 
 const items = JSON.parse(fs.readFileSync('items.json', 'utf8'));
-//const colors = JSON.parse(fs.readFileSync('colors.json', 'utf8'));
+const colors = JSON.parse(fs.readFileSync('colors.json', 'utf8'));
 
 bot.on('message', message => {
     if (message.author.bot) return;
@@ -315,6 +315,7 @@ bot.on('message', message => { //Событие message для экономик�
         }
     }
     if (['shop', 's', 's'].includes(command)) {
+    if (args[0] === 1) {
     let categories = []; 
         for (var i in items) { 
             if (!categories.includes(items[i].type)) {
@@ -335,6 +336,29 @@ bot.on('message', message => { //Событие message для экономик�
              embed.addField(categories[i], tempDesc);
         }
         return message.channel.send({embed});
+        }
+        if (args[0] === 2) {
+            let categories = []; 
+                for (var i in colors) { 
+                    if (!categories.includes(colors[i].type)) {
+                        categories.push(colors[i].type)
+                    }
+                }
+                const embed = new Discord.RichEmbed()
+                    .setTitle(`Магазин IT ролей и еды`)
+                    .setDescription('Как пятерочка, только цены ниже :D')
+                    .setColor("af00ff")
+                for (var i = 0; i < categories.length; i++) { 
+                    var tempDesc = '';
+                    for (var c in items) { 
+                        if (categories[i] === colors[c].type) {
+                            tempDesc += `**${colors[c].name} — ` + currency + `${colors[c].price}**\n${colors[c].desc}\n\n`;
+                        }
+                    }
+                     embed.addField(categories[i], tempDesc);
+                }
+                return message.channel.send({embed});
+                }
     }
     
         if (['buy', 'b'].includes(command)) {
@@ -433,20 +457,20 @@ bot.on('message', message => {
     if (['8ball', 'ball', '8'].includes(command)) {
         let numOfAnswer = randomInteger(1, 11);
         if (!args[0]) {
-            replMsg('Ошибка. Причина: **Не указан аргумент**\n\nПравильное использование:\n=8ball `<вопрос>`'); 
+            message.reply('Ошибка. Причина: **Не указан аргумент**\n\nПравильное использование:\n=8ball `<вопрос>`'); 
             return;
         }
-        if (numOfAnswer = 1) replMsg('Без сомннения!');
-        else if (numOfAnswer = 2) replMsg('Да, конечно');
-        else if (numOfAnswer = 3) replMsg('Да');
-        else if (numOfAnswer = 4) replMsg('С высокой долей вероятности');
-        else if (numOfAnswer = 5) replMsg('Скорее всего');
-        else if (numOfAnswer = 6) replMsg('Абсолютно нет!');
-        else if (numOfAnswer = 7) replMsg('Никак нет');
-        else if (numOfAnswer = 8) replMsg('Нет');
-        else if (numOfAnswer = 9) replMsg('Неа');
-        else if (numOfAnswer = 10) replMsg('Сомневаюсь');
-        else replMsg('Спроси позднее, я не знаю');
+        if (numOfAnswer = 1) message.reply('Без сомннения!');
+        if (numOfAnswer = 2) message.reply('Да, конечно');
+        if (numOfAnswer = 3) message.reply('Да');
+        if (numOfAnswer = 4) message.reply('С высокой долей вероятности');
+        if (numOfAnswer = 5) message.reply('Скорее всего');
+        if (numOfAnswer = 6) message.reply('Абсолютно нет!');
+        if (numOfAnswer = 7) message.reply('Никак нет');
+        if (numOfAnswer = 8) message.reply('Нет');
+        if (numOfAnswer = 9) message.reply('Неа');
+        if (numOfAnswer = 10) message.reply('Сомневаюсь');
+        else message.reply('Спроси позднее, я не знаю');
     }
 
     if (['ship', 'love', 'шип'].includes(command)) {
