@@ -426,9 +426,13 @@ bot.on('message', message => {
     function sendMsg (msg) {
         message.channel.send(msg)
     }
+    function repMsg (msg) {
+        message.reply(msg)
+    }
 
     if (['8ball', 'ball', '8'].includes(command)) {
         let numOfAnswer = randomInteger(1, 11);
+        if (!args[0]) repMsg('Ошибка. Причина: **Не указан аргумент**\n\nПравильное использование:\n=8ball `<вопрос>`')
         if (numOfAnswer = 1) message.reply('Без сомннения!');
         else if (numOfAnswer = 2) message.reply('Да, конечно');
         else if (numOfAnswer = 3) message.reply('Да');
