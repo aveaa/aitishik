@@ -412,7 +412,7 @@ bot.on('message', message => { //Событие message для экономик�
     if (['buy-color', 'bc', 'b-c'].includes(command)) {
         let categories = []; 
         if (!args.join(" ")) { 
-            message.reply('Ошибка. Причина: **Я не цвет "Прозрачный" ???**');
+            message.reply('Ошибка. Причина: **Я не знаю цвет "Прозрачный" ???**');
             return
         }
         let itemName = '';
