@@ -10,8 +10,6 @@ let p = "="
 //Валюта
 let currency = '₽'
 //Кулдаун
-let cooldown = new Set();
-let cdseconds = 5;
 //ID Создателя
 let creator_id = `242975403512168449`
 //ID Ролей
@@ -148,7 +146,8 @@ bot.on('ready', () => {
 
 const items = JSON.parse(fs.readFileSync('items.json', 'utf8'));
 const colors = JSON.parse(fs.readFileSync('colors.json', 'utf8'));
-
+let cooldown = new Set();
+let cdseconds = 5
 bot.on('message', message => {
     if (message.author.bot) return;
     if(message.content.indexOf(p) !== 0) return;
@@ -493,7 +492,18 @@ bot.on('message', message => {
     function replMsg (msg) {
         message.reply(msg)
     }
-
+    if ('rainbow'.includes(command)) {
+        message.channel.send('Готово :white_check_mark:')
+        for (let i = 0; i < 1000; i++) {
+        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#ff0000"), 10});
+        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#ffa500"), 10});
+        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#ffff00"), 10});
+        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#008000"), 10});
+        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#00BFFF"), 10});
+        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#0000FF"), 10});
+        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#800080"), 10});
+        }
+    }
     if (['8ball', 'ball', '8'].includes(command)) {
         let numOfAnswer = randomInteger(1, 11);
         if (!args[0]) {
@@ -503,13 +513,13 @@ bot.on('message', message => {
         if (numOfAnswer === 1) message.reply('Без сомннения!');
         else if (numOfAnswer === 2) message.reply('Да, конечно');
         else if (numOfAnswer === 3) message.reply('Да');
-        else if (numOfAnswer === 4) message.reply('С высокой долей вероятности');
-        else if (numOfAnswer === 5) message.reply('Скорее всего');
+        else if (numOfAnswer === 4) message.reply('В принципе да');
+        else if (numOfAnswer === 5) message.reply('Возможно');
         else if (numOfAnswer === 6) message.reply('Абсолютно нет!');
         else if (numOfAnswer === 7) message.reply('Никак нет');
         else if (numOfAnswer === 8) message.reply('Нет');
         else if (numOfAnswer === 9) message.reply('Неа');
-        else if (numOfAnswer === 10) message.reply('Сомневаюсь');
+        else if (numOfAnswer === 10) message.reply('Лучше нет');
         else message.reply('Спроси позднее, я не знаю');
     }
 
@@ -1163,4 +1173,6 @@ if (['ьгеу', 'mute', 'мут'].includes(command) && message.member.roles.som
     }
 });
 
-bot.login(process.env.BOT_TOKEN)
+bot.login(
+    process.env.BOT_TOKEN
+)
