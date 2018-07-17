@@ -463,8 +463,8 @@ bot.on('message', message => {
         async function color (colors, role) {
             forEachTimeout(colors, (color) => {role.setColor(color)}, 1500).then(() => color(colors, role));
         }
-        color();
-    }
+        color(colors, role);
+}
     if (['8ball', 'ball', '8'].includes(command)) {
         let numOfAnswer = randomInteger(1, 11);
         if (!args[0]) {
