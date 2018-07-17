@@ -11,6 +11,7 @@
   "dependencies": {
     "discord-eco": "0.0.10",
     "discord.js": "^11.3.2",
+    "foreach-timeout": "^2.0.2",
     "fs": "0.0.1-security",
     "ytdl-core": "^0.20.4"
   }
