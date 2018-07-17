@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const bot = new Discord.Client();
 const fs = require('fs');
 const economy = require('discord-eco');
+const forEachTimeout = require('foreach-timeout');
 
 /** @namespace process.env.BOT_TOKEN */
  
@@ -494,17 +495,12 @@ bot.on('message', message => {
     }
     if ('rainbow'.includes(command)) {
         message.channel.send('Готово :white_check_mark:');
-        for (let i = 0; i < 1000; i++) {
-        for (let i = 0; i < 1000; i++) {
-        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#ff0000"), 1000});
-        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#ffa500"), 1000});
-        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#ffff00"), 1000});
-        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#008000"), 1000});
-        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#00BFFF"), 1000});
-        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#0000FF"), 1000});
-        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#800080"), 1000});
+        let colors = ["#ff0000", "#ffa500", "#ffff00", "#008000", "#00BFFF", "#0000FF", "#800080"];
+        let role = message.guild.roles.find("name", "Rainbow");
+        async function color (colors, role) {
+            forEachTimeout(colors, (color) => {role.setColor(color)}, 1500).then(() => color(colors, role));
         }
-    }
+        color();
     }
     if (['8ball', 'ball', '8'].includes(command)) {
         let numOfAnswer = randomInteger(1, 11);
