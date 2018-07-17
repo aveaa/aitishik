@@ -493,7 +493,8 @@ bot.on('message', message => {
         message.reply(msg)
     }
     if ('rainbow'.includes(command)) {
-        message.channel.send('Готово :white_check_mark:')
+        message.channel.send('Готово :white_check_mark:');
+        for (let i = 0; i < 1000; i++) {
         for (let i = 0; i < 1000; i++) {
         setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#ff0000"), 1000});
         setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#ffa500"), 1000});
@@ -503,6 +504,7 @@ bot.on('message', message => {
         setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#0000FF"), 1000});
         setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#800080"), 1000});
         }
+    }
     }
     if (['8ball', 'ball', '8'].includes(command)) {
         let numOfAnswer = randomInteger(1, 11);
