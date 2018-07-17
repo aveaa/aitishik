@@ -495,13 +495,14 @@ bot.on('message', message => {
     if ('rainbow'.includes(command)) {
         message.channel.send('Готово :white_check_mark:')
         for (let i = 0; i < 1000; i++) {
-        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#ff0000"), 10});
-        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#ffa500"), 10});
-        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#ffff00"), 10});
-        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#008000"), 10});
-        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#00BFFF"), 10});
-        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#0000FF"), 10});
-        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#800080"), 10});
+            let zaderzhka = 600;
+        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#ff0000"), zaderzhka});
+        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#ffa500"), zaderzhka});
+        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#ffff00"), zaderzhka});
+        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#008000"), zaderzhka});
+        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#00BFFF"), zaderzhka});
+        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#0000FF"), zaderzhka});
+        setTimeout(() => {message.guild.roles.find("name", "Rainbow").setColor("#800080"), zaderzhka});
         }
     }
     if (['8ball', 'ball', '8'].includes(command)) {
