@@ -53,7 +53,7 @@ function game1() {
 }
 function game2() {
     bot.user.setActivity('на ' + p + 'info для информации',{ type: 'WATCHING' })
-    setTimeout(game3, 16000);
+    setTimeout(game1, 16000);
 }
 //Функция для добавления нескольких реакций под сообщение
 async function multipleReact(message, arr) {
