@@ -186,13 +186,15 @@ bot.on('message', message => { //Событие message для экономик�
                 else {
                 message.channel.send('Я выбрал ' + computerChoice + '. ' + message.author + ", " + rspCW(userChoice, computerChoice) + ' Ты выбрал\(а\) ' + userChoice + ' Я выбрал ' + computerChoice);
              }};
-    if (['bal', 'money', 'cash', 'mon', 'balance'].includes(command)) {
+    if (['bal', 'money', 'cash', 'mon', 'balance'].includes(command)) { 
         let user = message.mentions.members.first(); 
         if (!args[0]) user = message.author
         economy.fetchBalance(user.id + message.guild.id).then((i) => { 
         const embed = new Discord.RichEmbed()
-            .setAuthor(user.displayName/*, user.user.avatarURL*/) 
-            .setFooter(bot_name + " | " + version + " | Все права защищены")
+            .setAuthor(user.displayName) 
+            if (!args[0]) {user = message.member; embed.setAuthor(message.author.avatarURL);}
+            else {embed.setAuthor(user.user.avatarURL)}
+            embed.setFooter(bot_name + " | " + version + " | Все права защищены")
             .setColor("af00ff") 
             .addField('Баланс', '**' + i.money + currency + '**',true)
         message.channel.send({embed})
