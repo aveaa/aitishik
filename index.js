@@ -188,7 +188,7 @@ bot.on('message', message => { //Событие message для экономик�
              }};
     if (['bal', 'money', 'cash', 'mon', 'balance'].includes(command)) {
         let user = message.mentions.members.first(); 
-        user = message.author
+        if (!args[0]) user = message.author
         economy.fetchBalance(user.id + message.guild.id).then((i) => { 
         const embed = new Discord.RichEmbed()
             .setAuthor(message.member.displayName, message.author.avatarURL)
