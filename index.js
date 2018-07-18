@@ -190,7 +190,8 @@ bot.on('message', message => { //Событие message для экономик�
         let user = message.mentions.members.first(); 
         const embed = new Discord.RichEmbed()
             if (!user) {
-                embed.setAuthor(message.member.displayName, message.author.avatarURL)
+                embed.setAuthor(message.member.displayName, message.author.avatarURL);
+                user = message.author
             } else {
                 embed.setAuthor(user.displayName, user.user.avatarURL)
             }
