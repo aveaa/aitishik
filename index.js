@@ -251,6 +251,32 @@ bot.on('message', message => { //Событие message для экономик�
         } else {
             message.reply('Ошибка. Причина: **У вас недостаточно прав для использования этой команды.**')
         }
+        if (['pay', 'give-money', 'g-m', 'gm'].includes(command)) {
+            if (!args[0]) {
+                message.channel.send(`**Вы забыли указать пользователя. =pay <пользователь> <количество>**`);
+                return;
+            }
+            if (isNaN(args[1])) {
+                message.channel.send(`**Вы забыли указать количество. =pay <пользователь> <количество>**`);
+                return; 
+            }
+            let defineduser = '';
+            if (!args[0]) { 
+                defineduser = message.author.id;
+            } else { 
+                let firstMentioned = message.mentions.users.first();
+                defineduser = firstMentioned.id;
+            }    
+            economy.fetchBalance(message.author + message.guild.id, parseInt(args[1])).then((i) => {
+                if (i.money <= parseInt(args[1])) { 
+                    return message.channel.send('**Ты не можешь заплатить больше денег чем ты имеешь -_-**');
+                }
+                economy.updateBalance(defineduser + message.guild.id, parseInt(args[1])).then((i) => { 
+                    message.channel.send(`**Вы дали ${args[1]}${currency} ` + user + `**`)
+                });
+                economy.updateBalance(message.author + message.guild.id, -parseInt(args[1]))
+            })
+        }
     }
     if (['shop', 's', 's'].includes(command)) {
         if (args[0] === 2) {
