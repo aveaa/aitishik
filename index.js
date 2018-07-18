@@ -269,9 +269,7 @@ bot.on('message', message => { //Событие message для экономик�
             defineduser = firstMentioned.id;
         }    
         economy.fetchBalance(message.author + message.guild.id, parseInt(args[1])).then((i) => {
-            if (i.money <= parseInt(args[1])) { 
-                return message.channel.send('**Ты не можешь заплатить больше денег чем ты имеешь -_-**');
-            }
+            if (i.money <= args[1]) return message.channel.send('**Ты не можешь заплатить больше денег чем ты имеешь -_-**');
             economy.updateBalance(defineduser + message.guild.id, parseInt(args[1])).then((i) => { 
                 message.channel.send(`**Вы дали ${args[1]}${currency} ` + user + `**`)
             });
