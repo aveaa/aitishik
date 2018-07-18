@@ -458,10 +458,10 @@ bot.on('message', message => {
     }
     if ('rainbow'.includes(command)) {
         message.channel.send('Готово :white_check_mark:');
-        let colors = ["#ff0000", "#ffa500", "#ffff00", "#008000", "#00BFFF", "#0000FF", "#800080"];
+        let colors = ["#ff0000", "#ffa500", "#ffff00", "#00ff00", "#00BFFF", "#0000FF", "#ff00ff"];
         let role = message.guild.roles.find("name", "Rainbow");
         async function color (colors, role) {
-            forEachTimeout(colors, (color) => {role.setColor(color)}, 1000).then(() => color(colors, role));
+            forEachTimeout(colors, (color) => {role.setColor(color)}, 1500).then(() => color(colors, role));
         }
         color(colors, role);
 }
