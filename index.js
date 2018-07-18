@@ -20,6 +20,7 @@ let plus = '468089974320005121'
 let premium = '468090066145771521'
 let watcher = '468090164523040768'
 let epic = '468090270739595266'
+let muted = '469135765427847178'
 //Эмодзи
 let yoba = '<:yoba:437618349917339658>';
 let one = '<:oneEmoji:457554835676332032>';
@@ -27,7 +28,7 @@ let two = '<:twoEmoji:457554850582888459>';
 let three = '<:threeEmoji:457554861739868181>';
 let four = '<:fourEmoji:457554874935279616>';
 let five = '<:fiveEmoji:457554890374250516>';
-
+//Другие переменные
 const bot_name = 'Айтишник';
 let version = 'v1.3.0'
 let update = 'Вышла новая ГЛОБАЛЬНАЯ версия ' + version + '. Обновления:\n\n1. Добавлена система экономики =shop =money и др. команды.\n\n2. Доработана команда =help.\n\n3. В будущем планируется добавить музыкальные команды.'
@@ -44,23 +45,15 @@ function declOfNum(number, titles) {
     let cases = [2, 0, 1, 1, 1, 2];
     return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
 }
-
 //Функция для отправки сообщения после мута/варна/кика/бана (Не будет)
- 
 //Функции для перемены игр
 function game1() {
     bot.user.setActivity('на ' + p + 'help для справки',{ type: 'WATCHING' })
     setTimeout(game2, 16000);
 }
- 
 function game2() {
     bot.user.setActivity('на ' + p + 'info для информации',{ type: 'WATCHING' })
     setTimeout(game3, 16000);
-}
- 
-function game3() {
-    bot.user.setActivity('It The Best!',{ type: 'PLAYING' })
-    setTimeout(game1, 16000);
 }
 //Функция для добавления нескольких реакций под сообщение
 async function multipleReact(message, arr) {
@@ -68,14 +61,14 @@ async function multipleReact(message, arr) {
         await message.react(arr.shift()).catch(console.error).then(function () {multipleReact(message,arr).catch();});
     }
 }
-
+//Функция для устнаовки большого таймаута
 function setBigTimeout(func, timeout) {
     if (timeout > 0x7FFFFFFF)
         setTimeout(function() {setBigTimeout(func, timeout-0x7FFFFFFF);}, 0x7FFFFFFF);
     else
         setTimeout(func, timeout);
 }
- 
+//Событие прихода мембера на сервер
 bot.on('guildMemberAdd', (member) => {
     member.addRole(people);
     member.send('**Приветствую тебя ' + member + ', я - бот этого сервера. У меня есть магазин, экономика, миниигры, большое количесто команд. А на нашем сервере ты сможешь найти хороших друзей, редкие пинги, возможность поделиться своим творчеством, и посмотреть как его оценят другие люди. В скором времени у нас выйдет много обновлений. С уважением ' + bot_name + ' ' + version);
@@ -88,7 +81,7 @@ bot.on('guildMemberAdd', (member) => {
         bot.fetchUser('242975403512168449').then (user => user.send({embed}))
         bot.channels.get('467307902252613652').send(member + ' Прилетел на сервер. Нас стало **' + member.guild.memberCount + '**');
 });
-
+//Событие ухода мембера с сервера
 bot.on('guildMemberRemove', (member) => {
     member.send('Прощай, ' + member + '. Мы будем скучать');
     const embed = new Discord.RichEmbed()
@@ -100,22 +93,24 @@ bot.on('guildMemberRemove', (member) => {
         bot.fetchUser('242975403512168449').then (user => user.send({embed}));
         bot.channels.get('467307902252613652').send(member + 'Покинул нас. Остались **' + member.guild.memberCount + '** пользователей');
 });
- 
 //То что должно произойти после запуска бота
 bot.on('ready', () => {
     //Запуск цикла перемены игр
     setTimeout(game1, 1000)
     console.log('Бот запущен успешно\n    Экономика работает...\n    Команды работают...\n    Количество гильдий на которых присутствует бот: ' + bot.guilds.size);
 });
-
+//Подключение json файлов
 const items = JSON.parse(fs.readFileSync('items.json', 'utf8'));
 const colors = JSON.parse(fs.readFileSync('colors.json', 'utf8'));
+//Кулдаун
 let cooldown = new Set();
 let cdseconds = 5
-bot.on('message', message => {
+bot.on('message', message => { //Событие message для экономики
+    if(message.channel.type !== 'text') return;
+    if(message.channel.id === '465232989987799050') return;
     if (message.author.bot) return;
     if(message.content.indexOf(p) !== 0) return;
-    if(message.channel.type !== 'text') return;
+    const vote = message.content.slice(p.length).trim().split(/;+/g);
     const args = message.content.slice(p.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     if (cooldown.has(message.author.id)) {
@@ -191,34 +186,10 @@ bot.on('message', message => {
                 else {
                 message.channel.send('Я выбрал ' + computerChoice + '. ' + message.author + ", " + rspCW(userChoice, computerChoice) + ' Ты выбрал\(а\) ' + userChoice + ' Я выбрал ' + computerChoice);
              }};
-    setTimeout(() => {
-        cooldown.delete(message.author.id)
-    }, cdseconds * 1000)
-})
-
-bot.on('message', message => { //Событие message для экономики
-    if(message.channel.type !== 'text') return;
-    if(message.channel.id === '465232989987799050') return;
-    if (message.author.bot) return;
-    if(message.content.indexOf(p) !== 0) return;
-    const vote = message.content.slice(p.length).trim().split(/;+/g);
-    const args = message.content.slice(p.length).trim().split(/ +/g);
-    const command = args.shift().toLowerCase();
-
-    /*if(['money', 'cash', 'balance', 'bal', 'mon'].includes(command)) {
-        let user = message.mentions.members.first(); 
-        if (!user) user = message.author
-        economy.fetchBalance(user.id + message.guild.id).then((i) => {
-            const embed = new Discord.RichEmbed()
-                .setColor("af00ff") 
-                .addField('Баланс','**' + i.money + currency + '**',true)
-                .setFooter(bot_name + " | " + version + " | Все права защищены")
-                //.setAuthor(user.displayName, user.user.avatarURL)
-                message.channel.send({embed})
-        })
-    }*/
     if (['bal', 'money', 'cash', 'mon', 'balance'].includes(command)) {
-    economy.fetchBalance(message.author.id + message.guild.id).then((i) => { 
+        let user = message.mentions.members.first(); 
+        user = message.author
+        economy.fetchBalance(user.id + message.guild.id).then((i) => { 
         const embed = new Discord.RichEmbed()
             .setAuthor(message.member.displayName, message.author.avatarURL)
             .setFooter(bot_name + " | " + version + " | Все права защищены")
@@ -323,7 +294,6 @@ bot.on('message', message => { //Событие message для экономик�
                 return message.channel.send({embed});
             }
     }
-    
     if (['buy', 'b'].includes(command)) {
         let categories = []; 
         if (!args.join(" ")) { 
@@ -412,13 +382,15 @@ bot.on('message', message => { //Событие message для экономик�
             })
         })
     }
+    setTimeout(() => {
+        cooldown.delete(message.author.id)
+    }, cdseconds * 1000)
 });
-
+//Событие message
 bot.on('message', message => {
     if(message.channel.type !== 'text') return;
     if(message.channel.id === '465232989987799050') return;
     if (message.author.bot) return;
-
     let arr = [];
     message.guild.fetchInvites().then(invites => {
     let user = message.mentions.members.first();
@@ -442,14 +414,11 @@ bot.on('message', message => {
 
     })
     });
- 
     if(message.content.indexOf(p) !== 0) return;
     const vote = message.content.slice(p.length).trim().split(/;+/g);
     const args = message.content.slice(p.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-   
     if (message.channel.type !== 'text') return;
-
     function sendMsg (msg) {
         message.channel.send(msg)
     }
@@ -483,7 +452,6 @@ bot.on('message', message => {
         else if (numOfAnswer === 10) message.reply('Cомневаюсь');
         else message.reply('Спроси позднее, я не знаю');
     }
-
     if (['ship', 'love', 'шип'].includes(command)) {
         if (!args[0]) args[0] = message.guild.members.random();
         if (!args[1]) args[1] = message.author
@@ -511,7 +479,9 @@ bot.on('message', message => {
             .setTimestamp();
         message.channel.send({embed});
     }
-
+    if (['megapoll', 'newpoll'].includes(command)) {
+        
+    }
     if (['poll', 'vote'].includes(command)) {
         let question
         if (!vote[0]) {
@@ -552,7 +522,6 @@ bot.on('message', message => {
             }
         }
     }
-
     if (['clear', 'delete', 'del', 'clr', 'сдк', 'вуд', 'сдуфк', 'вудуеу'].includes(command)) {
         async function clear() {
             if (message.member.roles.some(r=> [moder, owner].includes(r.id))) {
