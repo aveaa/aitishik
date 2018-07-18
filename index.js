@@ -480,7 +480,7 @@ bot.on('message', message => {
         else if (numOfAnswer === 7) message.reply('Никак нет');
         else if (numOfAnswer === 8) message.reply('Нет');
         else if (numOfAnswer === 9) message.reply('Неа');
-        else if (numOfAnswer === 10) message.reply('Лучше нет');
+        else if (numOfAnswer === 10) message.reply('Cомневаюсь');
         else message.reply('Спроси позднее, я не знаю');
     }
 
@@ -488,24 +488,10 @@ bot.on('message', message => {
         if (!args[0]) args[0] = message.guild.members.random();
         if (!args[1]) args[1] = message.author
         if (args[0].length > 30 || args[1].length > 30) return message.reply('Ошибка. Причина: **Аргумент не может быть длиннее 30 символов');
-        let nullSymbols
-        /*if (args[0].length >= 10) nullSymbols = 10;
-        else if (args[0].length >= 20) nullSymbols = 20;
-        else nullSymbols = 30*/
         let loveText
         let shkala
-        let percents
-        let args0percents
-        let args1percents
+        let percents = randomInteger(0, 100)
         let feels
-        Array.of(args[0]).forEach((letter) => {
-            args0percents += letterCheckng(letter);
-        })
-        Array.of(args[1]).forEach( (letter) => {
-            args1percents += letterCheckng(letter);
-        })
-        percents = args0percents + args1percents;
-        if (isNaN(percents)) percents = randomInteger(0, 100)
         if (percents <= 99) {loveText = 'Невероятно!!! :heart_eyes:'; shkala = '■■■■■■■■■□'; feels = 'Любят';}
         if (percents <= 89) {loveText = 'Превосходно! :heartpulse:'; shkala = '■■■■■■■■□□'; feels = 'Любят';}
         if (percents <= 79) {loveText = 'Ууу ( ͡° ͜ʖ ͡°)'; shkala = '■■■■■■■□□□'; feels = 'Любят';}
