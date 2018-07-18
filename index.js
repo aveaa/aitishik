@@ -191,7 +191,8 @@ bot.on('message', message => { //Событие message для экономик�
         if (!args[0]) user = message.author
         economy.fetchBalance(user.id + message.guild.id).then((i) => { 
         const embed = new Discord.RichEmbed()
-            .setAuthor(message.member.displayName, message.author.avatarURL)
+        if (!args[0]) user = message.member
+            .setAuthor(user.displayName, user.user.avatarURL)
             .setFooter(bot_name + " | " + version + " | Все права защищены")
             .setColor("af00ff") 
             .addField('Баланс', '**' + i.money + currency + '**',true)
