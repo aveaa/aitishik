@@ -114,7 +114,6 @@ bot.on('message', message => { //Событие message для экономик�
     const args = message.content.slice(p.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     if (cooldown.has(message.author.id)) {
-        message.delete();
         message.reply('Ошибка. Причина **Вы не можете использовать эту команду так часто. Её можно использовать раз в 10 секунд**')
         return
     }
